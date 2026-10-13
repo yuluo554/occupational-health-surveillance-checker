@@ -1,0 +1,42 @@
+{
+  "benchmark_thresholds": {
+    "compare_accuracy_min": 1.0,
+    "coverage_accuracy_min": 1.0,
+    "false_positive_max": 0,
+    "matrix_accuracy_min": 0.95,
+    "max_runtime_seconds": 1.0
+  },
+  "cutover": {
+    "after": "GBZ188-2025",
+    "before": "GBZ188-2014",
+    "date": "2026-08-01"
+  },
+  "generated_by": "tools/gen_rulesets.py",
+  "note": "M0 骨架：全部条目 status=pending，未挂原文核对不得进入核查路径。",
+  "rulesets": [
+    {
+      "factor_count": 32,
+      "file": "ruleset-2014.json",
+      "ruleset_id": "GBZ188-2014",
+      "sha256": "39b2a03fb9dd9fcf85c48a146b617f8912862556eb0db058b4aea48dfda73140",
+      "status_counts": {
+        "input_required": 0,
+        "pending": 32,
+        "verified": 0
+      }
+    },
+    {
+      "factor_count": 32,
+      "file": "ruleset-2025.json",
+      "ruleset_id": "GBZ188-2025",
+      "sha256": "d5172391a686bfe55996c18567767ac8cba4e7ca12a127a76493c141ae7ca0ac",
+      "status_counts": {
+        "input_required": 0,
+        "pending": 32,
+        "verified": 0
+      }
+    }
+  ],
+  "schema_version": "1.0",
+  "synthetic": false
+}

@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  test:
+    name: py${{ matrix.python-version }} / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # 4 矩阵：{ubuntu, windows} × {3.8, 3.12}（NFR-6 / plan/03 §十一）
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.8", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # 历史扫描类守门测试依赖全量历史；浅克隆会让扫描静默空转（决策 D-40）
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install
+        # 3.8 自带老 pip（20.2.3）无法可编辑安装 pyproject-only 项目 → 先升级 pip
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Frozen artifacts regenerate byte-identical
+        run: |
+          python tools/gen_rulesets.py --check
+          python tools/gen_cases.py --check
+
+      - name: Zero-literal gate (with positive control)
+        run: |
+          python tools/check_literals.py --selftest
+          python tools/check_literals.py
+
+      - name: Tests
+        run: python -m pytest -q
+
+      - name: Selfcheck
+        run: python -m ohscheck selfcheck
+
+      - name: Benchmarks
+        run: python -m ohscheck bench
+
+      - name: CLI smoke
+        run: |
+          python -m ohscheck version
+          python -m ohscheck compare

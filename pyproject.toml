@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ohscheck"
+version = "0.1.0"
+description = "职业健康监护合规核查工作台（GBZ 188 双版本规则集·监护矩阵·批量对账）"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "yuluo554" }]
+keywords = ["occupational-health", "GBZ188", "compliance", "surveillance", "offline"]
+classifiers = [
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Office/Business",
+]
+# 核心运行时：**零第三方依赖**（NFR-3 / 决策 D-07）
+dependencies = []
+
+[project.optional-dependencies]
+# 桌面界面（M5）。3.8 上 PySide6 有硬上限，见 plan/06 D-13。
+gui = ["PySide6>=6.6,<6.7"]
+# 打包（M5）。打 GUI 必须 PyInstaller >= 6（决策 D-14）。
+build = ["PyInstaller>=6.0"]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/yuluo554/occupational-health-surveillance-checker"
+Repository = "https://github.com/yuluo554/occupational-health-surveillance-checker"
+
+[project.scripts]
+ohscheck = "ohscheck.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["error::DeprecationWarning"]

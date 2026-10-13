@@ -1,0 +1,3138 @@
+{
+  "alias_map": {
+    "map": {},
+    "source": {
+      "clause": "",
+      "doc": "",
+      "fetched": "",
+      "url": ""
+    },
+    "status": "pending"
+  },
+  "basis": {
+    "doc_code": "GBZ 188—2025",
+    "doc_number": "国卫通〔2025〕10 号",
+    "doc_title": "职业健康监护技术规范",
+    "effective_from": "2026-08-01",
+    "fetched": "2026-10-14",
+    "issuer": "国家卫生健康委员会",
+    "published": "2025-08-20",
+    "replaces": "GBZ 188—2014",
+    "url": "https://www.gov.cn/zhengce/zhengceku/202509/P020250906581488346891.pdf"
+  },
+  "chapters": [
+    "5",
+    "6"
+  ],
+  "factors": [
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_01",
+      "factor_id": "5.1.0",
+      "factor_name": "待核对（第 5 章 第 1 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_02",
+      "factor_id": "5.2.0",
+      "factor_name": "待核对（第 5 章 第 2 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_03",
+      "factor_id": "5.3.0",
+      "factor_name": "待核对（第 5 章 第 3 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_04",
+      "factor_id": "5.4.0",
+      "factor_name": "待核对（第 5 章 第 4 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_05",
+      "factor_id": "5.5.0",
+      "factor_name": "待核对（第 5 章 第 5 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_06",
+      "factor_id": "5.6.0",
+      "factor_name": "待核对（第 5 章 第 6 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_07",
+      "factor_id": "5.7.0",
+      "factor_name": "待核对（第 5 章 第 7 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_08",
+      "factor_id": "5.8.0",
+      "factor_name": "待核对（第 5 章 第 8 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_09",
+      "factor_id": "5.9.0",
+      "factor_name": "待核对（第 5 章 第 9 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_10",
+      "factor_id": "5.10.0",
+      "factor_name": "待核对（第 5 章 第 10 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_11",
+      "factor_id": "5.11.0",
+      "factor_name": "待核对（第 5 章 第 11 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_12",
+      "factor_id": "5.12.0",
+      "factor_name": "待核对（第 5 章 第 12 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_13",
+      "factor_id": "5.13.0",
+      "factor_name": "待核对（第 5 章 第 13 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_14",
+      "factor_id": "5.14.0",
+      "factor_name": "待核对（第 5 章 第 14 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_15",
+      "factor_id": "5.15.0",
+      "factor_name": "待核对（第 5 章 第 15 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_16",
+      "factor_id": "5.16.0",
+      "factor_name": "待核对（第 5 章 第 16 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_17",
+      "factor_id": "5.17.0",
+      "factor_name": "待核对（第 5 章 第 17 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_18",
+      "factor_id": "5.18.0",
+      "factor_name": "待核对（第 5 章 第 18 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_19",
+      "factor_id": "5.19.0",
+      "factor_name": "待核对（第 5 章 第 19 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_20",
+      "factor_id": "5.20.0",
+      "factor_name": "待核对（第 5 章 第 20 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_21",
+      "factor_id": "5.21.0",
+      "factor_name": "待核对（第 5 章 第 21 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_22",
+      "factor_id": "5.22.0",
+      "factor_name": "待核对（第 5 章 第 22 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_23",
+      "factor_id": "5.23.0",
+      "factor_name": "待核对（第 5 章 第 23 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_5_24",
+      "factor_id": "5.24.0",
+      "factor_name": "待核对（第 5 章 第 24 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_01",
+      "factor_id": "6.1.0",
+      "factor_name": "待核对（第 6 章 第 1 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_02",
+      "factor_id": "6.2.0",
+      "factor_name": "待核对（第 6 章 第 2 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_03",
+      "factor_id": "6.3.0",
+      "factor_name": "待核对（第 6 章 第 3 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_04",
+      "factor_id": "6.4.0",
+      "factor_name": "待核对（第 6 章 第 4 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_05",
+      "factor_id": "6.5.0",
+      "factor_name": "待核对（第 6 章 第 5 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_06",
+      "factor_id": "6.6.0",
+      "factor_name": "待核对（第 6 章 第 6 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_07",
+      "factor_id": "6.7.0",
+      "factor_name": "待核对（第 6 章 第 7 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "6",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "PENDING_6_08",
+      "factor_id": "6.8.0",
+      "factor_name": "待核对（第 6 章 第 8 节）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "",
+        "doc": "",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "pending",
+      "target_diseases": []
+    }
+  ],
+  "optional_items_policy": "emergency_only",
+  "ruleset_id": "GBZ188-2025",
+  "schema_version": "1.0",
+  "status": "scaffold",
+  "synthetic": false
+}

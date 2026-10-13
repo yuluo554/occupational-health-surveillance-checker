@@ -7,12 +7,31 @@
 
 | 数据 | 类型 | 来源 | 许可/版权口径 | 状态 |
 |---|---|---|---|---|
-| data/rules/（监护规则包：双版本 + manifest.json） | 规则包（生成器冻结产物） | `tools/gen_rulesets.py` 生成；危害因素/检查项目/周期/目标疾病**逐条挂官方原文核对** | 自制（标准号 + 节号 + 要点引用，规避全文转载） | ⬜ M1 待建（初态全部条目 `pending`、`value: null`） |
-| data/rules/periods.json（检查周期表） | 结构化周期参数 | GBZ 188—2025 各危害因素节次周期规定 | 自制（引用节号） | ⬜ M1 待建 |
-| data/truth/（合成监护档案 + 真值库） | 合成数据 + 算例 | `tools/gen_synthetic.py` 生成（自研确定性 RNG，固定 seed） | 自制（虚构人员，非真实数据） | ⬜ M1 待建 |
+| data/rules/（监护规则包：双版本 + manifest.json） | 规则包（生成器冻结产物） | `tools/gen_rulesets.py` 生成；危害因素/检查项目/周期/目标疾病**逐条挂官方原文核对** | 自制（标准号 + 节号 + 要点引用，规避全文转载） | 🚧 **M0 骨架已建**（32 个因素坐标，全部 `pending`、值 `null`）；M1 逐条核对填充 |
+| data/rules/periods.json（检查周期表） | 结构化周期参数 | 合并入 `ruleset-*.json` 的 `factors[].period`（原计划的独立文件**未采用**——周期逐因素一条，独立文件会制造第二份真相） | 自制（引用节号） | 🚧 同上 |
+| data/benchmark/（合成规则集 + 植入真值用例） | 合成数据 + 算例 | `tools/gen_cases.py` 生成（**手工构造，非随机**） | 自制（虚构因素/项目代码，`SYNTHETIC-` 前缀，非真实数据） | ✅ **M0 已建**（5 文件，`--check` 逐字节一致） |
+| data/truth/（合成监护档案 + 真值库） | 合成数据 + 算例 | `tools/gen_synthetic.py` 生成（自研 splitmix64，固定 seed） | 自制（虚构人员，非真实数据） | ⬜ M1 待建 |
 | data/knowledge/clauses.json + raw/（依据索引 + 官方原文快照） | 依据索引 + 快照 | 见 §二，逐份 sha256 | 官方公文/标准（著作权法第五条：法规官方文件不适用版权保护） | ⬜ M1 待建 |
 
+> **基准与生产刻意分离**（`plan/06` D-51）：`data/benchmark/` 用**合成规则集**验证引擎机制，`data/rules/` 承载真实国标内容。二者不得合并——M0 期生产包全 `pending`，基准若依赖它就永远跑不起来。
 > 生成器为**唯一写入者**：产物禁手改；改体例走 `tools/gen_*.py` 整目录重生成，配"再生成逐字节一致"守门测试。
+
+### M0 已建产物清单（sha256 前缀，完整值由生成器输出）
+
+| 文件 | 生成器 | 核对 |
+|---|---|---|
+| `data/rules/manifest.json`（含 `cutover` + `benchmark_thresholds`） | `tools/gen_rulesets.py` | `--check` → `FROZEN_RULESETS_OK` |
+| `data/rules/ruleset-2025.json`（32 因素坐标，全 pending） | 同上 | 同上 |
+| `data/rules/ruleset-2014.json`（32 因素坐标，全 pending；差异导向骨架） | 同上 | 同上 |
+| `data/benchmark/ruleset-2025.json`（合成，`optional_items_policy=emergency_only`） | `tools/gen_cases.py` | `--check` → `FROZEN_CASES_OK` |
+| `data/benchmark/ruleset-2014.json`（合成，`optional_items_policy=any`） | 同上 | 同上 |
+| `data/benchmark/manifest.json`（门槛 + `compare_expect`） | 同上 | 同上 |
+| `data/benchmark/cases/case-2025.json`（8 条植入真值档案） | 同上 | 同上 |
+| `data/benchmark/cases/case-2014.json`（2 条植入真值档案） | 同上 | 同上 |
+
+**M0 期需要留意的两点**：
+1. `data/rules/` 的 `manifest.sha256` 是**将写入字节**的 sha256（不是磁盘现值），保证首生成与再生成都自洽。
+2. 生产规则包与合成夹具都**不含** `data/knowledge/raw/` 的官方原文——版权红线，打包白名单里 `data/knowledge/raw` 是禁区段（`ohscheck/packaging.py` 已实现并在构建时抛错）。
 
 ## 二、依据查证记录（逐条 ✅/⬜ + 渠道）
 

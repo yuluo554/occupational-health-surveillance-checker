@@ -1,0 +1,76 @@
+{
+  "case_id": "SYN-CASE-2014",
+  "expect_plan": {
+    "SYN_FACTOR_ALPHA": {
+      "exams": {
+        "periodic": [
+          "SYN_ITEM_A1",
+          "SYN_ITEM_A2"
+        ],
+        "post_placement": [
+          "SYN_ITEM_A1",
+          "SYN_ITEM_A2"
+        ],
+        "pre_placement": [
+          "SYN_ITEM_A1",
+          "SYN_ITEM_A2"
+        ]
+      }
+    },
+    "SYN_FACTOR_DELTA": {
+      "exams": {
+        "pre_placement": [
+          "SYN_ITEM_D1"
+        ]
+      }
+    }
+  },
+  "position": {
+    "exam_date": "2024-03-01"
+  },
+  "records": [
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-A-101",
+      "employee_name": "示例人员 SYN-A-101",
+      "exam_date": "2024-03-01",
+      "exam_type": "periodic",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "SYN_FACTOR_ALPHA",
+      "items": [
+        "SYN_ITEM_A1",
+        "SYN_ITEM_A2"
+      ],
+      "last_exam_date": "2023-03-01",
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-101"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-D-101",
+      "employee_name": "示例人员 SYN-D-101",
+      "exam_date": "2024-03-01",
+      "exam_type": "pre_placement",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "SYN_FACTOR_DELTA",
+      "items": [
+        "SYN_ITEM_D1"
+      ],
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-102"
+    }
+  ],
+  "ruleset_id": "SYN-2014"
+}

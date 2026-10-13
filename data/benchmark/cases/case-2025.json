@@ -1,0 +1,258 @@
+{
+  "case_id": "SYN-CASE-2025",
+  "expect_plan": {
+    "SYN_FACTOR_ALPHA": {
+      "exams": {
+        "periodic": [
+          "SYN_ITEM_A1",
+          "SYN_ITEM_A2",
+          "SYN_ITEM_A3"
+        ],
+        "post_placement": [
+          "SYN_ITEM_A1",
+          "SYN_ITEM_A2",
+          "SYN_ITEM_A3"
+        ],
+        "pre_placement": [
+          "SYN_ITEM_A1",
+          "SYN_ITEM_A2",
+          "SYN_ITEM_A3"
+        ]
+      }
+    },
+    "SYN_FACTOR_BETA": {
+      "exams": {
+        "periodic": [
+          "SYN_ITEM_B1",
+          "SYN_ITEM_B2"
+        ],
+        "post_placement": [
+          "SYN_ITEM_B1",
+          "SYN_ITEM_B2"
+        ],
+        "pre_placement": [
+          "SYN_ITEM_B1",
+          "SYN_ITEM_B2"
+        ]
+      }
+    },
+    "SYN_FACTOR_GAMMA": {
+      "exams": {
+        "pre_placement": [
+          "SYN_ITEM_C1"
+        ]
+      }
+    }
+  },
+  "position": {
+    "exam_date": "2026-09-15"
+  },
+  "records": [
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-A-001",
+      "employee_name": "示例人员 SYN-A-001",
+      "exam_date": "2026-09-15",
+      "exam_type": "periodic",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "SYN_FACTOR_ALPHA",
+      "items": [
+        "SYN_ITEM_A1",
+        "SYN_ITEM_A2",
+        "SYN_ITEM_A3"
+      ],
+      "last_exam_date": "2025-10-01",
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-001"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-A-002",
+      "employee_name": "示例人员 SYN-A-002",
+      "exam_date": "2026-09-15",
+      "exam_type": "periodic",
+      "expect": {
+        "also_expect": [
+          {
+            "kind": "verdict",
+            "verdict": "partial"
+          }
+        ],
+        "missing_items": [
+          "SYN_ITEM_A3"
+        ],
+        "period_verdict": "compliant",
+        "verdict": "partial"
+      },
+      "factor_code": "SYN_FACTOR_ALPHA",
+      "items": [
+        "SYN_ITEM_A1",
+        "SYN_ITEM_A2"
+      ],
+      "last_exam_date": "2025-10-01",
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-002"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-A-003",
+      "employee_name": "示例人员 SYN-A-003",
+      "exam_date": "2026-09-15",
+      "exam_type": "pre_placement",
+      "expect": {
+        "also_expect": [
+          {
+            "kind": "verdict",
+            "verdict": "non_compliant"
+          }
+        ],
+        "missing_items": [
+          "SYN_ITEM_A1",
+          "SYN_ITEM_A2",
+          "SYN_ITEM_A3"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "SYN_FACTOR_ALPHA",
+      "items": [],
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-003"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-A-004",
+      "employee_name": "示例人员 SYN-A-004",
+      "exam_date": "2026-10-01",
+      "exam_type": "periodic",
+      "expect": {
+        "also_expect": [
+          {
+            "kind": "period",
+            "verdict": "overdue"
+          },
+          {
+            "kind": "verdict",
+            "verdict": "partial"
+          }
+        ],
+        "missing_items": [],
+        "period_verdict": "overdue",
+        "verdict": "partial"
+      },
+      "factor_code": "SYN_FACTOR_ALPHA",
+      "items": [
+        "SYN_ITEM_A1",
+        "SYN_ITEM_A2",
+        "SYN_ITEM_A3"
+      ],
+      "last_exam_date": "2025-04-01",
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-004"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-A-005",
+      "employee_name": "示例人员 SYN-A-005",
+      "exam_date": "2026-09-15",
+      "exam_type": "periodic",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "due",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "SYN_FACTOR_ALPHA",
+      "items": [
+        "SYN_ITEM_A1",
+        "SYN_ITEM_A2",
+        "SYN_ITEM_A3"
+      ],
+      "last_exam_date": "2025-09-15",
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-005"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-A-006",
+      "employee_name": "示例人员 SYN-A-006",
+      "exam_date": "2026-09-15",
+      "exam_type": "periodic",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "SYN_FACTOR_ALPHA",
+      "items": [
+        "SYN_ITEM_A1",
+        "SYN_ITEM_A2",
+        "SYN_ITEM_A3",
+        "某种别名的检查项目写法"
+      ],
+      "last_exam_date": "2025-10-01",
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-006"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-B-001",
+      "employee_name": "示例人员 SYN-B-001",
+      "exam_date": "2026-09-20",
+      "exam_type": "periodic",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "SYN_FACTOR_BETA",
+      "items": [
+        "SYN_ITEM_B1",
+        "SYN_ITEM_B2"
+      ],
+      "last_exam_date": "2026-01-20",
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-007"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-C-001",
+      "employee_name": "示例人员 SYN-C-001",
+      "exam_date": "2026-09-20",
+      "exam_type": "pre_placement",
+      "expect": {
+        "also_expect": [
+          {
+            "kind": "verdict",
+            "verdict": "non_compliant"
+          }
+        ],
+        "missing_items": [
+          "SYN_ITEM_C1"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "SYN_FACTOR_GAMMA",
+      "items": [],
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-008"
+    }
+  ],
+  "ruleset_id": "SYN-2025"
+}

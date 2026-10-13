@@ -6,3 +6,8 @@
 *.ico binary
 *.exe binary
 *.zip binary
+
+# 官方原文快照：**禁归一化**（-text）。这些文件按字节登记 sha256，
+# 若被检出时的行尾归一化改写，克隆后 sha256 必然失配（plan/03 §九 / D-26）。
+data/knowledge/raw/** -text
+*.pdf binary

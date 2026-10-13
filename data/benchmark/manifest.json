@@ -1,0 +1,45 @@
+{
+  "benchmark_thresholds": {
+    "compare_accuracy_min": 1.0,
+    "coverage_accuracy_min": 1.0,
+    "false_positive_max": 0,
+    "matrix_accuracy_min": 1.0,
+    "max_runtime_seconds": 5.0
+  },
+  "compare_expect": {
+    "SYN_FACTOR_ALPHA": "required_items_changed",
+    "SYN_FACTOR_DELTA": "factor_removed",
+    "SYN_FACTOR_GAMMA": "factor_added"
+  },
+  "cutover": {
+    "after": "SYN-2025",
+    "before": "SYN-2014",
+    "date": "2026-08-01"
+  },
+  "generated_by": "tools/gen_cases.py",
+  "note": "合成夹具：仅用于验证引擎机制，不含任何真实标准内容。",
+  "rulesets": [
+    {
+      "factor_count": 3,
+      "file": "ruleset-2014.json",
+      "ruleset_id": "SYN-2014",
+      "status_counts": {
+        "input_required": 0,
+        "pending": 0,
+        "verified": 6
+      }
+    },
+    {
+      "factor_count": 3,
+      "file": "ruleset-2025.json",
+      "ruleset_id": "SYN-2025",
+      "status_counts": {
+        "input_required": 0,
+        "pending": 0,
+        "verified": 6
+      }
+    }
+  ],
+  "schema_version": "1.0",
+  "synthetic": true
+}
