@@ -113,3 +113,22 @@ HANDOFF 快照（`plan/HANDOFF-M1…M6.md`）含本机路径**示例**（"临时
 | **同 extras 收集数一致** | 主仓 vs 干净树 `selfcheck --json` | 2025 版 97 因素 / 22 input_required / 90 pending；2014 版 81 / 0 / 486——**两环境逐数一致** |
 
 发现的 L-1/L-2（干净环境才暴露的测试环境耦合）见 §3.1，均已修复并回到干净树复验。
+
+## 八、发布链实测（M6-3～M6-7，2026-10-14，用户批准后执行）
+
+| # | 步骤 | 结果 |
+|---|---|---|
+| M6-3 | 仓库创建 + 首推 | `gh repo create occupational-health-surveillance-checker --public`（origin: https://github.com/yuluo554/occupational-health-surveillance-checker）→ `git push -u origin main` → **CI 首推四矩阵一次全绿**（run 38522466770：py3.8/py3.12 × ubuntu/windows 全 ✓，1m08s；注记仅 Node 20 弃用提醒，非阻塞） |
+| M6-4 | tag + Release | `git tag -a v0.1.0`（锚提交 97410a5）+ push → `gh release create v0.1.0` 附 ASCII 名 zip，notes 含 sha256 与自检说明 |
+| M6-5 | 附件可复跑 | zip 244 文件、`ZipInfo(date_time=(2026,10,14,0,0,0))` 固定时间戳 + `create_system=0` + 固定 external_attr；**同参数再生成两次 sha256 逐字节一致**（`703d1e3f…728ab`，49,009,569 B）；`sha256sums.txt` 对账 OK |
+| M6-6 | 真下载回验 | `gh release download` 真下载 → sha256 对账一致 → 中立目录解压 → `ohscheck-cli.exe selftest` exit 0（`frozen=true / data_dir_inside_exe=true / engine_ok=true / bench_ok=true / ok=true`）；剥 PATH（只留 System32）CLI version + GUI offscreen 冒烟双 exit 0 |
+| M6-7 | 同基线 | 冻结产物构建于 M5 提交 24e8c1c；`git diff 24e8c1c..HEAD -- src/ tools/packaging.spec` 为空（0 改动）→ 发布源码与产物同基线成立；`--selftest` 在发布提交上复跑 exit 0 |
+
+发布后本地门禁复跑：双通道 pytest、全部 `--check`、selfcheck/bench、audit 四步全绿（CI 同步背书）。
+
+## 九、诚实性终态
+
+- CI 徽章自首推起反映真实运行状态（首跑全绿）。
+- git 历史含 QQ 邮箱提交身份（§五 决策：不改写）；后续提交建议 `yuluo554@users.noreply.github.com`。
+- plan/ 豁免口径继续有效（发布源码 zip 含 plan/，按 §六 接受；dist zip 不含 plan/）。
+
