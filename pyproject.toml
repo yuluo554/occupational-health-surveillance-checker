@@ -26,7 +26,9 @@ dependencies = []
 gui = ["PySide6>=6.6,<6.7"]
 # 打包（M5）。打 GUI 必须 PyInstaller >= 6（决策 D-14）。
 build = ["PyInstaller>=6.0"]
-dev = ["pytest>=7.0"]
+# dev 须与 CI 同 extras 集合：test_scaffold 的 CI 守门测试解析 ci.yml 需要 PyYAML
+# （M6-2 干净环境验证实测发现 L-1：主环境恰好装了 PyYAML 掩盖了缺失，干净 venv 直接红）
+dev = ["pytest>=7.0", "PyYAML>=5.4"]
 
 [project.urls]
 Homepage = "https://github.com/yuluo554/occupational-health-surveillance-checker"

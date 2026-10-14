@@ -123,7 +123,8 @@ def test_forbidden_prefixes_cover_knowledge_raw_and_private():
 
 
 def _ci_config():
-    import yaml  # noqa: F401  (pytest 环境未必有；缺失则跳过)
+    # PyYAML 在 dev extras 里（M6-2 干净环境实测 L-1：缺它守门测试是红而非跳过，必须显式声明）
+    import yaml  # noqa: F401
     root = repo_root()
     path = os.path.join(root, ".github", "workflows", "ci.yml")
     with open(path, "r", encoding="utf-8") as fh:

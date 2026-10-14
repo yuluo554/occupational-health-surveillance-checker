@@ -187,7 +187,11 @@ def test_gui_cli_smoke_offscreen_exit_0(monkeypatch):
 def test_gui_import_error_during_call_still_exits_3(monkeypatch):
     """D-38 回归：import 成功但**调用**阶段才缺依赖（如 Qt 插件加载失败）
     → 同一 try 整段兜住 → 退出码 3，不崩。
+
+    本测试要先 import main_window（"import 成功"是前提），无 PySide6 环境跳过——
+    该环境由下一测试打桩 __import__ 覆盖同一 exit 3 路径（M6-2 干净 venv 实测 L-2）。
     """
+    pytest.importorskip("PySide6")
     import ohscheck.gui.main_window as mw
 
     def boom(_data_dir=None):
