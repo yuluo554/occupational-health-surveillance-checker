@@ -104,6 +104,7 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
         return CoverageResult(
             record_id=record.record_id,
             employee_id=record.employee_id,
+            position_id=record.position_id,
             factor_code=record.factor_code,
             exam_type=record.exam_type,
             verdict=VERDICT_UNKNOWN,
@@ -116,6 +117,7 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
         return CoverageResult(
             record_id=record.record_id,
             employee_id=record.employee_id,
+            position_id=record.position_id,
             factor_code=record.factor_code,
             exam_type=record.exam_type,
             verdict=VERDICT_NOT_APPLICABLE,
@@ -143,6 +145,7 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
         return CoverageResult(
             record_id=record.record_id,
             employee_id=record.employee_id,
+            position_id=record.position_id,
             factor_code=record.factor_code,
             exam_type=record.exam_type,
             verdict=VERDICT_UNKNOWN,
@@ -164,6 +167,7 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
         return CoverageResult(
             record_id=record.record_id,
             employee_id=record.employee_id,
+            position_id=record.position_id,
             factor_code=record.factor_code,
             exam_type=record.exam_type,
             verdict=VERDICT_UNKNOWN,
@@ -239,6 +243,7 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
     return CoverageResult(
         record_id=record.record_id,
         employee_id=record.employee_id,
+        position_id=record.position_id,
         factor_code=record.factor_code,
         exam_type=record.exam_type,
         verdict=verdict,

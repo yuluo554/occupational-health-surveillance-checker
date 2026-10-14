@@ -312,8 +312,11 @@ def _period_section(model):
         )
     rows = []
     pending_rows = []
+    has_periodic = False
     for rec in target:
         label = EXAM_TYPE_LABELS.get(rec.exam_type, rec.exam_type)
+        if rec.exam_type == "periodic":
+            has_periodic = True
         if rec.period_verdict == "input_required":
             # 待输入**单列**：不得与"合规"混同（决策 D-13/D-53、M2-7）
             pending_rows.append([rec.record_id, label, "待输入（周期按分级/接触水平分档）"])
@@ -331,19 +334,27 @@ def _period_section(model):
             )
         )
     paragraphs = []
-    if not rows and not pending_rows:
-        paragraphs = ["本次导出未含在岗期间档案，无周期判定结果。"]
+    if not has_periodic:
+        # 本批档案里没有任何在岗期间时点 → 周期判定**整体未启用**，
+        # 必须显式写出（"没查"≠"查了没问题"，决策 D-35）——即使上表已列
+        # 各时点的 not_applicable，也不能让读者把"无周期义务行"误读成"查过周期"。
+        paragraphs.append("本批档案无在岗期间（periodic）时点，周期判定未启用、无周期判定结果。")
+    notes = [
+        "周期判定基于本次体检日期与上次检查日期，不使用「今天」，保证可复现（决策 D-18）。",
+        "到期当日检查计入合规；无基线的首次检查不报超期。",
+        "「待输入」表示标准按作业分级/接触水平分档、规则包不承载单值——"
+        "既不判合规也不判超期，须补充外部输入（决策 D-13/D-53）。",
+    ]
+    if has_periodic and not pending_rows:
+        notes.append(
+            "本批在岗期间档案**无周期待输入项**（周期均可由单值/基线判定，或确无周期要求）。"
+        )
     return Section(
         "5",
         "周期合规",
         tables=tables or None,
         paragraphs=paragraphs,
-        notes=[
-            "周期判定基于本次体检日期与上次检查日期，不使用「今天」，保证可复现（决策 D-18）。",
-            "到期当日检查计入合规；无基线的首次检查不报超期。",
-            "「待输入」表示标准按作业分级/接触水平分档、规则包不承载单值——"
-            "既不判合规也不判超期，须补充外部输入（决策 D-13/D-53）。",
-        ],
+        notes=notes,
     )
 
 
@@ -367,18 +378,38 @@ def _stats_section(model):
                 bucket["unknown"],
             ]
         )
-    return Section(
-        "6",
-        "群体统计",
-        tables=[
+    position_rows = [
+        [
+            bucket["position_id"],
+            bucket["examined"],
+            bucket["compliant"],
+            bucket["noncompliant"],
+            bucket["not_applicable"],
+            bucket["unknown"],
+        ]
+        for bucket in stats.get("by_position", [])
+    ]
+    tables = [
+        Table(
+            "按危害因素汇总",
+            ["因素代码", "已判定", "符合", "不符合/部分", "不适用", "待确认"],
+            rows,
+        )
+    ]
+    if position_rows:
+        tables.append(
             Table(
-                "按危害因素汇总",
-                ["因素代码", "已判定", "符合", "不符合/部分", "不适用", "待确认"],
-                rows,
+                "按岗位汇总（M3-4：两维均可由明细逐项复算）",
+                ["岗位", "已判定", "符合", "不符合/部分", "不适用", "待确认"],
+                position_rows,
             )
-        ],
-        notes=["未判定 %d 份单列于失败件清单，不计入上述统计。" % stats.get("failed", 0)],
-    )
+        )
+    notes = [
+        "未判定 %d 份单列于失败件清单，不计入上述统计。" % stats.get("failed", 0),
+        "统计与明细的对账键：detail_sha256=%s（明细变则此值变）。"
+        % (stats.get("detail_sha256", "") or "—"),
+    ]
+    return Section("6", "群体统计", tables=tables, notes=notes)
 
 
 def _reconcile_section(model):
@@ -389,6 +420,7 @@ def _reconcile_section(model):
             paragraphs=["本次导出未启用跨轮对账（用 --baseline 启用）。"],
         )
     rec = model.reconcile_result
+    changed = rec.content_changed or []
     return Section(
         "7",
         "跨轮对账",
@@ -400,12 +432,17 @@ def _reconcile_section(model):
                     ["新增缺项", len(rec.new_missing), _fmt_items(rec.new_missing)],
                     ["已补齐", len(rec.resolved), _fmt_items(rec.resolved)],
                     ["持续缺失", len(rec.persistent), _fmt_items(rec.persistent)],
+                    ["内容变化（缺项集合变动的人员）", len(changed),
+                     "、".join(item.get("employee_id", "") for item in changed) or "—"],
                     ["新增档案", len(rec.aux.get("new_records", [])), "、".join(rec.aux.get("new_records", []))],
                     ["消失档案", len(rec.aux.get("gone_records", [])), "、".join(rec.aux.get("gone_records", []))],
                 ],
             )
         ],
-        notes=["配对主键为人员稳定 ID + 缺项坐标，非内容指纹（决策 D-20）。"],
+        notes=[
+            "配对主键为人员稳定 ID + 缺项坐标，非内容指纹（决策 D-20）；"
+            "上轮缺、本轮不缺即计「已补齐」——补齐必然伴随内容变化，恰是身份键可配对的理由。",
+        ],
     )
 
 

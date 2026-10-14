@@ -28,7 +28,10 @@ def test_valid_ruleset_passes():
 def test_pending_with_value_is_rejected():
     """pending 却填了值 → 拒绝（防"先填大概值再标待核对"）。"""
     factor = make_factor(period_status="pending")
-    factor["period"]["value"] = 12  # 违规：pending 却带值
+    # 违规形态：单值月数周期（kind=months）标 pending 却带值。
+    # kind 也须改回 months——kind=pending 本不承载值，填值不触发该校验。
+    factor["period"]["kind"] = "months"
+    factor["period"]["value"] = 12
     with pytest.raises(InputError) as e:
         validate_ruleset(make_ruleset([factor]))
     assert "pending" in str(e.value)

@@ -86,6 +86,10 @@ def make_factor(code="T_FACTOR", fid="5.9.0", months=12, required=("T_ITEM_1",),
         }
         for key in ("pre_placement", "periodic", "post_placement", "emergency")
     }
+    # 周期 kind 与 status 对齐（schema：pending 一律 null，不许悬空值）：
+    # period_status=pending 时 kind 须为 pending（value=null），否则 months
+    # 与"正整数月数"校验冲突。
+    period_kind = "months" if period_status == "verified" else "pending"
     return {
         "factor_id": fid,
         "factor_code": code,
@@ -97,7 +101,7 @@ def make_factor(code="T_FACTOR", fid="5.9.0", months=12, required=("T_ITEM_1",),
         "exposed_population": "",
         "examinations": exams,
         "period": {
-            "kind": "months",
+            "kind": period_kind,
             "value": months if period_status == "verified" else None,
             "status": period_status,
             "basis": SYN + "测试",
@@ -174,12 +178,12 @@ def write_json(path, obj):
 
 def make_record(record_id="REC-1", employee_id="SYN-A-001", factor_code="T_FACTOR",
                 exam_date="2026-09-15", exam_type="periodic", items=("T_ITEM_1",),
-                last_exam_date=None, conclusion_code="normal"):
+                last_exam_date=None, conclusion_code="normal", position_id="POS-1"):
     obj = {
         "record_id": record_id,
         "employee_id": employee_id,
         "employee_name": SYN + "人员 " + employee_id,
-        "position_id": "POS-1",
+        "position_id": position_id,
         "factor_code": factor_code,
         "exam_date": exam_date,
         "exam_type": exam_type,

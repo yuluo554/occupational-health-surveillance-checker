@@ -60,6 +60,15 @@ def export_report(model, out_dir, ruleset_id="", ruleset_sha256="", input_paths=
     for path in input_paths or []:
         if os.path.isfile(path):
             inputs.append({"path": os.path.basename(path), "sha256": sha256_file(path)})
+        elif os.path.isdir(path):
+            # 目录输入（scan/baseline）：逐文件挂指纹（排序保证确定性），
+            # 路径前缀用目录名的 basename——evidence 与报告同目录，相对可寻。
+            from .scan import iter_record_files
+
+            base = os.path.basename(os.path.normpath(path)) or path
+            for file_path in iter_record_files(path):
+                rel = os.path.join(base, os.path.relpath(file_path, path))
+                inputs.append({"path": rel.replace("\\", "/"), "sha256": sha256_file(file_path)})
 
     outputs = [
         {"path": "report.md", "sha256": sha256_bytes(md_text.encode("utf-8"))},

@@ -393,6 +393,7 @@ class CoverageResult:
     __slots__ = (
         "record_id",
         "employee_id",
+        "position_id",
         "factor_code",
         "exam_type",
         "verdict",
@@ -421,9 +422,12 @@ class CoverageResult:
         trace=None,
         failed_reason="",
         failed_message="",
+        position_id="",
     ):
         self.record_id = record_id
         self.employee_id = employee_id
+        # 岗位维（M3-4 群体统计两维汇总的载体；来源 = 档案自身 position_id）
+        self.position_id = position_id
         self.factor_code = factor_code
         self.exam_type = exam_type
         self.verdict = verdict
@@ -444,6 +448,7 @@ class CoverageResult:
         return {
             "record_id": self.record_id,
             "employee_id": self.employee_id,
+            "position_id": self.position_id,
             "factor_code": self.factor_code,
             "exam_type": self.exam_type,
             "verdict": self.verdict,

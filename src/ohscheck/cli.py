@@ -153,19 +153,29 @@ def cmd_check(args):
 
 
 def cmd_scan(args):
-    """批量扫描 + 报告导出。"""
+    """批量扫描 + 报告导出（可选 --baseline 跨轮对账，M3-3）。"""
     from .engine.pipeline import build_context, run_scan
     from .model import NONCOMPLIANT_VERDICTS
 
     context = build_context(args.data_dir)
     result = run_scan(args.directory, context)
     payload = result.as_dict()
+    baseline_result = None
+    if args.baseline:
+        baseline_result = run_scan(args.baseline, context)
+        payload["baseline"] = baseline_result.as_dict()
     if args.out:
         from .engine.export import export_report
-        from .engine.pipeline import build_report_model
+        from .engine.pipeline import build_report_model, compare_rounds_model
 
+        reconcile = None
+        if baseline_result is not None:
+            reconcile = compare_rounds_model(result, baseline_result)
         model = build_report_model(
-            scan_result=result, context=context, generated_at=args.generated_at
+            scan_result=result,
+            reconcile_result=reconcile,
+            context=context,
+            generated_at=args.generated_at,
         )
         paths_out = export_report(model, args.out)
         payload["report"] = paths_out
@@ -204,12 +214,19 @@ def cmd_report(args):
     from .loaders import load_path
 
     context = build_context(args.data_dir)
-    plan_result = coverage_results = scan_result = None
+    plan_result = coverage_results = scan_result = reconcile_result = None
     input_paths = []
 
     if args.directory:
         scan_result = run_scan(args.directory, context)
         input_paths.append(args.directory)
+        # M3-3：--baseline 是上一轮的档案目录 → 跨轮对账（三主集 + 两辅助集）
+        if getattr(args, "baseline", None):
+            from .engine.pipeline import compare_rounds_model
+
+            baseline_result = run_scan(args.baseline, context)
+            reconcile_result = compare_rounds_model(scan_result, baseline_result)
+            input_paths.append(args.baseline)
     if getattr(args, "record", None):
         record = build_record(load_path(args.record))
         coverage_results = [compute_coverage(record, context)]
@@ -224,6 +241,7 @@ def cmd_report(args):
         plan_result=plan_result,
         coverage_results=coverage_results,
         scan_result=scan_result,
+        reconcile_result=reconcile_result,
         context=context,
         ruleset_id=ruleset_id,
         generated_at=args.generated_at,
@@ -308,6 +326,7 @@ def build_parser():
 
     p = sub.add_parser("scan", help="批量扫描监护档案", parents=[common])
     p.add_argument("directory", help="档案目录")
+    p.add_argument("--baseline", default=None, help="上一轮档案目录（启用跨轮对账）")
     p.add_argument("--out", default=None, help="报告输出目录")
     p.add_argument("--generated-at", default=None, help="报告生成时间（注入以保持可复现）")
     p.set_defaults(func=cmd_scan)
@@ -322,6 +341,7 @@ def build_parser():
     p.add_argument("--position", default=None, help="岗位画像 JSON（可选）")
     p.add_argument("--record", default=None, help="单件档案 JSON（可选）")
     p.add_argument("--directory", default=None, help="档案目录（可选）")
+    p.add_argument("--baseline", default=None, help="上一轮档案目录（启用跨轮对账，需先给 --directory）")
     p.add_argument("--generated-at", default=None, help="报告生成时间（注入以保持可复现）")
     p.set_defaults(func=cmd_report)
 

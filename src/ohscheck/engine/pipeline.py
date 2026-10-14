@@ -22,6 +22,7 @@ __all__ = [
     "compute_coverage",
     "run_scan",
     "compare",
+    "compare_rounds_model",
     "build_report_model",
     "parameter_overview",
     "gate_overview",
@@ -164,6 +165,13 @@ def run_scan(directory, context, max_bytes=None):
         alias_map=_alias_map(context, None),
         max_bytes=kwargs.get("max_bytes", DEFAULT_MAX_BYTES),
     )
+
+
+def compare_rounds_model(current_scan, baseline_scan):
+    """跨轮对账（M3-3 / FR-D3）：对账口径单一实现源（engine/reconcile.py）。"""
+    from ..engine.reconcile import compare_rounds
+
+    return compare_rounds(current_scan, baseline_scan)
 
 
 def _alias_map(context, ruleset_id):

@@ -60,36 +60,76 @@ class ScanResult:
 
         return [r for r in self.items if r.verdict in NONCOMPLIANT_VERDICTS]
 
+    @staticmethod
+    def _empty_bucket(factor_code, position_id):
+        """一个统计桶：非 pass 结论计数的可复算载体（M3-4）。"""
+        return {
+            "factor_code": factor_code,
+            "position_id": position_id,
+            "examined": 0,
+            "compliant": 0,
+            "noncompliant": 0,
+            "not_applicable": 0,
+            "unknown": 0,
+        }
+
     def compute_stats(self):
-        """群体统计（FR-D4）：按因素 / 岗位汇总，可由明细逐项复算。"""
+        """群体统计（FR-D4 / M3-4）：按因素与岗位两维汇总，可由明细逐项复算。
+
+        可复算背书：`detail_sha256` = 逐件 (record_id, factor_code, position_id,
+        exam_type, verdict) 确定性序列化后再哈希——明细变 → 哈希变；
+        统计与明细不一致时 `tests/test_m3.py` 的对账测试必挂。
+        """
         from ..model import NONCOMPLIANT_VERDICTS
+        from ..loaders import dumps_stable
+        from ..report.evidence import sha256_bytes
 
         by_factor = {}
+        by_position = {}
         for rec in self.items:
+            verdict = rec.verdict
+            if verdict in NONCOMPLIANT_VERDICTS:
+                kind = "noncompliant"
+            elif verdict == "compliant":
+                kind = "compliant"
+            elif verdict == "not_applicable":
+                kind = "not_applicable"
+            else:
+                kind = "unknown"
+
             bucket = by_factor.setdefault(
                 rec.factor_code,
-                {
-                    "factor_code": rec.factor_code,
-                    "examined": 0,
-                    "compliant": 0,
-                    "noncompliant": 0,
-                    "not_applicable": 0,
-                    "unknown": 0,
-                },
+                self._empty_bucket(rec.factor_code, ""),
             )
             bucket["examined"] += 1
-            if rec.verdict in NONCOMPLIANT_VERDICTS:
-                bucket["noncompliant"] += 1
-            elif rec.verdict == "compliant":
-                bucket["compliant"] += 1
-            elif rec.verdict == "not_applicable":
-                bucket["not_applicable"] += 1
-            else:
-                bucket["unknown"] += 1
+            bucket[kind] += 1
+
+            p_bucket = by_position.setdefault(
+                rec.position_id,
+                self._empty_bucket("", rec.position_id),
+            )
+            p_bucket["examined"] += 1
+            p_bucket[kind] += 1
+
+        # 明细哈希：把"sum(明细) == 统计"从测试期断言升级为产物自带字段
+        detail_lines = [
+            dumps_stable(
+                {
+                    "record_id": rec.record_id,
+                    "factor_code": rec.factor_code,
+                    "position_id": rec.position_id,
+                    "exam_type": rec.exam_type,
+                    "verdict": rec.verdict,
+                }
+            )
+            for rec in self.items
+        ]
         self.stats = {
             "total": len(self.items),
             "failed": len(self.failed),
+            "detail_sha256": sha256_bytes("\n".join(detail_lines)),
             "by_factor": [by_factor[k] for k in sorted(by_factor)],
+            "by_position": [by_position[k] for k in sorted(by_position)],
         }
         return self.stats
 
@@ -114,7 +154,10 @@ def iter_record_files(directory, suffix=".json"):
 
 def _load_record_file(path, max_bytes):
     """读单件并解析为 HealthRecord；任何失败只抛异常由调用方隔离。"""
-    size = os.path.getsize(path)
+    try:
+        size = os.path.getsize(path)
+    except OSError as exc:
+        raise OhsCheckError("读盘失败：%s" % exc, reason=REASON_READ_ERROR)
     if size > max_bytes:
         raise OhsCheckError(
             "文件 %d 字节超过单件上限 %d 字节（安全阀，不整体读入）" % (size, max_bytes),
