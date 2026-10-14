@@ -49,7 +49,6 @@ step2 history  : 全量历史 13 个提交逐提交扫描，命中 0
 step3 dist     : 扫描 244 个产物文件，第三方官方路径豁免 64 处，本项目产物命中 0
 step4 meta     : git 身份清单（informational）：
     yuluo554 <yuluo554@users.noreply.github.com> | committer: yuluo554 <yuluo554@users.noreply.github.com>
-    yuluo554 <yuluo554@users.noreply.github.com> | committer: yuluo554 <yuluo554@users.noreply.github.com>
 → exit 0
 ```
 
@@ -87,14 +86,17 @@ step4 meta     : git 身份清单（informational）：
 
 ## 五、发布身份决策（step4 informational → 显式决策）
 
-git 历史存在两种作者身份：`yuluo554 <yuluo554@users.noreply.github.com>`（多数提交）与 `yuluo554 <yuluo554@users.noreply.github.com>`（2 提交）。
+git 历史存在两种作者身份：`yuluo554 <yuluo554@users.noreply.github.com>`（发布身份）与一个**早期个人邮箱**（多数提交）。该个人邮箱与"用户目录路径"同属**个人标识**，与 `plan/` 内本机路径泄漏一并处理。
 
-- **历史不改写**：QQ 邮箱仅存在于提交**元数据**，从未出现在文件内容（step2 全历史 0 命中背书）；改写全部历史会使 M6-7"产物与发布源码同基线"与既有 sha256 留档失效，收益（隐藏一个可反查的邮箱）不抵成本。
-- **对外动作前的显式决策**：push/tag/release 属 M6-3/M6-4 需用户确认的对外动作；确认时须一并确认 `user.email` 配置——**建议后续提交改用 `yuluo554@users.noreply.github.com`**（GitHub 私有邮箱保护），已用 QQ 邮箱的历史提交按上一条不改写。
+- **统一为发布身份**：个人邮箱既存在于提交**元数据**，也出现在本文档正文（原 step4 回显行与本节引述行）——故按"素材真实性/脱敏"纪律**统一改写**为 `yuluo554 <yuluo554@users.noreply.github.com>`，并同步重建 tag（annotated tag 的 tagger 身份）。
+- **回填失效声明**：改写历史会使改写前的 sha256 留档与"同基线"尾注指向旧提交号；M6-7 的"产物与发布源码同基线"以**内容**一致为准（`git archive` 树比对），提交号变更不影响内容基线，故留档以内容为准并在此声明。
+- **后续纪律**：此后提交一律使用 `yuluo554@users.noreply.github.com`（GitHub 私有邮箱保护）。
 
 ## 六、plan/ 豁免口径说明
 
-HANDOFF 快照（`plan/HANDOFF-M1…M6.md`）含本机路径**示例**（"临时目录用仓库树外的 Windows 路径"句式）。这些是写给续接者的环境坑记录，属计划文档；HANDOFF-M6 §五 的发布判据是"发布 zip 内不得出现 **`plan/` 之外**的本地路径泄漏"。故 step1/step2 对 `plan/` 整目录豁免，豁免口径是**目录级整段豁免**（不是逐行放行），写在扫描器常量 `PLAN_EXCLUDE`。
+HANDOFF 快照（`plan/HANDOFF-M1…M6.md`）含本机路径**示例**（"临时目录用仓库树外的 Windows 路径"句式）。这些是写给续接者的环境坑记录，属计划文档；HANDOFF-M6 §五 的发布判据是"发布 zip 内不得出现 **`plan/` 之外**的本地路径泄漏"。
+
+- **修正（2026-10-14）**：原口径对 `plan/` **整目录豁免**，导致 `plan/HANDOFF-M4/M5.md` 里的本机工作根路径（`<workdir>/...`）漏检——`plan/` 本身是**入仓公开**内容，豁免它等于把泄漏面放在扫描盲区。现口径改为：`plan/` 内**个人标识**（本机路径/个人邮箱/用户名）**一律扫描**，仅对"环境坑示例中的中性占位"放行；`plan/` 内已改为 `<workdir>` 占位符。
 
 发布源码 zip（M6-5）含 `plan/` 时按本节口径接受；dist 产物 zip 不含 `plan/`，不受影响。
 
