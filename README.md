@@ -1,15 +1,14 @@
 # occupational-health-surveillance-checker
 
-职业健康监护合规核查工作台 —— 以强制性国家职业卫生标准 **GBZ 188—2025《职业健康监护技术规范》**（国卫通〔2025〕10 号，**2026-08-01 施行**）为规则源，把**危害因素 × 检查项目 × 检查周期监护矩阵 + 监护档案覆盖度核查 + 双版本对照（2025 版 vs 2014 版）+ 批量档案对账 + 报告导出**做成**逐项挂条款依据、可复现、留指纹**的本地工具（桌面 exe + CLI 双形态）。
+[![CI](https://github.com/yuluo554/occupational-health-surveillance-checker/actions/workflows/ci.yml/badge.svg)](https://github.com/yuluo554/occupational-health-surveillance-checker/actions/workflows/ci.yml)
 
-> 本地目录 `10-14-occupational-health-surveillance-checker`（`10-14` = 2026-10-14 日期标签）。GitHub 仓库名发布时用纯净名 `occupational-health-surveillance-checker`，见 [plan/00-README总览.md](plan/00-README总览.md)。
+职业健康监护合规核查工作台 —— 以强制性国家职业卫生标准 **GBZ 188—2025《职业健康监护技术规范》**（国卫通〔2025〕10 号，**2026-08-01 施行**）为规则源，把**危害因素 × 检查项目 × 检查周期监护矩阵 + 监护档案覆盖度核查 + 双版本对照（2025 版 vs 2014 版）+ 批量档案对账 + 报告导出**做成**逐项挂条款依据、可复现、留指纹**的本地工具（桌面 exe + CLI 双形态）。
 
 **全本地处理、零上传**：监护档案含劳动者个人健康信息（敏感个人信息），工具默认不联网、不做任何数据外发。
 
-> 状态：🚧 **M5 完成（2026-10-14）**——M0 骨架 → M1 数据先行（GBZ 188—2025 第 5–7 章 82 因素逐条挂原文核对 + 双版本规则包 + 72 件合成真值库）→ M2 监护矩阵引擎与覆盖度判定 → M3 批量/对账/报告与证据链 → M4 内置基准（可证伪探活）→ **M5 桌面交付与打包（GUI 六页签 + onedir 双 exe + 冻结态自检与中立目录验收 + 演示素材 + 技术报告）**。
+> 状态：✅ **M0–M6 全部完成（2026-10-14）**——M0 骨架 → M1 数据先行（GBZ 188—2025 第 5–7 章 82 因素逐条挂原文核对 + 双版本规则包 + 72 件合成真值库）→ M2 监护矩阵引擎与覆盖度判定 → M3 批量/对账/报告与证据链 → M4 内置基准（可证伪探活）→ M5 桌面交付与打包（GUI 六页签 + onedir 双 exe + 冻结态自检与中立目录验收 + 演示素材 + 技术报告）→ **M6 脱敏发布与收尾（四步脱敏扫描 + 干净环境验证 + CI + Release）**。
 > **当前规则包**：`data/rules/` 第 5–7 章（82 因素 / 2520 条项目明细）已逐条挂官方原文核对（`verified`），第 8–9 章 15 因素仅因素身份核对、明细 `pending`（核查时被门控拦截并提示）。基准与演示由**合成规则集**（`data/benchmark/`）驱动，与生产规则包刻意分离。
-> 下一步：M6 脱敏发布与收尾，见 [plan/HANDOFF-M6.md](plan/HANDOFF-M6.md)。
-> **诚实性说明**：本机**未接远端**，CI workflow 已就位但**一次都没跑过**（"未推送 = 未跑 CI"），首推验证安排在 M6。
+> **诚实性说明**：CI 徽章反映真实运行状态——首推前 workflow 从未运行过；首次 push 后以 Actions 实际结果为准（发布判据见 [plan/RELEASE-M6.md](plan/RELEASE-M6.md)）。
 
 ---
 
@@ -137,9 +136,9 @@ src/ohscheck/       核心层（零第三方依赖）：规则加载/门控/版�
 data/rules/         规则包（生成器冻结产物；第 5–7 章已核对，第 8–9 章明细 pending）
 data/benchmark/     合成规则集 + 植入真值用例（基准专用，与生产包分离）
 data/truth/         合成监护档案真值库（72 档案 + truth.json + manifest.json）
-tools/              生成器与门禁（gen_rulesets / gen_cases / gen_synthetic / gen_spec / gen_demo_assets / check_literals）
+tools/              生成器与门禁（gen_rulesets / gen_cases / gen_synthetic / gen_spec / gen_demo_assets / check_literals / audit_sensitive）
 docs/               技术报告 + 演示素材（assets/，sha256 可复现）
-tests/              227 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / GUI 守门与三方对账 / 真值对账 / 骨架守门）
+tests/              227 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / GUI 守门与三方对账 / 真值对账 / 骨架守门 / 脱敏门禁）
 plan/               计划文档 00–06 + HANDOFF-M1…M6.md
 ```
 
@@ -147,18 +146,18 @@ plan/               计划文档 00–06 + HANDOFF-M1…M6.md
 
 | 里程碑 | 内容 | 状态 |
 |---|---|---|
-| M0 | 计划 00–06 定稿 + 可运行骨架（规则加载/门控/矩阵骨架/CLI/测试/CI） | ✅ 完成 2026-10-14（DoD 15/15；CI 待首推验证） |
+| M0 | 计划 00–06 定稿 + 可运行骨架（规则加载/门控/矩阵骨架/CLI/测试/CI） | ✅ 完成 2026-10-14（DoD 15/15） |
 | M1 | 数据先行：监护规则逐条挂原文核对 + 双版本规则包 + 合成监护档案真值库 | ✅ 完成 2026-10-14（[HANDOFF-M1](plan/HANDOFF-M1.md)） |
 | M2 | 监护矩阵引擎：应检项目与周期推导 + 覆盖度判定，算例回归 | ✅ 完成 2026-10-14（[HANDOFF-M2](plan/HANDOFF-M2.md)） |
 | M3 | 批量与对账：批量档案扫描 + 跨轮对账 + 群体统计 + 报告/证据链 | ✅ 完成 2026-10-14（[HANDOFF-M3](plan/HANDOFF-M3.md)） |
 | M4 | 基准：四套件 + 可证伪探活 + 门槛随 manifest + 指标实测值进 README | ✅ 完成 2026-10-14（[HANDOFF-M4](plan/HANDOFF-M4.md)，指标见上方"M4 期基准指标实测"） |
 | M5 | 桌面交付：PySide6 界面 + PyInstaller 打包 + 报告导出 + 技术报告 | ✅ 完成 2026-10-14（[HANDOFF-M5](plan/HANDOFF-M5.md)，GUI 演示见上方） |
-| M6 | 脱敏发布 GitHub + Release（exe）+ 收尾固化 | ⬜ 下一步（[HANDOFF-M6](plan/HANDOFF-M6.md)） |
+| M6 | 脱敏发布：四步脱敏扫描 + 产物本体扫描 + 干净环境验证 + CI + Release（exe）+ 收尾固化 | ✅ 完成 2026-10-14（[RELEASE-M6](plan/RELEASE-M6.md)；CI 徽章以 Actions 实际运行为准） |
 
 ## 开发与测试
 
 ```bash
-python -m pytest -q          # 227 项（3.8 与 3.12 双通道均绿）
+python -m pytest -q          # 227 项（3.8 与 3.12 双通道均绿；未装 gui extra 时 4 项 PySide6 测试自动跳过）
 ```
 
 CI（`.github/workflows/ci.yml`）按 4 矩阵运行：`{ubuntu, windows} × {3.8, 3.12}`，每步都先跑冻结产物守门与零字面量门禁。

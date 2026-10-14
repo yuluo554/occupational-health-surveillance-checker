@@ -97,3 +97,19 @@ git 历史存在两种作者身份：`yuluo554 <yuluo554@users.noreply.github.co
 HANDOFF 快照（`plan/HANDOFF-M1…M6.md`）含本机路径**示例**（"临时目录用仓库树外的 Windows 路径"句式）。这些是写给续接者的环境坑记录，属计划文档；HANDOFF-M6 §五 的发布判据是"发布 zip 内不得出现 **`plan/` 之外**的本地路径泄漏"。故 step1/step2 对 `plan/` 整目录豁免，豁免口径是**目录级整段豁免**（不是逐行放行），写在扫描器常量 `PLAN_EXCLUDE`。
 
 发布源码 zip（M6-5）含 `plan/` 时按本节口径接受；dist 产物 zip 不含 `plan/`，不受影响。
+
+## 七、M6-2 干净环境验证（2026-10-14）
+
+`git archive --format=zip HEAD` 导出干净树（仓库树外解包）+ 全新 venv（3.8.8），按 README 逐条跑通：
+
+| 步骤 | 命令 | 结果 |
+|---|---|---|
+| 安装 | `pip install -e ".[dev]"` → `".[gui]"` | 成功；PySide6 3.8 上限实装 6.6.3.1 |
+| 测试 | `pytest` | **223 passed, 4 skipped**（skip 全部为 PySide6 相关 importorskip + 打桩测试，与 CI 4 矩阵的 3.8 无 gui 通道口径一致） |
+| CLI | `selfcheck` / `bench` / `compare` / `check` / `scan` / `report` | 全链路退出码符合速查表（check 008 与 scan exit 1 = 真实缺项检出，非错误） |
+| 门禁 | `gen_rulesets/cases/synthetic --check`、`check_literals --selftest`、`check_literals` | 全 0；冻结产物逐字节一致 |
+| 脱敏 | `audit_sensitive --only dist`（指定产物目录） | 244 文件 0 命中 |
+| GUI | `QT_QPA_PLATFORM=offscreen OHSCHECK_GUI_SMOKE=1 ohscheck gui` | exit 0 |
+| **同 extras 收集数一致** | 主仓 vs 干净树 `selfcheck --json` | 2025 版 97 因素 / 22 input_required / 90 pending；2014 版 81 / 0 / 486——**两环境逐数一致** |
+
+发现的 L-1/L-2（干净环境才暴露的测试环境耦合）见 §3.1，均已修复并回到干净树复验。
