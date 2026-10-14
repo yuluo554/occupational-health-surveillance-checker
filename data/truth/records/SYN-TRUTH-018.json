@@ -1,0 +1,26 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000018SYN",
+  "employee_name": "示例人员 A-018",
+  "exam_date": "2026-09-21",
+  "exam_type": "periodic",
+  "expect": {
+    "expected_items": [
+      "肺功能",
+      "胸部X射线摄片"
+    ],
+    "missing_items": [],
+    "period_verdict": "overdue",
+    "verdict": "partial"
+  },
+  "expect_case": "dust_metal",
+  "factor_code": "GBZ188-6.7",
+  "items": [
+    "胸部X射线摄片",
+    "肺功能"
+  ],
+  "last_exam_date": "2024-09-20",
+  "notified_suspected": false,
+  "position_id": "SYN-POS-dust_metal",
+  "record_id": "SYN-TRUTH-018"
+}

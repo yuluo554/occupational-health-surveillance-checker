@@ -166,17 +166,40 @@ def test_check_exit_2_on_bad_json(data_env, tmp_path):
 
 
 def test_plan_exit_2_when_gate_blocks_pending(tmp_path):
-    """生产规则包全 pending → 门控拦截 → 退出码 2（决策 D-12）。"""
+    """引用到未核对条目 → 门控拦截 → 退出码 2（决策 D-12）。
+
+    M1 起生产包是**真实混合态**：第 5–7 章（化学/粉尘/物理）明细已 verified，
+    第 8–9 章（生物/特殊作业）只落了因素身份、明细仍 pending。用它验
+    "引用到 pending 即拦截"，同时反证"只看整包 status"会漏。
+    """
     pos = {
         "position_id": "POS-P",
         "exam_date": "2026-09-15",
-        "factors": [{"factor_code": "PENDING_5_01"}],
+        "factors": [{"factor_code": "GBZ188-8.1"}],  # 布鲁氏菌：明细 pending
     }
     path = str(tmp_path / "pos.json")
     write_json(path, pos)
     code, _out, err = _run(["plan", path])
     assert code == 2
     assert "门控" in err
+    assert "8.1" in err  # 拦截信息须点出未核对条目坐标
+
+
+def test_plan_exit_0_on_verified_real_factor(tmp_path):
+    """第 5–7 章已核对因素 → plan 放行、退出码 0（M1 混态的另一侧）。"""
+    pos = {
+        "position_id": "POS-BENZENE",
+        "exam_date": "2026-09-15",
+        "factors": [{"factor_code": "GBZ188-5.19"}],  # 苯
+    }
+    path = str(tmp_path / "pos.json")
+    write_json(path, pos)
+    code, out, _err = _run(["plan", path, "--json"])
+    assert code == 0, out
+    payload = json.loads(out)
+    assert payload["ruleset_id"] == "GBZ188-2025"
+    plan = payload["factors"][0]
+    assert plan["exams"]["periodic"]["required_items"]  # 必检项非空（真实数据）
 
 
 def test_plan_exit_2_on_ambiguous_year(data_env, tmp_path):

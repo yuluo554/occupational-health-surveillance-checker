@@ -1,0 +1,161 @@
+{
+  "clean_count": 14,
+  "corpus_id": "SYN-TRUTH-M1",
+  "coverage_matrix": [
+    {
+      "case": "化学因素 · 苯作业人员应检项集合",
+      "note": "GBZ188-5.19（周期 12 个月，四时点项目一致）",
+      "records": [
+        "SYN-TRUTH-001",
+        "SYN-TRUTH-002"
+      ]
+    },
+    {
+      "case": "化学因素 · 铅及其无机化合物作业人员应检项集合",
+      "note": "GBZ188-5.1；离岗时经『同 5.1.2.2』条文引用解析",
+      "records": [
+        "SYN-TRUTH-003",
+        "SYN-TRUTH-004"
+      ]
+    },
+    {
+      "case": "物理因素 · 噪声作业人员应检项集合",
+      "note": "GBZ188-7.1；周期按等效声级分档 → input_required，不参与超期判定",
+      "records": [
+        "SYN-TRUTH-005",
+        "SYN-TRUTH-006"
+      ]
+    },
+    {
+      "case": "物理因素 · 高温作业人员应检项集合",
+      "note": "GBZ188-7.3（周期 12 个月）",
+      "records": [
+        "SYN-TRUTH-007"
+      ]
+    },
+    {
+      "case": "缺项 · 缺离岗时检查",
+      "note": "离岗时必检项全缺 → non_compliant",
+      "records": [
+        "SYN-TRUTH-010"
+      ]
+    },
+    {
+      "case": "缺项 · 缺某一必检项目",
+      "note": "缺 1 项 → partial，missing_items 精确到项",
+      "records": [
+        "SYN-TRUTH-008",
+        "SYN-TRUTH-009"
+      ]
+    },
+    {
+      "case": "缺项 · 必检项全缺",
+      "note": "expected ⊆ missing → non_compliant",
+      "records": [
+        "SYN-TRUTH-010",
+        "SYN-TRUTH-011"
+      ]
+    },
+    {
+      "case": "周期边界 · 恰好到期（current == due）",
+      "note": "due 当日计入合规（period_verdict=due，verdict=compliant）",
+      "records": [
+        "SYN-TRUTH-013",
+        "SYN-TRUTH-007",
+        "SYN-TRUTH-016",
+        "SYN-TRUTH-017"
+      ]
+    },
+    {
+      "case": "周期边界 · 差一天到期 / 超一天",
+      "note": "差一天 compliant；超一天 overdue → partial",
+      "records": [
+        "SYN-TRUTH-012",
+        "SYN-TRUTH-014",
+        "SYN-TRUTH-018"
+      ]
+    },
+    {
+      "case": "周期边界 · 月末夹取（1/31+1 月口径 → 闰转平）",
+      "note": "上次 2024-02-29 + 12 月夹取为 2025-02-28；engine/period.add_months 另配单元测试",
+      "records": [
+        "SYN-TRUTH-015"
+      ]
+    },
+    {
+      "case": "周期边界 · 首次检查无基线",
+      "note": "no_baseline，不报超期",
+      "records": [
+        "SYN-TRUTH-019"
+      ]
+    },
+    {
+      "case": "别名降级 · 项目名用别名写法",
+      "note": "归一不成立 → unmapped + warning，不判缺失（决策 D-17）；should_be_clean=true",
+      "records": [
+        "SYN-TRUTH-020"
+      ]
+    },
+    {
+      "case": "误报对照 · 应检项齐备 + 周期合规（应零命中）",
+      "note": "should_be_clean=true 显式声明（M1-5）；基准/引擎层**只读**该声明，不自选考卷",
+      "records": [
+        "SYN-TRUTH-001",
+        "SYN-TRUTH-002",
+        "SYN-TRUTH-003",
+        "SYN-TRUTH-004",
+        "SYN-TRUTH-005",
+        "SYN-TRUTH-006",
+        "SYN-TRUTH-007",
+        "SYN-TRUTH-012",
+        "SYN-TRUTH-013",
+        "SYN-TRUTH-015",
+        "SYN-TRUTH-016",
+        "SYN-TRUTH-017",
+        "SYN-TRUTH-019",
+        "SYN-TRUTH-020"
+      ]
+    },
+    {
+      "case": "干净但降级 · 别名可映射的齐备档案",
+      "note": "应零 fail，允许 warning（与上一条共用同一件，语义为「降级但不判缺」）",
+      "records": [
+        "SYN-TRUTH-020"
+      ]
+    },
+    {
+      "case": "批量队列 · 项目构成 / 周期可判定性",
+      "note": "splitmix64 驱动 48 件，全量可复现",
+      "records": [
+        "SYN-TRUTH-021 … SYN-TRUTH-068"
+      ]
+    }
+  ],
+  "generated_by": "tools/gen_synthetic.py",
+  "naming_policy": {
+    "employees": "示例人员 A-<序号>",
+    "employer": "示例制造（合成）有限公司",
+    "identity_numbers": "90000000…SYN（保留测试号段）",
+    "note": "全部为虚构实体；不含任何真实劳动者信息（plan/05 §2.2）。"
+  },
+  "private_dir_note": "data/truth/_private/ 为本地不入仓目录（.gitignore 已排除）：如需在本机保留带真实来源线索的中间样本，放该目录，且**不得**进入语料库产物。",
+  "record_count": 68,
+  "ruleset_id": "GBZ188-2025",
+  "ruleset_sha256": "99be71c8c9da9e1d844dadb2ad7455dc93c30a943f077af8684aca5432afa4b1",
+  "schema_version": "1.0",
+  "seed": 20261014,
+  "sensitive_note": "健康信息属敏感个人信息：本语料仅含结构化字段（岗位危害因素/体检日期/检查时点/实检项目代码/结论代码），不构造任何真实医学指标、影像或诊断文字。",
+  "synthetic": true,
+  "unreachable_cases": [
+    {
+      "case": "不适用 · 危害因素不适用该人员（verdict=not_applicable）",
+      "covered_by": "机制层：data/benchmark/ 的合成夹具含 kind=threshold 因素，覆盖 not_applicable 与 input_required 两条分支（基准验机制、不验国标内容，决策 D-51）。",
+      "reason": "标准通过『第 4.5 节 职业健康监护人群的界定原则』对**所列危害因素**定义监护人群——接触即纳入，逐因素不设接触水平阈值。故生产规则包第 5–7 章全部因素的适用性为 kind=always，not_applicable 在真实规则包上**不可达**。"
+    },
+    {
+      "case": "版本差异 · 同一岗位在 2014/2025 两版下应检项不同",
+      "covered_by": "结构层：`ohscheck compare` 在两版间报因素新增/删除差异（GBZ188-5.58 等 19 个新增、甲苯二异氰酸酯/结核病/肝炎病防治作业 3 个删除），已由 manifest.foreword_deltas 承载；机制层：data/benchmark/ 覆盖同因素两版条目构成差异。",
+      "reason": "GBZ 188—2014 官方全文不可得（已废止、预览下架），2014 版规则包是**差异导向骨架**（决策 D-28）——其项目明细全为 pending，引用到即被门控拦截。故**档案级**的跨版本应检差异在真实规则包上不可达。"
+    }
+  ]
+}

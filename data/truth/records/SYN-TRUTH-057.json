@@ -1,0 +1,27 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000057SYN",
+  "employee_name": "示例人员 A-057",
+  "exam_date": "2026-11-10",
+  "exam_type": "post_placement",
+  "expect": {
+    "expected_items": [
+      "肺功能",
+      "胸部X射线摄片",
+      "血常规（含血嗜酸粒细胞计数）"
+    ],
+    "missing_items": [],
+    "period_verdict": "not_applicable",
+    "verdict": "compliant"
+  },
+  "expect_case": "acid",
+  "factor_code": "GBZ188-5.55",
+  "items": [
+    "肺功能",
+    "胸部X射线摄片",
+    "血常规（含血嗜酸粒细胞计数）"
+  ],
+  "notified_suspected": false,
+  "position_id": "SYN-POS-acid",
+  "record_id": "SYN-TRUTH-057"
+}

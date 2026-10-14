@@ -1,0 +1,43 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000007SYN",
+  "employee_name": "示例人员 A-007",
+  "exam_date": "2026-09-20",
+  "exam_type": "periodic",
+  "expect": {
+    "expected_items": [
+      "促甲状腺激素（TSH）",
+      "尿常规",
+      "心电图",
+      "空腹血糖",
+      "肝功能",
+      "肝肾B超",
+      "肾功能",
+      "血常规",
+      "血清游离三碘甲状原氨酸（FT3）",
+      "血清游离甲状腺素（FT4）"
+    ],
+    "missing_items": [],
+    "period_verdict": "due",
+    "should_be_clean": true,
+    "verdict": "compliant"
+  },
+  "expect_case": "heat",
+  "factor_code": "GBZ188-7.3",
+  "items": [
+    "血常规",
+    "尿常规",
+    "肝功能",
+    "肾功能",
+    "空腹血糖",
+    "心电图",
+    "肝肾B超",
+    "血清游离甲状腺素（FT4）",
+    "血清游离三碘甲状原氨酸（FT3）",
+    "促甲状腺激素（TSH）"
+  ],
+  "last_exam_date": "2025-09-20",
+  "notified_suspected": false,
+  "position_id": "SYN-POS-heat",
+  "record_id": "SYN-TRUTH-007"
+}

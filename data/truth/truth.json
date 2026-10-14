@@ -1,0 +1,1407 @@
+{
+  "corpus_id": "SYN-TRUTH-M1",
+  "entries": [
+    {
+      "case": "benzene",
+      "coverage": "化学因素/苯 · 应检项集合",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "应检项齐备、周期未到 → 符合（应零命中）",
+      "record_id": "SYN-TRUTH-001"
+    },
+    {
+      "case": "benzene",
+      "coverage": "化学因素/苯 · 上岗前应检项集合",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "上岗前应检项齐备 → 符合（应零命中）",
+      "record_id": "SYN-TRUTH-002"
+    },
+    {
+      "case": "lead",
+      "coverage": "化学因素/铅 · 应检项集合",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "上岗前应检项齐备 → 符合（应零命中）",
+      "record_id": "SYN-TRUTH-003"
+    },
+    {
+      "case": "lead",
+      "coverage": "化学因素/铅 · 离岗时『同 5.1.2.2』引用解析",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "血常规",
+          "血铅和/或尿铅"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "离岗时内容经条文引用解析后齐备 → 符合（验证『同 X.Y.Z』通路）",
+      "record_id": "SYN-TRUTH-004"
+    },
+    {
+      "case": "noise",
+      "coverage": "物理因素/噪声 · 应检项集合",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "上岗前应检项齐备 → 符合（应零命中）",
+      "record_id": "SYN-TRUTH-005"
+    },
+    {
+      "case": "noise",
+      "coverage": "物理因素/噪声 · 周期不承载单值时仍按项目构成判定",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "input_required",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "周期按分级分档（input_required）不参与超期判定；项目齐备 → 符合",
+      "record_id": "SYN-TRUTH-006"
+    },
+    {
+      "case": "heat",
+      "coverage": "物理因素/高温 · 应检项集合 + 周期恰好到期",
+      "expect": {
+        "expected_items": [
+          "促甲状腺激素（TSH）",
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "肝肾B超",
+          "肾功能",
+          "血常规",
+          "血清游离三碘甲状原氨酸（FT3）",
+          "血清游离甲状腺素（FT4）"
+        ],
+        "missing_items": [],
+        "period_verdict": "due",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.3",
+      "note": "应检项齐备且周期恰好到期（due 计入合规）→ 符合",
+      "record_id": "SYN-TRUTH-007"
+    },
+    {
+      "case": "benzene",
+      "coverage": "缺项 · 缺某一必检项目",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "肝功能"
+        ],
+        "period_verdict": "compliant",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "缺 1 项必检项 → partial，缺项集合含『肝功能』",
+      "record_id": "SYN-TRUTH-008"
+    },
+    {
+      "case": "lead",
+      "coverage": "缺项 · 缺某一必检项目（离岗时）",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "血常规",
+          "血铅和/或尿铅"
+        ],
+        "missing_items": [
+          "血铅和/或尿铅"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "离岗时缺 1 项 → partial",
+      "record_id": "SYN-TRUTH-009"
+    },
+    {
+      "case": "benzene",
+      "coverage": "缺项 · 必检项全缺",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "compliant",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "必检项一项未做 → non_compliant，缺项集合 = 应检项全集",
+      "record_id": "SYN-TRUTH-010"
+    },
+    {
+      "case": "noise",
+      "coverage": "缺项 · 缺离岗时检查",
+      "expect": {
+        "expected_items": [
+          "心电图",
+          "纯音听阈测试"
+        ],
+        "missing_items": [
+          "心电图",
+          "纯音听阈测试"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "离岗时检查必检项全缺 → non_compliant",
+      "record_id": "SYN-TRUTH-011"
+    },
+    {
+      "case": "benzene",
+      "coverage": "周期边界 · 差一天到期",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "到期前一日 → compliant（应零命中）",
+      "record_id": "SYN-TRUTH-012"
+    },
+    {
+      "case": "benzene",
+      "coverage": "周期边界 · 恰好到期",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "due",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "到期当日 → due，计入合规（应零命中）",
+      "record_id": "SYN-TRUTH-013"
+    },
+    {
+      "case": "benzene",
+      "coverage": "周期边界 · 超一天",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "overdue",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "到期后一日 → overdue → partial（计入不符合）",
+      "record_id": "SYN-TRUTH-014"
+    },
+    {
+      "case": "benzene",
+      "coverage": "周期边界 · 月末夹取（闰转平）",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "due",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "上次 2028-02-29（闰年）+ 12 月 → 夹取为 2029-02-28（平年），当日检查 → due（合规）",
+      "record_id": "SYN-TRUTH-015"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "周期边界 · 24 个月周期到期",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "missing_items": [],
+        "period_verdict": "due",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "24 个月周期恰好到期 → due（合规）",
+      "record_id": "SYN-TRUTH-016"
+    },
+    {
+      "case": "laser",
+      "coverage": "周期边界 · 36 个月周期到期",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "due",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "36 个月周期恰好到期 → due（合规）",
+      "record_id": "SYN-TRUTH-017"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "周期边界 · 24 个月超一天",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "missing_items": [],
+        "period_verdict": "overdue",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "超一天 → overdue → partial",
+      "record_id": "SYN-TRUTH-018"
+    },
+    {
+      "case": "benzene",
+      "coverage": "周期边界 · 首次检查无基线",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "no_baseline",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "无上次检查记录 → no_baseline，不报超期（应零命中）",
+      "record_id": "SYN-TRUTH-019"
+    },
+    {
+      "case": "acid",
+      "coverage": "别名降级 · 归一不成立只报 warning",
+      "expect": {
+        "also_expect": [
+          {
+            "item_code": "某种别名的检查项目写法",
+            "kind": "warning"
+          }
+        ],
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "齐备 + 一个非规范写法项目 → compliant，该写法记 unmapped（降级 warning 不判缺失）",
+      "record_id": "SYN-TRUTH-020"
+    },
+    {
+      "case": "heat",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.3",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-021"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-022"
+    },
+    {
+      "case": "lead",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "missing_items": [
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-023"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-024"
+    },
+    {
+      "case": "noise",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-025"
+    },
+    {
+      "case": "benzene",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-026"
+    },
+    {
+      "case": "noise",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-027"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-028"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-029"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-030"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "血常规"
+        ],
+        "period_verdict": "compliant",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-031"
+    },
+    {
+      "case": "benzene",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-032"
+    },
+    {
+      "case": "heat",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.3",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-033"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "missing_items": [
+          "胸部X射线摄片"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-034"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [],
+        "period_verdict": "compliant",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-035"
+    },
+    {
+      "case": "noise",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "input_required",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-036"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-037"
+    },
+    {
+      "case": "lead",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-038"
+    },
+    {
+      "case": "heat",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.3",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-039"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-040"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-041"
+    },
+    {
+      "case": "benzene",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-042"
+    },
+    {
+      "case": "lead",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-043"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "period_verdict": "compliant",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-044"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "compliant",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-045"
+    },
+    {
+      "case": "benzene",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-046"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-047"
+    },
+    {
+      "case": "heat",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.3",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-048"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "period_verdict": "compliant",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-049"
+    },
+    {
+      "case": "lead",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-050"
+    },
+    {
+      "case": "noise",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "input_required",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-051"
+    },
+    {
+      "case": "benzene",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-052"
+    },
+    {
+      "case": "benzene",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-053"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-054"
+    },
+    {
+      "case": "benzene",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "missing_items": [
+          "肝功能",
+          "肝脾B超",
+          "血常规"
+        ],
+        "period_verdict": "overdue",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.19",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-055"
+    },
+    {
+      "case": "lead",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "血常规",
+          "血铅和/或尿铅"
+        ],
+        "missing_items": [
+          "血常规",
+          "血铅和/或尿铅"
+        ],
+        "period_verdict": "input_required",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-056"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-057"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "period_verdict": "overdue",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-058"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-059"
+    },
+    {
+      "case": "noise",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "心电图",
+          "纯音听阈测试",
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-060"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "missing_items": [],
+        "period_verdict": "overdue",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-061"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "missing_items": [
+          "胸部X射线摄片"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-062"
+    },
+    {
+      "case": "lead",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "空腹血糖",
+          "肝功能",
+          "血常规",
+          "血铅或尿铅"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-5.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-063"
+    },
+    {
+      "case": "laser",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "血常规"
+        ],
+        "missing_items": [
+          "肝功能",
+          "血常规"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-7.8",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-064"
+    },
+    {
+      "case": "noise",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "心电图",
+          "纯音听阈测试"
+        ],
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "compliant"
+      },
+      "factor_code": "GBZ188-7.1",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-065"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "missing_items": [
+          "胸部X射线摄片"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "partial"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-066"
+    },
+    {
+      "case": "acid",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "missing_items": [
+          "尿常规",
+          "心电图",
+          "肝功能",
+          "肺功能",
+          "胸部X射线摄片",
+          "血常规（含血嗜酸粒细胞计数）"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-5.55",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-067"
+    },
+    {
+      "case": "dust_metal",
+      "coverage": "批量队列 · 项目构成/周期可判定性",
+      "expect": {
+        "expected_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "missing_items": [
+          "肺功能",
+          "胸部X射线摄片"
+        ],
+        "period_verdict": "not_applicable",
+        "verdict": "non_compliant"
+      },
+      "factor_code": "GBZ188-6.7",
+      "note": "批量确定性件（splitmix64 驱动）",
+      "record_id": "SYN-TRUTH-068"
+    }
+  ],
+  "ruleset_id": "GBZ188-2025",
+  "seed": 20261014
+}

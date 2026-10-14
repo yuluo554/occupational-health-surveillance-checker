@@ -1,0 +1,33 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000055SYN",
+  "employee_name": "示例人员 A-055",
+  "exam_date": "2026-10-20",
+  "exam_type": "periodic",
+  "expect": {
+    "expected_items": [
+      "尿常规",
+      "心电图",
+      "肝功能",
+      "肝脾B超",
+      "血常规"
+    ],
+    "missing_items": [
+      "肝功能",
+      "肝脾B超",
+      "血常规"
+    ],
+    "period_verdict": "overdue",
+    "verdict": "partial"
+  },
+  "expect_case": "benzene",
+  "factor_code": "GBZ188-5.19",
+  "items": [
+    "尿常规",
+    "心电图"
+  ],
+  "last_exam_date": "2025-04-20",
+  "notified_suspected": false,
+  "position_id": "SYN-POS-benzene",
+  "record_id": "SYN-TRUTH-055"
+}

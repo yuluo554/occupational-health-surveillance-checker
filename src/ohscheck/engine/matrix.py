@@ -160,6 +160,24 @@ def _trace_rows(position_id, plan_result_factors):
     return rows
 
 
+def _period_input_note(factor, factor_ref):
+    """周期级待输入的显式索取条目（**不阻断应检清单推导**）。
+
+    M1 实测发现 A：标准的周期常按"作业分级 / 接触水平 / 接触年限"分档，
+    规则包**不承载单值**。此时应检项仍可完全推导，故 plan 放行，但必须把
+    "需要哪些外部输入才能判周期"显式列出（决策 D-13：绝不静默取默认值）。
+    """
+    period = factor.get("period") or {}
+    if period.get("status") != "input_required":
+        return None
+    return {
+        "target": "%s/%s/period" % (factor_ref.factor_code, "周期"),
+        "basis": period.get("basis") or period.get("note") or "周期需按具体情况确定",
+        "factor_code": factor["factor_code"],
+        "blocking": False,
+    }
+
+
 def compute_plan(profile, eff_ruleset):
     """矩阵推导主入口（纯函数）。
 
@@ -169,6 +187,10 @@ def compute_plan(profile, eff_ruleset):
 
     Returns:
         PlanResult（含 missing_inputs 与 trace）。
+
+    `missing_inputs` 含两类（`blocking` 字段区分，见 rules/gate.py 的阻塞性分级）：
+      * 适用性待输入（blocking=True）：不给出就无法定"该不该做、做哪些" → 调用方拦截；
+      * 周期待输入（blocking=False）：应检项已可推导，只缺"周期"这一外部值 → 放行并索取。
     """
     ruleset = eff_ruleset.ruleset
     factors = []
@@ -187,13 +209,24 @@ def compute_plan(profile, eff_ruleset):
                     "target": "%s/%s/applicability" % (profile.position_id, ref.factor_code),
                     "basis": fp.applicability.reason,
                     "factor_code": ref.factor_code,
+                    "blocking": True,
                 }
             )
+        period_note = _period_input_note(factor, ref)
+        if period_note is not None:
+            missing_inputs.append(period_note)
 
     notes = []
-    if missing_inputs:
+    blocking = [m for m in missing_inputs if m.get("blocking", True)]
+    if blocking:
         notes.append(
-            "有 %d 项适用性待外部输入，未满足前不产出该因素的应检清单" % len(missing_inputs)
+            "有 %d 项适用性待外部输入，未满足前不产出该因素的应检清单" % len(blocking)
+        )
+    deferred = [m for m in missing_inputs if not m.get("blocking", True)]
+    if deferred:
+        notes.append(
+            "有 %d 项周期按具体情况分档、需外部输入（作业分级/接触水平等）；"
+            "应检清单不受影响，周期判定将呈现为「待输入」（决策 D-13）" % len(deferred)
         )
 
     return PlanResult(

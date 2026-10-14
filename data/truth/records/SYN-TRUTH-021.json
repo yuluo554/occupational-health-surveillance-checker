@@ -1,0 +1,19 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000021SYN",
+  "employee_name": "示例人员 A-021",
+  "exam_date": "2026-11-20",
+  "exam_type": "post_placement",
+  "expect": {
+    "expected_items": [],
+    "missing_items": [],
+    "period_verdict": "not_applicable",
+    "verdict": "compliant"
+  },
+  "expect_case": "heat",
+  "factor_code": "GBZ188-7.3",
+  "items": [],
+  "notified_suspected": false,
+  "position_id": "SYN-POS-heat",
+  "record_id": "SYN-TRUTH-021"
+}

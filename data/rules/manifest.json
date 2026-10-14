@@ -12,28 +12,28 @@
     "date": "2026-08-01"
   },
   "generated_by": "tools/gen_rulesets.py",
-  "note": "M0 骨架：全部条目 status=pending，未挂原文核对不得进入核查路径。",
+  "note": "M1 数据入库：2025 版第 5–7 章（化学/粉尘/物理）明细 verified；第 8–9 章（生物/特殊作业）仅因素身份 verified、明细 pending；2014 版为差异导向骨架（前言引述），未引述条目一律 pending。未挂原文核对的条目不得进入核查路径。",
   "rulesets": [
     {
-      "factor_count": 32,
+      "factor_count": 81,
       "file": "ruleset-2014.json",
       "ruleset_id": "GBZ188-2014",
-      "sha256": "39b2a03fb9dd9fcf85c48a146b617f8912862556eb0db058b4aea48dfda73140",
+      "sha256": "d484508ebd743c5320ca4240adaf104a5db9761de070d6c3cdf3909174e0dd48",
       "status_counts": {
         "input_required": 0,
-        "pending": 32,
-        "verified": 0
+        "pending": 486,
+        "verified": 81
       }
     },
     {
-      "factor_count": 32,
+      "factor_count": 97,
       "file": "ruleset-2025.json",
       "ruleset_id": "GBZ188-2025",
-      "sha256": "d5172391a686bfe55996c18567767ac8cba4e7ca12a127a76493c141ae7ca0ac",
+      "sha256": "99be71c8c9da9e1d844dadb2ad7455dc93c30a943f077af8684aca5432afa4b1",
       "status_counts": {
-        "input_required": 0,
-        "pending": 32,
-        "verified": 0
+        "input_required": 22,
+        "pending": 90,
+        "verified": 2520
       }
     }
   ],

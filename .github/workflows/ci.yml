@@ -38,6 +38,7 @@ jobs:
         run: |
           python tools/gen_rulesets.py --check
           python tools/gen_cases.py --check
+          python tools/gen_synthetic.py --check
 
       - name: Zero-literal gate (with positive control)
         run: |

@@ -13,7 +13,8 @@
     "doc_code": "GBZ 188—2014",
     "doc_number": "",
     "doc_title": "职业健康监护技术规范（旧版，历史年度对照用）",
-    "effective_from": "2014-12-15",
+    "effective_from": "",
+    "effective_from_status": "pending",
     "fetched": "2026-10-14",
     "issuer": "",
     "published": "",
@@ -22,7 +23,10 @@
   },
   "chapters": [
     "5",
-    "6"
+    "6",
+    "7",
+    "8",
+    "9"
   ],
   "factors": [
     {
@@ -97,9 +101,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_01",
-      "factor_id": "5.1.0",
-      "factor_name": "待核对（第 5 章 第 1 节）",
+      "factor_code": "GBZ188-5.1",
+      "factor_id": "5.1",
+      "factor_name": "铅及其无机化合物（铅，CAS 号：7439-92-1）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -114,12 +118,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.1",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -194,9 +198,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_02",
-      "factor_id": "5.2.0",
-      "factor_name": "待核对（第 5 章 第 2 节）",
+      "factor_code": "GBZ188-5.2",
+      "factor_id": "5.2",
+      "factor_name": "四乙基铅（CAS 号：78-00-2）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -211,12 +215,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.2",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -291,9 +295,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_03",
-      "factor_id": "5.3.0",
-      "factor_name": "待核对（第 5 章 第 3 节）",
+      "factor_code": "GBZ188-5.3",
+      "factor_id": "5.3",
+      "factor_name": "汞及其无机化合物（汞，CAS 号：7439-97-6）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -308,12 +312,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.3",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -388,9 +392,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_04",
-      "factor_id": "5.4.0",
-      "factor_name": "待核对（第 5 章 第 4 节）",
+      "factor_code": "GBZ188-5.4",
+      "factor_id": "5.4",
+      "factor_name": "锰及其无机化合物（锰，CAS 号：7439-96-5）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -405,12 +409,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.4",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -485,9 +489,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_05",
-      "factor_id": "5.5.0",
-      "factor_name": "待核对（第 5 章 第 5 节）",
+      "factor_code": "GBZ188-5.5",
+      "factor_id": "5.5",
+      "factor_name": "铍及其无机化合物（铍，CAS 号：7440-41-7）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -502,12 +506,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.5",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -582,9 +586,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_06",
-      "factor_id": "5.6.0",
-      "factor_name": "待核对（第 5 章 第 6 节）",
+      "factor_code": "GBZ188-5.6",
+      "factor_id": "5.6",
+      "factor_name": "镉及其无机化合物（镉，CAS 号：7440-43-9）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -599,12 +603,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.6",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -679,9 +683,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_07",
-      "factor_id": "5.7.0",
-      "factor_name": "待核对（第 5 章 第 7 节）",
+      "factor_code": "GBZ188-5.7",
+      "factor_id": "5.7",
+      "factor_name": "铬及其无机化合物（铬，CAS 号：7440-47-3）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -696,12 +700,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.7",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -776,9 +780,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_08",
-      "factor_id": "5.8.0",
-      "factor_name": "待核对（第 5 章 第 8 节）",
+      "factor_code": "GBZ188-5.8",
+      "factor_id": "5.8",
+      "factor_name": "氧化锌（CAS 号：1314-13-2）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -793,12 +797,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.8",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -873,9 +877,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_09",
-      "factor_id": "5.9.0",
-      "factor_name": "待核对（第 5 章 第 9 节）",
+      "factor_code": "GBZ188-5.9",
+      "factor_id": "5.9",
+      "factor_name": "砷及其化合物（砷，CAS 号：7440-38-2）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -890,12 +894,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.9",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -970,9 +974,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_10",
-      "factor_id": "5.10.0",
-      "factor_name": "待核对（第 5 章 第 10 节）",
+      "factor_code": "GBZ188-5.10",
+      "factor_id": "5.10",
+      "factor_name": "砷化氢（砷化三氢，CAS 号：7784-42-1)",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -987,12 +991,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.10",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1067,9 +1071,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_11",
-      "factor_id": "5.11.0",
-      "factor_name": "待核对（第 5 章 第 11 节）",
+      "factor_code": "GBZ188-5.11",
+      "factor_id": "5.11",
+      "factor_name": "磷及其无机化合物（黄磷，CAS 号：12185-10-3）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1084,12 +1088,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.11",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1164,9 +1168,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_12",
-      "factor_id": "5.12.0",
-      "factor_name": "待核对（第 5 章 第 12 节）",
+      "factor_code": "GBZ188-5.12",
+      "factor_id": "5.12",
+      "factor_name": "磷化氢（CAS 号：7803-51-2）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1181,12 +1185,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.12",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1261,9 +1265,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_13",
-      "factor_id": "5.13.0",
-      "factor_name": "待核对（第 5 章 第 13 节）",
+      "factor_code": "GBZ188-5.13",
+      "factor_id": "5.13",
+      "factor_name": "可溶性钡化合物",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1278,12 +1282,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.13",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1358,9 +1362,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_14",
-      "factor_id": "5.14.0",
-      "factor_name": "待核对（第 5 章 第 14 节）",
+      "factor_code": "GBZ188-5.14",
+      "factor_id": "5.14",
+      "factor_name": "钒及其无机化合物（钒，CAS 号：7440-62-2）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1375,12 +1379,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.14",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1455,9 +1459,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_15",
-      "factor_id": "5.15.0",
-      "factor_name": "待核对（第 5 章 第 15 节）",
+      "factor_code": "GBZ188-5.15",
+      "factor_id": "5.15",
+      "factor_name": "三烷基锡",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1472,12 +1476,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.15",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1552,9 +1556,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_16",
-      "factor_id": "5.16.0",
-      "factor_name": "待核对（第 5 章 第 16 节）",
+      "factor_code": "GBZ188-5.16",
+      "factor_id": "5.16",
+      "factor_name": "铊及其无机化合物（铊，CAS 号：7440-28-0）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1569,12 +1573,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.16",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1649,9 +1653,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_17",
-      "factor_id": "5.17.0",
-      "factor_name": "待核对（第 5 章 第 17 节）",
+      "factor_code": "GBZ188-5.17",
+      "factor_id": "5.17",
+      "factor_name": "羰基镍（CAS 号：13463-39-3）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1666,12 +1670,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.17",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1746,9 +1750,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_18",
-      "factor_id": "5.18.0",
-      "factor_name": "待核对（第 5 章 第 18 节）",
+      "factor_code": "GBZ188-5.18",
+      "factor_id": "5.18",
+      "factor_name": "氟及其无机化合物（氟，CAS 号：7782-41-4）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1763,12 +1767,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.18",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1843,9 +1847,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_19",
-      "factor_id": "5.19.0",
-      "factor_name": "待核对（第 5 章 第 19 节）",
+      "factor_code": "GBZ188-5.19",
+      "factor_id": "5.19",
+      "factor_name": "苯（CAS 号：71-43-2）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1860,12 +1864,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.19",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -1940,9 +1944,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_20",
-      "factor_id": "5.20.0",
-      "factor_name": "待核对（第 5 章 第 20 节）",
+      "factor_code": "GBZ188-5.20",
+      "factor_id": "5.20",
+      "factor_name": "二硫化碳（CAS 号：75-15-0）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -1957,12 +1961,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.20",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -2037,9 +2041,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_21",
-      "factor_id": "5.21.0",
-      "factor_name": "待核对（第 5 章 第 21 节）",
+      "factor_code": "GBZ188-5.21",
+      "factor_id": "5.21",
+      "factor_name": "四氯化碳（CAS 号：56-23-5）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2054,12 +2058,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.21",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -2134,9 +2138,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_22",
-      "factor_id": "5.22.0",
-      "factor_name": "待核对（第 5 章 第 22 节）",
+      "factor_code": "GBZ188-5.22",
+      "factor_id": "5.22",
+      "factor_name": "甲醇（CAS 号：67-56-1）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2151,12 +2155,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.22",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -2231,9 +2235,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_23",
-      "factor_id": "5.23.0",
-      "factor_name": "待核对（第 5 章 第 23 节）",
+      "factor_code": "GBZ188-5.23",
+      "factor_id": "5.23",
+      "factor_name": "汽油（CAS 号：8006-61-9）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2248,12 +2252,12 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.23",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
@@ -2328,9 +2332,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_5_24",
-      "factor_id": "5.24.0",
-      "factor_name": "待核对（第 5 章 第 24 节）",
+      "factor_code": "GBZ188-5.24",
+      "factor_id": "5.24",
+      "factor_name": "溴甲烷（CAS 号：74-83-9）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2345,16 +2349,3314 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "5.24",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
-      "category": "physical",
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.25",
+      "factor_id": "5.25",
+      "factor_name": "1,2-二氯乙烷（CAS 号：107-06-2）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.25",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.26",
+      "factor_id": "5.26",
+      "factor_name": "正己烷（CAS 号：110-54-3）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.26",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.27",
+      "factor_id": "5.27",
+      "factor_name": "苯的氨基与硝基化合物",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.27",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.28",
+      "factor_id": "5.28",
+      "factor_name": "三硝基甲苯（CAS 号：118-96-7）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.28",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.29",
+      "factor_id": "5.29",
+      "factor_name": "联苯胺（CAS 号：92-87-5）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.29",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.30",
+      "factor_id": "5.30",
+      "factor_name": "氯气（CAS 号：7782-50-5）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.30",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.31",
+      "factor_id": "5.31",
+      "factor_name": "二氧化硫（CAS 号：7446-09-5）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.31",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.32",
+      "factor_id": "5.32",
+      "factor_name": "氮氧化物",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.32",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.33",
+      "factor_id": "5.33",
+      "factor_name": "氨（CAS 号：7664-41-7）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.33",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.34",
+      "factor_id": "5.34",
+      "factor_name": "光气（CAS 号：75-44-5）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.34",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.35",
+      "factor_id": "5.35",
+      "factor_name": "甲醛（CAS 号：50-00-0）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.35",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.36",
+      "factor_id": "5.36",
+      "factor_name": "一甲胺（CAS 号：74-89-5）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.36",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.37",
+      "factor_id": "5.37",
+      "factor_name": "一氧化碳（CAS 号：630-08-0）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.37",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.38",
+      "factor_id": "5.38",
+      "factor_name": "硫化氢（CAS 号：7783-06-4）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.38",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.39",
+      "factor_id": "5.39",
+      "factor_name": "氯乙烯（CAS 号：75-01-4）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.39",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.40",
+      "factor_id": "5.40",
+      "factor_name": "三氯乙烯（CAS 号：79-01-6）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.40",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.41",
+      "factor_id": "5.41",
+      "factor_name": "氯丙烯（CAS 号：107-05-1）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.41",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.42",
+      "factor_id": "5.42",
+      "factor_name": "氯丁二烯（CAS 号：126-99-8）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.42",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.43",
+      "factor_id": "5.43",
+      "factor_name": "有机氟",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.43",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "TOLUENE_DIISOCYANATE",
+      "factor_id": "5.44",
+      "factor_name": "甲苯二异氰酸酯",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.44",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.44",
+      "factor_id": "5.44.0",
+      "factor_name": "二甲基甲酰胺（CAS 号：68-12-2）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.44",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.45",
+      "factor_id": "5.45",
+      "factor_name": "氰及腈类化合物（氰，CAS 号：460-19-5）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.45",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.46",
+      "factor_id": "5.46",
+      "factor_name": "酚（酚，CAS 号：108-95-2。酚类化合物如甲酚、邻苯二酚、间苯二酚、对苯二酚等参照执行)",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.46",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.47",
+      "factor_id": "5.47",
+      "factor_name": "五氯酚（CAS 号：87-86-5）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.47",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.48",
+      "factor_id": "5.48",
+      "factor_name": "氯甲醚、双氯甲醚（CAS 号：107-30-2、542-88-1）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.48",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.49",
+      "factor_id": "5.49",
+      "factor_name": "丙烯酰胺（CAS 号：79-06-1）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.49",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.50",
+      "factor_id": "5.50",
+      "factor_name": "偏二甲基肼（CAS 号：57-14-7）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.50",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.51",
+      "factor_id": "5.51",
+      "factor_name": "硫酸二甲酯（CAS 号：77-78-1）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.51",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.52",
+      "factor_id": "5.52",
+      "factor_name": "有机磷",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.52",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.53",
+      "factor_id": "5.53",
+      "factor_name": "氨基甲酸酯类",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.53",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.54",
+      "factor_id": "5.54",
+      "factor_name": "拟除虫菊酯类",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.54",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.55",
+      "factor_id": "5.55",
+      "factor_name": "酸雾或酸酐",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.55",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.56",
+      "factor_id": "5.56",
+      "factor_name": "致喘物",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.56",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-5.57",
+      "factor_id": "5.57",
+      "factor_name": "焦炉逸散物",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "5.57",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "dust",
       "chapter": "6",
       "eligibility": {
         "basis": "",
@@ -2425,9 +5727,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_01",
-      "factor_id": "6.1.0",
-      "factor_name": "待核对（第 6 章 第 1 节）",
+      "factor_code": "GBZ188-6.1",
+      "factor_id": "6.1",
+      "factor_name": "游离二氧化硅粉尘[结晶型二氧化硅粉尘，又称矽尘（游离二氧化硅含量≥10%的无机性粉尘)]",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2442,16 +5744,16 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "6.1",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
-      "category": "physical",
+      "category": "dust",
       "chapter": "6",
       "eligibility": {
         "basis": "",
@@ -2522,9 +5824,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_02",
-      "factor_id": "6.2.0",
-      "factor_name": "待核对（第 6 章 第 2 节）",
+      "factor_code": "GBZ188-6.2",
+      "factor_id": "6.2",
+      "factor_name": "煤尘",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2539,16 +5841,16 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "6.2",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
-      "category": "physical",
+      "category": "dust",
       "chapter": "6",
       "eligibility": {
         "basis": "",
@@ -2619,9 +5921,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_03",
-      "factor_id": "6.3.0",
-      "factor_name": "待核对（第 6 章 第 3 节）",
+      "factor_code": "GBZ188-6.3",
+      "factor_id": "6.3",
+      "factor_name": "石棉粉尘",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2636,16 +5938,16 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "6.3",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
-      "category": "physical",
+      "category": "dust",
       "chapter": "6",
       "eligibility": {
         "basis": "",
@@ -2716,9 +6018,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_04",
-      "factor_id": "6.4.0",
-      "factor_name": "待核对（第 6 章 第 4 节）",
+      "factor_code": "GBZ188-6.4",
+      "factor_id": "6.4",
+      "factor_name": "其他致尘肺病的无机粉尘[根据职业病分类和目录，系指炭黑粉尘、石墨粉尘、滑石粉尘、云母粉尘、水泥粉尘、铸造粉尘、陶土粉尘、铝尘（铝、铝矾土、氧化铝）、电焊烟尘等粉尘]",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2733,16 +6035,16 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "6.4",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
-      "category": "physical",
+      "category": "dust",
       "chapter": "6",
       "eligibility": {
         "basis": "",
@@ -2813,9 +6115,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_05",
-      "factor_id": "6.5.0",
-      "factor_name": "待核对（第 6 章 第 5 节）",
+      "factor_code": "GBZ188-6.5",
+      "factor_id": "6.5",
+      "factor_name": "棉尘（包括亚麻、软大麻、黄麻粉尘）",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2830,16 +6132,16 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "6.5",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
-      "category": "physical",
+      "category": "dust",
       "chapter": "6",
       "eligibility": {
         "basis": "",
@@ -2910,9 +6212,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_06",
-      "factor_id": "6.6.0",
-      "factor_name": "待核对（第 6 章 第 6 节）",
+      "factor_code": "GBZ188-6.6",
+      "factor_id": "6.6",
+      "factor_name": "有机粉尘[指动物性粉尘（动物蛋白、皮毛、排泄物）、植物性粉尘（燕麦、谷物、木材、纸浆、大豆、咖啡、烟草粉尘等）、生物因素（如霉菌属类、霉菌孢子、嗜热放线杆菌、枯草杆菌、芽孢杆菌等）以及具有半抗原性质的化学物质等形成的气溶胶]",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -2927,17 +6229,17 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "6.6",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
       "category": "physical",
-      "chapter": "6",
+      "chapter": "7",
       "eligibility": {
         "basis": "",
         "comparator": "",
@@ -3007,9 +6309,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_07",
-      "factor_id": "6.7.0",
-      "factor_name": "待核对（第 6 章 第 7 节）",
+      "factor_code": "GBZ188-7.1",
+      "factor_id": "7.1",
+      "factor_name": "噪声",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -3024,17 +6326,17 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "7.1",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
     },
     {
       "category": "physical",
-      "chapter": "6",
+      "chapter": "7",
       "eligibility": {
         "basis": "",
         "comparator": "",
@@ -3104,9 +6406,9 @@
         }
       },
       "exposed_population": "",
-      "factor_code": "PENDING_6_08",
-      "factor_id": "6.8.0",
-      "factor_name": "待核对（第 6 章 第 8 节）",
+      "factor_code": "GBZ188-7.2",
+      "factor_id": "7.2",
+      "factor_name": "手传振动",
       "period": {
         "basis": "",
         "kind": "pending",
@@ -3121,13 +6423,1600 @@
         "value": null
       },
       "source": {
-        "clause": "",
-        "doc": "",
+        "clause": "7.2",
+        "doc": "GBZ 188—2014",
         "fetched": "",
         "url": ""
       },
-      "status": "pending",
+      "status": "verified",
       "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "7",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-7.3",
+      "factor_id": "7.3",
+      "factor_name": "高温",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "7.3",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "7",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-7.4",
+      "factor_id": "7.4",
+      "factor_name": "高气压（按 GB 20827）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "7.4",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "7",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-7.5",
+      "factor_id": "7.5",
+      "factor_name": "紫外辐射（紫外线）",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "7.5",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "physical",
+      "chapter": "7",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-7.6",
+      "factor_id": "7.6",
+      "factor_name": "微波",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "7.6",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "biological",
+      "chapter": "8",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-8.1",
+      "factor_id": "8.1",
+      "factor_name": "布鲁氏菌",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "8.1",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "biological",
+      "chapter": "8",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-8.2",
+      "factor_id": "8.2",
+      "factor_name": "炭疽芽孢杆菌",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "8.2",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-9.1",
+      "factor_id": "9.1",
+      "factor_name": "电工作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.1",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-9.2",
+      "factor_id": "9.2",
+      "factor_name": "高处作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.2",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-9.3",
+      "factor_id": "9.3",
+      "factor_name": "压力容器作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.3",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "TUBERCULOSIS_WORK",
+      "factor_id": "9.4",
+      "factor_name": "结核病防治作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.4",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-9.4",
+      "factor_id": "9.4.0",
+      "factor_name": "职业机动车驾驶作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.4",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "HEPATITIS_WORK",
+      "factor_id": "9.5",
+      "factor_name": "肝炎病防治作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.5",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-9.5",
+      "factor_id": "9.5.0",
+      "factor_name": "高原作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.5",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-9.6",
+      "factor_id": "9.6",
+      "factor_name": "航空作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.6",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    },
+    {
+      "category": "special",
+      "chapter": "9",
+      "eligibility": {
+        "basis": "",
+        "comparator": "",
+        "kind": "pending",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "threshold": null,
+        "unit": ""
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "post_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "",
+          "optional_items": [],
+          "required_items": [],
+          "source": {
+            "clause": "",
+            "doc": "",
+            "fetched": "",
+            "url": ""
+          },
+          "status": "pending",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "",
+      "factor_code": "GBZ188-9.7",
+      "factor_id": "9.7",
+      "factor_name": "刮研作业",
+      "period": {
+        "basis": "",
+        "kind": "pending",
+        "note": "",
+        "source": {
+          "clause": "",
+          "doc": "",
+          "fetched": "",
+          "url": ""
+        },
+        "status": "pending",
+        "value": null
+      },
+      "source": {
+        "clause": "9.7",
+        "doc": "GBZ 188—2014",
+        "fetched": "",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": []
+    }
+  ],
+  "foreword_deltas": [
+    {
+      "clauses": [],
+      "kind": "others",
+      "text": "主要技术变化如下："
+    },
+    {
+      "clauses": [
+        "4.8.3"
+      ],
+      "kind": "removed",
+      "text": "删除了体检结论中的复查项（见2014年版的4.8.3）；"
+    },
+    {
+      "clauses": [
+        "4.9",
+        "4.9"
+      ],
+      "kind": "changed",
+      "text": "更改了职业健康检查档案内容（见4.9，2014年版的4.9）；"
+    },
+    {
+      "clauses": [
+        "5.58",
+        "5.59",
+        "5.60",
+        "5.61",
+        "5.62",
+        "5.63",
+        "5.64",
+        "5.65",
+        "6.7",
+        "6.8",
+        "6.9",
+        "7.7",
+        "7.8",
+        "8.3",
+        "8.4",
+        "8.5",
+        "9.8",
+        "9.9",
+        "9.10"
+      ],
+      "kind": "added",
+      "text": "增加了接触甲苯、溴丙烷、碘甲烷、环氧乙烷、氯乙酸、铟及其化合物、煤焦油、煤焦油沥青、石油沥青、β-萘胺、金属及其化合物粉尘（锡、铁、锑、钡及其化合物等）、硬金属粉尘、毛沸石粉尘、低温、激光、蜱传脑炎病毒、布氏疏螺旋体、人免疫缺陷病毒作业人员及刮研作业、井下工人长期蹲跪姿、爬行、侧卧、肩扛作业、制造业工人长时间腕部重复作业或用力作业、参与突发事件处置的应急救援作业人员的健康监护（见5.58、5.59、5.60、5.61、5.62、5.63、5.64、5.65、6.7、6.8、6.9、7.7、7.8、8.3、8.4、8.5、9.8、9.9、9.10）；"
+    },
+    {
+      "clauses": [
+        "5.1.4",
+        "5.9.4",
+        "5.18.4",
+        "5.20.4",
+        "5.49.4"
+      ],
+      "kind": "added",
+      "text": "增加了接触铅及其无机化合物、砷及其化合物、氟及其无机化合物、二硫化碳、丙烯酰胺作业人员的应急健康检查（见5.1.4、5.9.4、5.18.4、5.20.4、5.49.4）；"
+    },
+    {
+      "clauses": [
+        "5.27",
+        "5.34",
+        "5.36",
+        "5.43",
+        "5.51"
+      ],
+      "kind": "added",
+      "text": "增加了接触苯的氨基与硝基化合物、光气、一甲胺、有机氟、硫酸二甲酯作业人员的离岗时职业健康检查（见5.27、5.34、5.36、5.43、5.51，2014年版的第5章）；"
+    },
+    {
+      "clauses": [
+        "5.44"
+      ],
+      "kind": "removed",
+      "text": "删除了甲苯二异氰酸酯（见2014年版的5.44）；"
+    },
+    {
+      "clauses": [
+        "9.4",
+        "9.5"
+      ],
+      "kind": "removed",
+      "text": "删除了结核病防治作业、肝炎病防治作业（见2014年版的9.4、9.5）；"
+    },
+    {
+      "clauses": [],
+      "kind": "removed",
+      "text": "删除了上岗前、在岗期间和离岗时职业健康检查中的选检项目，保留应急健康检查中的选检项目（见2014年版的第5章、第6章、第7章、第8章和第9章）；"
+    },
+    {
+      "clauses": [],
+      "kind": "added",
+      "text": "增加了部分危害因素的补充检查项目（见第5章、第6章、第7章和第9章）；"
+    },
+    {
+      "clauses": [],
+      "kind": "added",
+      "text": "增加了已颁布职业接触生物限值的生物标志物的检测（见第5章）；"
+    },
+    {
+      "clauses": [],
+      "kind": "changed",
+      "text": "更改了正确使用本标准的说明（见附录A，2014年版的附录A）；"
+    },
+    {
+      "clauses": [
+        "2.5",
+        "4.10.2"
+      ],
+      "kind": "changed",
+      "text": "更改了神经系统常规检查，并将常规检查内容放入附录B（见B.2.5，2014年版的4.10.2）；"
+    },
+    {
+      "clauses": [],
+      "kind": "removed",
+      "text": "删除了《粉尘作业人员胸部数字X射线摄影（DR摄片）技术要求》（见2014年版的附录C）；"
+    },
+    {
+      "clauses": [],
+      "kind": "added",
+      "text": "增加了《职业病危害因素作业人员推荐性检查》（见附录C）；"
+    },
+    {
+      "clauses": [],
+      "kind": "added",
+      "text": "增加了《职业健康检查总结报告编制指南》（见附录E）："
+    },
+    {
+      "clauses": [],
+      "kind": "added",
+      "text": "增加了《疑似职业病告知书》（见附录G）。"
     }
   ],
   "optional_items_policy": "any",

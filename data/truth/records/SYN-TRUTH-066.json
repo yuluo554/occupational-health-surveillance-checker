@@ -1,0 +1,26 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000066SYN",
+  "employee_name": "示例人员 A-066",
+  "exam_date": "2026-09-10",
+  "exam_type": "post_placement",
+  "expect": {
+    "expected_items": [
+      "肺功能",
+      "胸部X射线摄片"
+    ],
+    "missing_items": [
+      "胸部X射线摄片"
+    ],
+    "period_verdict": "not_applicable",
+    "verdict": "partial"
+  },
+  "expect_case": "dust_metal",
+  "factor_code": "GBZ188-6.7",
+  "items": [
+    "肺功能"
+  ],
+  "notified_suspected": false,
+  "position_id": "SYN-POS-dust_metal",
+  "record_id": "SYN-TRUTH-066"
+}

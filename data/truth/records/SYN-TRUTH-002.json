@@ -1,0 +1,32 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000002SYN",
+  "employee_name": "示例人员 A-002",
+  "exam_date": "2026-09-15",
+  "exam_type": "pre_placement",
+  "expect": {
+    "expected_items": [
+      "尿常规",
+      "心电图",
+      "肝功能",
+      "肝脾B超",
+      "血常规"
+    ],
+    "missing_items": [],
+    "period_verdict": "not_applicable",
+    "should_be_clean": true,
+    "verdict": "compliant"
+  },
+  "expect_case": "benzene",
+  "factor_code": "GBZ188-5.19",
+  "items": [
+    "血常规",
+    "尿常规",
+    "肝功能",
+    "心电图",
+    "肝脾B超"
+  ],
+  "notified_suspected": false,
+  "position_id": "SYN-POS-benzene",
+  "record_id": "SYN-TRUTH-002"
+}

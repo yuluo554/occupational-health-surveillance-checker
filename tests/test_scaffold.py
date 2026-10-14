@@ -59,16 +59,19 @@ def test_literals_selftest_detects_docstring_and_literal():
     assert len(hits) >= 3
 
 
-def test_literals_gate_reports_vacuous_when_no_verified_values(capsys):
-    """M0 期 token 集为空 → 门禁空转，必须**如实**声明（不得读成"通过"）。"""
+def test_literals_gate_is_nonvacuous_after_m1_ingest(capsys):
+    """M1 数据入库后，token 集**必须非空**（门禁真正具备数值拦截力）。
+
+    M0 期规则包全 pending/null ⇒ token 集为空、门禁空转（当时已如实留档）。
+    M1 起第 5–7 章周期月数已落库 ⇒ 门禁不再空转——本测试守住这个转折。
+    """
     module = _run_literals()
     code = module.main(["--json"])
     captured = capsys.readouterr()
     payload = json.loads(captured.out)
-    assert code == 0  # 无命中即 0
-    if payload["token_count"] == 0:
-        assert payload["vacuous"] is True
-        assert "空转" in payload["note"]
+    assert payload["token_count"] > 0, "M1 后 token 集不应再为空"
+    assert payload["vacuous"] is False
+    assert code == 0  # 无命中即 0（源代码里不得出现规则包数值）
 
 
 def test_literals_gate_scans_expected_surfaces():

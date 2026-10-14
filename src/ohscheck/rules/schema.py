@@ -15,7 +15,13 @@ import re
 from ..errors import InputError
 
 STATUSES = ("verified", "pending", "input_required")
-FACTOR_CATEGORIES = ("chemical", "physical")
+# 危害因素类别：与 GBZ 一八八最新版的章节划分对齐（第 5–9 章）。
+#   5 接触有害化学因素 → chemical
+#   6 粉尘             → dust
+#   7 接触有害物理因素 → physical
+#   8 接触有害生物因素 → biological
+#   9 特殊作业人员     → special
+FACTOR_CATEGORIES = ("chemical", "physical", "dust", "biological", "special")
 EXAM_TYPE_KEYS = ("pre_placement", "periodic", "post_placement", "emergency")
 ELIGIBILITY_KINDS = ("always", "threshold", "input_required", "pending")
 PERIOD_KINDS = ("months", "none", "input_required", "pending")
@@ -221,9 +227,23 @@ def validate_ruleset(obj):
     basis = obj.get("basis")
     if not isinstance(basis, dict):
         _fail("缺少 basis 对象")
-    for key in ("doc_code", "doc_title", "effective_from"):
+    for key in ("doc_code", "doc_title"):
         if not str(basis.get(key) or "").strip():
             _fail("basis 缺少非空字段 %r" % key)
+    # effective_from：默认必须非空；但**已核对但确实查不到**的情况下，允许以
+    # `effective_from_status: pending` 显式声明"该日期是待核对项"——
+    # 这正是"未核对不得编造"的结构化表达（决策 D-13 同族：未核对 ≠ 取个默认值）。
+    # 反之，标了 pending 却填了日期 → 拒绝（防止"先填个大概值再标待核对"）。
+    eff_status = basis.get("effective_from_status", "verified")
+    if eff_status not in STATUSES:
+        _fail("basis.effective_from_status %r 非法（合法值：%s）"
+              % (eff_status, ", ".join(STATUSES)))
+    if eff_status == "pending":
+        if str(basis.get("effective_from") or "").strip():
+            _fail("basis.effective_from_status 标 pending 却已填 effective_from——"
+                  "待核对的日期不得预填")
+    elif not str(basis.get("effective_from") or "").strip():
+        _fail("basis 缺少非空字段 'effective_from'")
     if synthetic:
         # 合成夹具的三道结构护栏（数据纪律，plan/02 §4.4）
         if not str(basis.get("doc_code") or "").startswith(SYNTHETIC_MARKER):

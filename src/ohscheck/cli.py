@@ -119,7 +119,8 @@ def cmd_selfcheck(args):
     if total_pending:
         payload["message"] = (
             "规则包有 %d 处条目尚未核对（status=pending）：未核对不得进入核查路径。"
-            "M0 期初态即全部 pending。" % total_pending
+            "引用到这些条目的 plan/check 会被门控拦截（退出码 2）；"
+            "compare/bench 走 minimal 深度，不受项目明细 pending 影响。" % total_pending
         )
     _dump(payload, args.json)
     return EXIT_OK

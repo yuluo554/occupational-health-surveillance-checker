@@ -72,22 +72,34 @@ def resolve_ruleset_for(exam_date, context):
     return context.ruleset(ruleset_id)
 
 
+def _blocking_inputs(items):
+    """只取**阻塞性**待输入项（周期级待输入不阻断，见 rules/gate.py 的阻塞性分级）。
+
+    M1 实测发现 A：22 个主要因素的周期标准按作业分级分档、规则包不承载单值，
+    但其应检项已可完全推导 → 不应阻断 plan/check。真正的"不给出就无法判定"
+    （适用性 / 项目级）才拦。
+    """
+    return [it for it in items if it.get("blocking", True)]
+
+
 def compute_plan(profile, context, scope="plan"):
     """岗位应检清单推导（含门控；待输入则抛 MissingInputError）。
 
     Raises:
         GateBlocked: 引用到的条目里有 pending。
-        MissingInputError: 适用性需外部输入（绝不静默取默认值，决策 D-13）。
+        MissingInputError: 适用性/项目级需外部输入（绝不静默取默认值，决策 D-13）。
     """
     from ..engine.matrix import compute_plan as _compute
 
     ruleset = resolve_ruleset_for(profile.exam_date, context)
     eff = effective_ruleset(ruleset, scope, required_factor_ids=profile.factor_codes)
-    if eff.missing_inputs:
-        raise MissingInputError(eff.missing_inputs)
+    blocking = _blocking_inputs(eff.missing_inputs)
+    if blocking:
+        raise MissingInputError(blocking)
     result = _compute(profile, eff)
-    if result.missing_inputs:
-        raise MissingInputError(result.missing_inputs)
+    result_blocking = _blocking_inputs(result.missing_inputs)
+    if result_blocking:
+        raise MissingInputError(result_blocking)
     return result
 
 
@@ -102,8 +114,9 @@ def _plan_for_record(record, context, scope="check"):
 
     ruleset = resolve_ruleset_for(record.exam_date, context)
     eff = effective_ruleset(ruleset, scope, required_factor_ids=[record.factor_code])
-    if eff.missing_inputs:
-        raise MissingInputError(eff.missing_inputs)
+    blocking = _blocking_inputs(eff.missing_inputs)
+    if blocking:
+        raise MissingInputError(blocking)
 
     # 用档案自身的岗位画像（单因素）推导应检清单
     profile = PositionProfile(
@@ -112,8 +125,9 @@ def _plan_for_record(record, context, scope="check"):
         factors=[_factor_ref_stub(record.factor_code)],
     )
     plan_result = _compute(profile, eff)
-    if plan_result.missing_inputs:
-        raise MissingInputError(plan_result.missing_inputs)
+    plan_blocking = _blocking_inputs(plan_result.missing_inputs)
+    if plan_blocking:
+        raise MissingInputError(plan_blocking)
     return plan_result, record.last_exam_date
 
 

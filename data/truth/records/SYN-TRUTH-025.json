@@ -1,0 +1,32 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000025SYN",
+  "employee_name": "示例人员 A-025",
+  "exam_date": "2026-09-10",
+  "exam_type": "pre_placement",
+  "expect": {
+    "expected_items": [
+      "尿常规",
+      "心电图",
+      "纯音听阈测试",
+      "肝功能",
+      "血常规"
+    ],
+    "missing_items": [
+      "纯音听阈测试",
+      "肝功能",
+      "血常规"
+    ],
+    "period_verdict": "not_applicable",
+    "verdict": "partial"
+  },
+  "expect_case": "noise",
+  "factor_code": "GBZ188-7.1",
+  "items": [
+    "尿常规",
+    "心电图"
+  ],
+  "notified_suspected": false,
+  "position_id": "SYN-POS-noise",
+  "record_id": "SYN-TRUTH-025"
+}

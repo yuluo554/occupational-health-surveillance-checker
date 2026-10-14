@@ -1,0 +1,33 @@
+{
+  "conclusion_code": "normal",
+  "employee_id": "90000000063SYN",
+  "employee_name": "示例人员 A-063",
+  "exam_date": "2026-11-20",
+  "exam_type": "pre_placement",
+  "expect": {
+    "expected_items": [
+      "尿常规",
+      "心电图",
+      "空腹血糖",
+      "肝功能",
+      "血常规",
+      "血铅或尿铅"
+    ],
+    "missing_items": [
+      "尿常规",
+      "心电图",
+      "空腹血糖",
+      "肝功能",
+      "血常规",
+      "血铅或尿铅"
+    ],
+    "period_verdict": "not_applicable",
+    "verdict": "non_compliant"
+  },
+  "expect_case": "lead",
+  "factor_code": "GBZ188-5.1",
+  "items": [],
+  "notified_suspected": false,
+  "position_id": "SYN-POS-lead",
+  "record_id": "SYN-TRUTH-063"
+}

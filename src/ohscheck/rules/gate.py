@@ -59,7 +59,17 @@ class EffectiveRuleset:
 
 
 def _collect_full(factor):
-    """full 深度：返回 (pending 坐标列表, input_required 清单)。"""
+    """full 深度：返回 (pending 坐标列表, input_required 清单)。
+
+    **阻塞性分级**（M1 实测发现 A，见 plan/05 M1 发现表）：`input_required` 有两类，
+    后果截然不同——
+      * `blocking=True`（eligibility / 项目级）：不提供就无法确定**该不该做、做哪些**
+        应检项 → 必须拦下（决策 D-13：绝不静默取默认值）；
+      * `blocking=False`（period 级）：应检项**已可完全推导**，只是"周期"这一项
+        标准按作业分级/接触水平分档、规则包不承载单值 → 应**降级为待输入**而非
+        阻断整个核查。`judge_period` 早已按此返回 `input_required` 判定，
+        若门控在此拦截，则 FR-B4 在**最需要判周期的那批因素上不可达**（假不可用）。
+    """
     pending = []
     required_inputs = []
     code = factor["factor_code"]
@@ -76,7 +86,13 @@ def _collect_full(factor):
             pending.append(where)
         elif status == "input_required":
             required_inputs.append(
-                {"target": where, "basis": block.get("basis", ""), "factor_code": code}
+                {
+                    "target": where,
+                    "basis": block.get("basis", ""),
+                    "factor_code": code,
+                    # 周期级待输入不阻断：应检项已可推导（见上）
+                    "blocking": name != "period",
+                }
             )
 
     for di, disease in enumerate(factor.get("target_diseases") or []):
@@ -94,7 +110,12 @@ def _collect_full(factor):
                     pending.append(item_where)
                 elif item.get("status") == "input_required":
                     required_inputs.append(
-                        {"target": item_where, "basis": item.get("basis", ""), "factor_code": code}
+                        {
+                            "target": item_where,
+                            "basis": item.get("basis", ""),
+                            "factor_code": code,
+                            "blocking": True,
+                        }
                     )
     return pending, required_inputs
 
@@ -116,6 +137,7 @@ def _collect_minimal(factor):
                 "target": "%s(%s).eligibility" % (factor["factor_id"], code),
                 "basis": factor["eligibility"].get("basis", ""),
                 "factor_code": code,
+                "blocking": True,
             }
         )
     return pending, required_inputs

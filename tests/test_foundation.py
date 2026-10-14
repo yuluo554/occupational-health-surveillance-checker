@@ -183,12 +183,83 @@ def test_production_rulesets_are_not_synthetic():
     assert obj["basis"]["doc_code"] == "GBZ 188—2025"
 
 
-def test_production_rulesets_are_all_pending_at_m0():
-    """M0 初态：生产规则包全部条目 pending（未核对不得进入核查路径）。"""
+def test_production_2025_ruleset_has_verified_details_and_pending_mix():
+    """M1 状态：2025 版第 5–7 章明细 verified；第 8–9 章身份 verified、明细 pending。
+
+    这是**真实混合态**——M1-7 要验的门控作用域行为正是建立在它上面：
+    plan/check（full 深度）拦第 8–9 章的 pending；compare/bench（minimal）放行。
+    """
     from ohscheck.loaders import load_path
 
-    for name in ("ruleset-2014.json", "ruleset-2025.json"):
-        obj = load_path(os.path.join(data_dir(), "rules", name))
-        for factor in obj["factors"]:
-            assert factor["status"] == "pending", (name, factor["factor_code"])
-            assert factor["period"]["value"] is None
+    obj = load_path(os.path.join(data_dir(), "rules", "ruleset-2025.json"))
+    detailed = [f for f in obj["factors"] if f["chapter"] in ("5", "6", "7")]
+    identity = [f for f in obj["factors"] if f["chapter"] in ("8", "9")]
+    assert detailed, "第 5–7 章因素应存在"
+    assert identity, "第 8–9 章因素应存在"
+
+    # 第 5–7 章：因素、适用性、四时点、周期一律 verified，且必检项至少一处非空
+    for factor in detailed:
+        if factor["status"] != "verified":
+            continue
+        assert factor["eligibility"]["status"] == "verified", factor["factor_code"]
+        assert factor["period"]["status"] in ("verified", "input_required")
+        assert any(
+            factor["examinations"][key]["required_items"]
+            for key in ("pre_placement", "periodic", "post_placement", "emergency")
+        ), factor["factor_code"]
+
+    # 第 8–9 章：身份 verified（名称/节号/类别可核对），明细一律 pending 且值为 null
+    for factor in identity:
+        assert factor["factor_code"].startswith("GBZ188-")
+        assert factor["factor_name"], factor["factor_code"]
+        assert factor["eligibility"]["status"] == "pending"
+        for key in ("pre_placement", "periodic", "post_placement", "emergency"):
+            block = factor["examinations"][key]
+            assert block["status"] == "pending", (factor["factor_code"], key)
+            assert block["required_items"] == []
+
+
+def test_production_2014_ruleset_is_delta_skeleton():
+    """2014 版为**差异导向骨架**（决策 D-28）：明细一律 pending，且**不含**
+    2025 版前言点名"新增"的因素（如 5.58 甲苯、7.7 低温）。"""
+    from ohscheck.loaders import load_path
+
+    obj = load_path(os.path.join(data_dir(), "rules", "ruleset-2014.json"))
+    codes = {f["factor_code"] for f in obj["factors"]}
+    # 2025 版前言点名的"新增"条款不在 2014 版
+    for added in ("GBZ188-5.58", "GBZ188-5.65", "GBZ188-6.8", "GBZ188-7.7", "GBZ188-7.8",
+                  "GBZ188-8.3", "GBZ188-8.4", "GBZ188-8.5", "GBZ188-9.8"):
+        assert added not in codes, added
+    # 前言点名"删除"的 2014 版因素在列（compare 的"因素被删除"侧）
+    for removed in ("TOLUENE_DIISOCYANATE", "TUBERCULOSIS_WORK", "HEPATITIS_WORK"):
+        assert removed in codes, removed
+    # 明细一律 pending
+    for factor in obj["factors"]:
+        assert factor["period"]["status"] == "pending", factor["factor_code"]
+        assert factor["period"]["value"] is None
+    # 前言差异条目随规则包下发（供 compare 期望差异）
+    assert obj.get("foreword_deltas"), "2014 版应携带前言差异条目"
+
+
+def test_production_2025_verified_details_are_verbatim_from_official_snapshot():
+    """抽查：verified 必检项必须逐字出现在官方快照里（转写漂移守门）。"""
+    import os as _os
+
+    from ohscheck.loaders import load_path
+
+    snapshot = _os.path.join(data_dir(), "knowledge", "raw", "GBZ188-2025.layout.txt")
+    if not _os.path.isfile(snapshot):
+        pytest.skip("官方快照未入库")
+    with open(snapshot, "r", encoding="utf-8") as fh:
+        flat = "".join(fh.read().split())
+    obj = load_path(_os.path.join(data_dir(), "rules", "ruleset-2025.json"))
+    checked = 0
+    for factor in obj["factors"]:
+        for key in ("pre_placement", "periodic", "post_placement", "emergency"):
+            for item in factor["examinations"][key]["required_items"]:
+                code = item["item_code"]
+                assert code in flat, "%s %s 的必检项不在官方原文：%r" % (
+                    factor["factor_code"], key, code,
+                )
+                checked += 1
+    assert checked > 100, "抽查样本量过小（应覆盖全部必检项）"

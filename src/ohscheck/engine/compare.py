@@ -70,14 +70,48 @@ def _basis_of(eff, code):
     )
 
 
+def detail_pending(factor):
+    """该因素的**明细**是否尚未核对（任一下级块 status=pending）。
+
+    为什么条目级差异必须先看这个（决策 D-12 的必然推论）：
+    门控 minimal 深度只拦"整条因素 pending"，于是"因素身份已核对、明细待核对"
+    的条目会被放行进 compare。此时若照常比项目构成，会把
+    「**未转写**」误报成「**标准有差异**」——2014 版全骨架就会对每个因素
+    报一条假的 `required_items_changed`。故条目级比较只对**两侧明细都非 pending**
+    的因素生效；差异条目**不得以确定语气呈现未核对的内容**。
+    """
+    if factor.get("status") == "pending":
+        return True
+    if factor.get("eligibility", {}).get("status") == "pending":
+        return True
+    if factor.get("period", {}).get("status") == "pending":
+        return True
+    if any(
+        disease.get("status") == "pending" for disease in factor.get("target_diseases") or []
+    ):
+        return True
+    for key in EXAM_TYPES:
+        block = factor["examinations"][key]
+        if block.get("status") == "pending":
+            return True
+        for group in ("required_items", "supplementary_items", "optional_items"):
+            for item in block.get(group) or []:
+                if item.get("status") == "pending":
+                    return True
+    return False
+
+
 def compare_rulesets(eff_a, eff_b):
     """对照两份规则集（A=旧，B=新）。
 
     对照维度（plan/04 §七）：
-        1. 危害因素覆盖（新增 / 删除）
+        1. 危害因素覆盖（新增 / 删除）——只需因素身份，恒可判
         2. 检查时点存在性
-        3. 必检项目构成（code 集合）
-        4. 选检项目调整（非空 → 空）
+        3. 必检项目构成（code 集合）——**仅当两侧明细都非 pending**
+        4. 选检项目调整（非空 → 空）——同上
+
+    明细任一待核对时，该因素只出**因素级**差异，条目级比较被跳过并记入 `notes`
+    （见 `detail_pending`）。这是"未核对的内容不得以确定语气呈现"的结构化落实。
     """
     codes_a = _factor_codes(eff_a)
     codes_b = _factor_codes(eff_b)
@@ -102,9 +136,19 @@ def compare_rulesets(eff_a, eff_b):
             )
         )
 
+    skipped_detail = []
     for code in sorted(codes_a & codes_b):
         fa = eff_a.ruleset.factor(code)
         fb = eff_b.ruleset.factor(code)
+        # 明细任一待核对 → 跳过条目级比较（否则把"未转写"误报成"标准差异"）
+        if detail_pending(fa) or detail_pending(fb):
+            pending_sides = []
+            if detail_pending(fa):
+                pending_sides.append(eff_a.ruleset_id)
+            if detail_pending(fb):
+                pending_sides.append(eff_b.ruleset_id)
+            skipped_detail.append((code, pending_sides))
+            continue
         for exam_type in EXAM_TYPES:
             block_a = fa["examinations"][exam_type]
             block_b = fb["examinations"][exam_type]
@@ -162,9 +206,21 @@ def compare_rulesets(eff_a, eff_b):
             )
 
     notes = []
+    if skipped_detail:
+        by_side = {}
+        for code, sides in skipped_detail:
+            by_side.setdefault(", ".join(sides), []).append(code)
+        for sides, codes in sorted(by_side.items()):
+            notes.append(
+                "%d 个共同因素的**明细**在 %s 侧尚未核对 → 已跳过其条目级比较"
+                "（避免把'未转写'误报成'标准差异'）：%s%s"
+                % (
+                    len(codes),
+                    sides,
+                    "、".join(codes[:8]),
+                    "" if len(codes) <= 8 else "（等 %d 个）" % len(codes),
+                )
+            )
     if not entries:
-        notes.append(
-            "两版结构对照无差异条目。注意：若某规则集条目为 pending，"
-            "本差异仅为结构对照，条目级差异待规则入库后生效。"
-        )
+        notes.append("两版结构对照无差异条目。")
     return DiffReport(eff_a.ruleset_id, eff_b.ruleset_id, entries, notes)
