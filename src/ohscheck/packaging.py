@@ -12,8 +12,13 @@ from __future__ import annotations
 import os
 
 # 打包数据的白名单（相对仓库根的路径 → dist 内目标路径）
+# rules：规则包（核查与基准必需）；benchmark：内置基准用例（--selftest 必需）；
+# truth：合成真值库（演示样本）。**不整仓塞 data/**（M5-7）——
+# 禁区段（版权原文快照等）由 FORBIDDEN_DATA_PREFIXES 双保险。
 DATA_WHITELIST = (
     ("data/rules", "data/rules"),
+    ("data/benchmark", "data/benchmark"),
+    ("data/truth", "data/truth"),
 )
 
 # 禁区段：版权原文快照一律不入包（M1 建库后生效）

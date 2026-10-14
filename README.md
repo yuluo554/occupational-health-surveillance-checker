@@ -6,9 +6,9 @@
 
 **全本地处理、零上传**：监护档案含劳动者个人健康信息（敏感个人信息），工具默认不联网、不做任何数据外发。
 
-> 状态：🚧 **M4 完成（2026-10-14）**——M0 骨架 → M1 数据先行（GBZ 188—2025 第 5–7 章 82 因素逐条挂原文核对 + 双版本规则包 + 72 件合成真值库）→ M2 监护矩阵引擎与覆盖度判定 → M3 批量/对账/报告与证据链 → **M4 内置基准（可证伪探活 + 指标实测值入 README）**。
+> 状态：🚧 **M5 完成（2026-10-14）**——M0 骨架 → M1 数据先行（GBZ 188—2025 第 5–7 章 82 因素逐条挂原文核对 + 双版本规则包 + 72 件合成真值库）→ M2 监护矩阵引擎与覆盖度判定 → M3 批量/对账/报告与证据链 → M4 内置基准（可证伪探活）→ **M5 桌面交付与打包（GUI 六页签 + onedir 双 exe + 冻结态自检与中立目录验收 + 演示素材 + 技术报告）**。
 > **当前规则包**：`data/rules/` 第 5–7 章（82 因素 / 2520 条项目明细）已逐条挂官方原文核对（`verified`），第 8–9 章 15 因素仅因素身份核对、明细 `pending`（核查时被门控拦截并提示）。基准与演示由**合成规则集**（`data/benchmark/`）驱动，与生产规则包刻意分离。
-> 下一步：M5 桌面交付与打包，见 [plan/HANDOFF-M5.md](plan/HANDOFF-M5.md)。
+> 下一步：M6 脱敏发布与收尾，见 [plan/HANDOFF-M6.md](plan/HANDOFF-M6.md)。
 > **诚实性说明**：本机**未接远端**，CI workflow 已就位但**一次都没跑过**（"未推送 = 未跑 CI"），首推验证安排在 M6。
 
 ---
@@ -70,6 +70,27 @@ ohscheck version
 
 **退出码**：`0` 无不符合 / 基准达标 · `1` 检出不符合 / 基准未达标 · `2` 用法·输入·门控拦截·待输入·年度歧义·门槛缺失 · `3` 缺可选依赖（GUI）。
 
+### 桌面界面（M5）
+
+```bash
+python -m pip install -e ".[gui]"
+python -m ohscheck gui          # 六页签：自检 / 岗位应检 / 档案核查 / 批量扫描 / 版本对照 / 报告导出
+```
+
+GUI 与 CLI **同一编排层**（`engine/pipeline.py`）取数，行为等价有测试背书（CLI stdout == pipeline 直调 == GUI 服务层 == 报告章节，`tests/test_m5.py`）；界面只渲染结果、零判定逻辑，且有 AST 三条守门锁死（不 import 规则层 + 无算术 + 无政策数值字面量）。
+
+![GUI 六页签演示](docs/assets/gui-demo.gif)
+
+**打包（免安装双 exe）**：
+
+```bash
+python -m pip install -e ".[build]"      # PyInstaller >= 6（打 GUI 硬下限）
+python tools/gen_spec.py --check         # spec 由 datas 白名单单一事实源生成（禁手改）
+python -m PyInstaller tools/packaging.spec
+# → dist/ohscheck/ohscheck-gui.exe + ohscheck-cli.exe（onedir）
+ohscheck-cli.exe selftest <out.json>     # 冻结态自检：数据目录落 dist 内 + 规则数 > 0 + 全链路 + 基准
+```
+
 **冻结产物再生成**（产物禁手改，改体例走生成器整目录重生成）：
 
 ```bash
@@ -116,9 +137,10 @@ src/ohscheck/       核心层（零第三方依赖）：规则加载/门控/版�
 data/rules/         规则包（生成器冻结产物；第 5–7 章已核对，第 8–9 章明细 pending）
 data/benchmark/     合成规则集 + 植入真值用例（基准专用，与生产包分离）
 data/truth/         合成监护档案真值库（72 档案 + truth.json + manifest.json）
-tools/              生成器与门禁（gen_rulesets / gen_cases / gen_synthetic / check_literals）
-tests/              212 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / 真值对账 / 骨架守门）
-plan/               计划文档 00–06 + HANDOFF-M1…M5.md
+tools/              生成器与门禁（gen_rulesets / gen_cases / gen_synthetic / gen_spec / gen_demo_assets / check_literals）
+docs/               技术报告 + 演示素材（assets/，sha256 可复现）
+tests/              227 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / GUI 守门与三方对账 / 真值对账 / 骨架守门）
+plan/               计划文档 00–06 + HANDOFF-M1…M6.md
 ```
 
 ## 里程碑
@@ -130,13 +152,13 @@ plan/               计划文档 00–06 + HANDOFF-M1…M5.md
 | M2 | 监护矩阵引擎：应检项目与周期推导 + 覆盖度判定，算例回归 | ✅ 完成 2026-10-14（[HANDOFF-M2](plan/HANDOFF-M2.md)） |
 | M3 | 批量与对账：批量档案扫描 + 跨轮对账 + 群体统计 + 报告/证据链 | ✅ 完成 2026-10-14（[HANDOFF-M3](plan/HANDOFF-M3.md)） |
 | M4 | 基准：四套件 + 可证伪探活 + 门槛随 manifest + 指标实测值进 README | ✅ 完成 2026-10-14（[HANDOFF-M4](plan/HANDOFF-M4.md)，指标见上方"M4 期基准指标实测"） |
-| M5 | 桌面交付：PySide6 界面 + PyInstaller 打包 + 报告导出 + 技术报告 | ⬜ 下一步（[HANDOFF-M5](plan/HANDOFF-M5.md)） |
-| M6 | 脱敏发布 GitHub + Release（exe）+ 收尾固化 | ⬜ |
+| M5 | 桌面交付：PySide6 界面 + PyInstaller 打包 + 报告导出 + 技术报告 | ✅ 完成 2026-10-14（[HANDOFF-M5](plan/HANDOFF-M5.md)，GUI 演示见上方） |
+| M6 | 脱敏发布 GitHub + Release（exe）+ 收尾固化 | ⬜ 下一步（[HANDOFF-M6](plan/HANDOFF-M6.md)） |
 
 ## 开发与测试
 
 ```bash
-python -m pytest -q          # 212 项（3.8 与 3.12 双通道均绿）
+python -m pytest -q          # 227 项（3.8 与 3.12 双通道均绿）
 ```
 
 CI（`.github/workflows/ci.yml`）按 4 矩阵运行：`{ubuntu, windows} × {3.8, 3.12}`，每步都先跑冻结产物守门与零字面量门禁。

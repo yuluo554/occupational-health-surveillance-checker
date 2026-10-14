@@ -15,7 +15,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 
 from . import __version__
@@ -90,40 +89,11 @@ def cmd_version(args):
 
 def cmd_selfcheck(args):
     """数据目录定位 + 规则库加载 + status 门控计数。"""
-    from . import paths
-    from .engine.pipeline import build_context, gate_overview, parameter_overview
+    from .engine.pipeline import selfcheck_payload
 
-    info = paths.describe_search()
-    payload = {
-        "version": __version__,
-        "python": sys.version.split()[0],
-        "frozen": info["frozen"],
-        "data_dir": info["resolved"],
-        "candidates": info["candidates"],
-    }
-    if info["resolved"] is None or not os.path.isdir(info["resolved"]):
-        payload["status"] = "FAIL"
-        payload["message"] = "未找到 data/ 目录：%s" % (info["resolved"] or "（无候选命中）")
-        _dump(payload, args.json)
-        return EXIT_USAGE
-
-    context = build_context(args.data_dir)
-    payload["cutover"] = context.manifest.cutover
-    payload["rulesets"] = gate_overview(context)
-    payload["parameter_sources"] = [
-        {k: v for k, v in row.items() if k != "sha256"} for row in parameter_overview(context)
-    ]
-    total_pending = sum(row["pending_count"] for row in payload["rulesets"])
-    payload["pending_total"] = total_pending
-    payload["status"] = "OK"
-    if total_pending:
-        payload["message"] = (
-            "规则包有 %d 处条目尚未核对（status=pending）：未核对不得进入核查路径。"
-            "引用到这些条目的 plan/check 会被门控拦截（退出码 2）；"
-            "compare/bench 走 minimal 深度，不受项目明细 pending 影响。" % total_pending
-        )
+    payload, code = selfcheck_payload(args.data_dir)
     _dump(payload, args.json)
-    return EXIT_OK
+    return code
 
 
 def cmd_plan(args):
@@ -154,31 +124,27 @@ def cmd_check(args):
 
 def cmd_scan(args):
     """批量扫描 + 报告导出（可选 --baseline 跨轮对账，M3-3）。"""
-    from .engine.pipeline import build_context, run_scan
+    from .engine.pipeline import build_context, scan_with_reconcile
     from .model import NONCOMPLIANT_VERDICTS
 
     context = build_context(args.data_dir)
-    result = run_scan(args.directory, context)
+    result, baseline_result, reconcile = scan_with_reconcile(
+        args.directory, context, args.baseline
+    )
     payload = result.as_dict()
-    baseline_result = None
-    if args.baseline:
-        baseline_result = run_scan(args.baseline, context)
+    if baseline_result is not None:
         payload["baseline"] = baseline_result.as_dict()
     if args.out:
-        from .engine.export import export_report
-        from .engine.pipeline import build_report_model, compare_rounds_model
+        from .engine.pipeline import generate_report
 
-        reconcile = None
-        if baseline_result is not None:
-            reconcile = compare_rounds_model(result, baseline_result)
-        model = build_report_model(
-            scan_result=result,
-            reconcile_result=reconcile,
+        payload["report"] = generate_report(
+            out_dir=args.out,
             context=context,
             generated_at=args.generated_at,
+            scan_result=result,
+            reconcile_result=reconcile,
+            input_paths=[args.directory] + ([args.baseline] if args.baseline else []),
         )
-        paths_out = export_report(model, args.out)
-        payload["report"] = paths_out
     _dump(payload, args.json)
     for rec in result.items:
         if rec.verdict in NONCOMPLIANT_VERDICTS:
@@ -201,58 +167,17 @@ def cmd_compare(args):
 
 def cmd_report(args):
     """导出报告（plan / check / scan 三种来源）。"""
-    from .engine.export import export_report
-    from .engine.pipeline import (
-        build_context,
-        build_position,
-        build_record,
-        build_report_model,
-        compute_coverage,
-        compute_plan,
-        run_scan,
-    )
-    from .loaders import load_path
+    from .engine.pipeline import build_context, report_from_inputs
 
     context = build_context(args.data_dir)
-    plan_result = coverage_results = scan_result = reconcile_result = None
-    input_paths = []
-
-    if args.directory:
-        scan_result = run_scan(args.directory, context)
-        input_paths.append(args.directory)
-        # M3-3：--baseline 是上一轮的档案目录 → 跨轮对账（三主集 + 两辅助集）
-        if getattr(args, "baseline", None):
-            from .engine.pipeline import compare_rounds_model
-
-            baseline_result = run_scan(args.baseline, context)
-            reconcile_result = compare_rounds_model(scan_result, baseline_result)
-            input_paths.append(args.baseline)
-    if getattr(args, "record", None):
-        record = build_record(load_path(args.record))
-        coverage_results = [compute_coverage(record, context)]
-        input_paths.append(args.record)
-    if args.position:
-        profile = build_position(load_path(args.position))
-        plan_result = compute_plan(profile, context)
-        input_paths.append(args.position)
-
-    ruleset_id = plan_result.ruleset_id if plan_result is not None else ""
-    model = build_report_model(
-        plan_result=plan_result,
-        coverage_results=coverage_results,
-        scan_result=scan_result,
-        reconcile_result=reconcile_result,
+    paths_out = report_from_inputs(
+        out_dir=args.out,
         context=context,
-        ruleset_id=ruleset_id,
         generated_at=args.generated_at,
-    )
-    ruleset_sha = ""
-    if ruleset_id:
-        entry = context.manifest.entry(ruleset_id) or {}
-        ruleset_sha = entry.get("sha256", "")
-    paths_out = export_report(
-        model, args.out, ruleset_id=ruleset_id, ruleset_sha256=ruleset_sha,
-        input_paths=input_paths,
+        position_path=args.position,
+        record_path=getattr(args, "record", None),
+        directory=args.directory,
+        baseline=getattr(args, "baseline", None),
     )
     _dump(paths_out, args.json)
     return EXIT_OK

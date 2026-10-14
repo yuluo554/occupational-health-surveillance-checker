@@ -21,9 +21,13 @@ __all__ = [
     "compute_plan",
     "compute_coverage",
     "run_scan",
+    "scan_with_reconcile",
     "compare",
     "compare_rounds_model",
     "build_report_model",
+    "generate_report",
+    "report_from_inputs",
+    "selfcheck_payload",
     "parameter_overview",
     "gate_overview",
 ]
@@ -174,6 +178,25 @@ def compare_rounds_model(current_scan, baseline_scan):
     return compare_rounds(current_scan, baseline_scan)
 
 
+def scan_with_reconcile(directory, context, baseline_directory=None):
+    """批量扫描 + 可选跨轮对账（M5-1 上收：CLI `scan`/`report` 与 GUI 共用）。
+
+    Args:
+        directory: 当前轮档案目录。
+        baseline_directory: 上一轮档案目录（None → 不对账）。
+
+    Returns:
+        (ScanResult, baseline_result_or_None, reconcile_result_or_None)
+    """
+    result = run_scan(directory, context)
+    baseline_result = None
+    reconcile = None
+    if baseline_directory:
+        baseline_result = run_scan(baseline_directory, context)
+        reconcile = compare_rounds_model(result, baseline_result)
+    return result, baseline_result, reconcile
+
+
 def _alias_map(context, ruleset_id):
     """取显式别名表；pending 或未定义 → 返回 None（归一路径整体禁用，决策 D-17）。"""
     ids = [ruleset_id] if ruleset_id else context.manifest.ruleset_ids()
@@ -267,3 +290,137 @@ def gate_overview(context, scope="plan"):
 def policy_thresholds(context):
     """基准验收门槛（随 manifest 下发，决策 D-24）。"""
     return context.manifest.thresholds
+
+
+def generate_report(*, out_dir, context, generated_at, plan_result=None,
+                    coverage_results=None, scan_result=None, reconcile_result=None,
+                    input_paths=None):
+    """报告装配 + 导出全链路（M5-1 上收：CLI `report` 与 GUI 共用）。
+
+    报告模型构造、规则集 sha256 提取、溯源硬断言、三件套落盘都在这里；
+    表现层只提供输入与目标目录。
+
+    Returns:
+        export_report 的路径 dict（markdown/xlsx/evidence/sha256）。
+    """
+    from ..engine.export import export_report
+
+    ruleset_id = plan_result.ruleset_id if plan_result is not None else ""
+    model = build_report_model(
+        plan_result=plan_result,
+        coverage_results=coverage_results,
+        scan_result=scan_result,
+        reconcile_result=reconcile_result,
+        context=context,
+        ruleset_id=ruleset_id,
+        generated_at=generated_at,
+    )
+    ruleset_sha = ""
+    if ruleset_id:
+        entry = context.manifest.entry(ruleset_id) or {}
+        ruleset_sha = entry.get("sha256", "")
+    return export_report(
+        model, out_dir, ruleset_id=ruleset_id, ruleset_sha256=ruleset_sha,
+        input_paths=input_paths,
+    )
+
+
+def report_from_inputs(*, out_dir, context, generated_at, position_path=None,
+                       record_path=None, directory=None, baseline=None):
+    """从输入路径到报告落盘的整段编排（M5-1 上收：CLI `report` 与 GUI 共用）。
+
+    与 CLI `report` 子命令同语义：三种来源可任意组合（plan/record/directory，
+    baseline 需先给 directory）；输入路径逐个挂进证据链。
+
+    Returns:
+        export_report 的路径 dict。
+    """
+    from ..loaders import load_path
+
+    plan_result = coverage_results = scan_result = reconcile_result = None
+    input_paths = []
+    if directory:
+        scan_result, _baseline_result, reconcile_result = scan_with_reconcile(
+            directory, context, baseline
+        )
+        input_paths.append(directory)
+        if baseline:
+            input_paths.append(baseline)
+    if record_path:
+        record = build_record(load_path(record_path))
+        coverage_results = [compute_coverage(record, context)]
+        input_paths.append(record_path)
+    if position_path:
+        profile = build_position(load_path(position_path))
+        plan_result = compute_plan(profile, context)
+        input_paths.append(position_path)
+    return generate_report(
+        out_dir=out_dir,
+        context=context,
+        generated_at=generated_at,
+        plan_result=plan_result,
+        coverage_results=coverage_results,
+        scan_result=scan_result,
+        reconcile_result=reconcile_result,
+        input_paths=input_paths,
+    )
+
+
+def selfcheck_payload(data_dir=None):
+    """自检负载装配（M5-1 上收：CLI `selfcheck` 与 GUI 自检页共用）。
+
+    数据目录定位、规则库加载、门控计数、参数来源都在这里；
+    返回 (payload_dict, exit_code)，表现层只负责渲染。
+
+    定位失败时 exit_code 为 2（EXIT_USAGE）且 status=FAIL。
+    """
+    from .. import paths
+    from ..errors import EXIT_OK, EXIT_USAGE
+
+    info = paths.describe_search()
+    payload = {
+        "version": _version(),
+        "python": _python_version(),
+        "frozen": info["frozen"],
+        "data_dir": info["resolved"],
+        "candidates": info["candidates"],
+    }
+    if info["resolved"] is None or not _isdir(info["resolved"]):
+        payload["status"] = "FAIL"
+        payload["message"] = "未找到 data/ 目录：%s" % (info["resolved"] or "（无候选命中）")
+        return payload, EXIT_USAGE
+
+    context = build_context(data_dir)
+    payload["cutover"] = context.manifest.cutover
+    payload["rulesets"] = gate_overview(context)
+    payload["parameter_sources"] = [
+        {k: v for k, v in row.items() if k != "sha256"} for row in parameter_overview(context)
+    ]
+    total_pending = sum(row["pending_count"] for row in payload["rulesets"])
+    payload["pending_total"] = total_pending
+    payload["status"] = "OK"
+    if total_pending:
+        payload["message"] = (
+            "规则包有 %d 处条目尚未核对（status=pending）：未核对不得进入核查路径。"
+            "引用到这些条目的 plan/check 会被门控拦截（退出码 2）；"
+            "compare/bench 走 minimal 深度，不受项目明细 pending 影响。" % total_pending
+        )
+    return payload, EXIT_OK
+
+
+def _version():
+    from .. import __version__
+
+    return __version__
+
+
+def _python_version():
+    import sys
+
+    return sys.version.split()[0]
+
+
+def _isdir(path):
+    import os
+
+    return os.path.isdir(path) if path else False

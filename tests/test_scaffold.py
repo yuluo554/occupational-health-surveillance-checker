@@ -205,9 +205,9 @@ def test_core_has_no_third_party_imports():
         allowed = {
             "argparse", "ast", "calendar", "collections", "contextlib", "copy",
             "csv", "dataclasses", "datetime", "decimal", "enum", "errno", "functools",
-            "hashlib", "io", "itertools", "json", "logging", "math", "os", "pathlib",
-            "re", "shutil", "stat", "string", "struct", "subprocess", "sys",
-            "tempfile", "textwrap", "time", "types", "typing", "unicodedata",
+            "hashlib", "io", "itertools", "json", "logging", "math", "multiprocessing",
+            "os", "pathlib", "re", "shutil", "stat", "string", "struct", "subprocess",
+            "sys", "tempfile", "textwrap", "time", "types", "typing", "unicodedata",
             "unittest", "warnings", "xml", "zipfile", "__future__",
         }
 
