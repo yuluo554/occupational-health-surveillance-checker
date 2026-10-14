@@ -2,29 +2,32 @@
   "conclusion_code": "normal",
   "employee_id": "90000000047SYN",
   "employee_name": "示例人员 A-047",
-  "exam_date": "2026-09-10",
+  "exam_date": "2026-11-10",
   "exam_type": "pre_placement",
   "expect": {
     "expected_items": [
       "尿常规",
       "心电图",
       "肝功能",
-      "血常规"
+      "肺功能",
+      "胸部X射线摄片",
+      "血常规（含血嗜酸粒细胞计数）"
     ],
     "missing_items": [
-      "血常规"
+      "尿常规",
+      "心电图",
+      "肝功能",
+      "肺功能",
+      "胸部X射线摄片",
+      "血常规（含血嗜酸粒细胞计数）"
     ],
     "period_verdict": "not_applicable",
-    "verdict": "partial"
+    "verdict": "non_compliant"
   },
-  "expect_case": "laser",
-  "factor_code": "GBZ188-7.8",
-  "items": [
-    "尿常规",
-    "心电图",
-    "肝功能"
-  ],
+  "expect_case": "acid",
+  "factor_code": "GBZ188-5.55",
+  "items": [],
   "notified_suspected": false,
-  "position_id": "SYN-POS-laser",
+  "position_id": "SYN-POS-acid",
   "record_id": "SYN-TRUTH-047"
 }

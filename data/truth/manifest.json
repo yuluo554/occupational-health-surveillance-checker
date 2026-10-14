@@ -1,6 +1,6 @@
 {
-  "clean_count": 14,
-  "corpus_id": "SYN-TRUTH-M1",
+  "clean_count": 17,
+  "corpus_id": "SYN-TRUTH-M2",
   "coverage_matrix": [
     {
       "case": "化学因素 · 苯作业人员应检项集合",
@@ -97,6 +97,34 @@
       ]
     },
     {
+      "case": "周期形态 · 无在岗期间检查（period.kind=none）",
+      "note": "标准未设在岗期间检查 → not_applicable，不报超期（M2-4 三形态覆盖之一）",
+      "records": [
+        "SYN-TRUTH-021"
+      ]
+    },
+    {
+      "case": "周期形态 · 分档（粉尘按生产性粉尘作业分级）",
+      "note": "GBZ188-6.1；周期 kind=input_required → 不参与超期判定（M2-4 三形态覆盖之二）",
+      "records": [
+        "SYN-TRUTH-022"
+      ]
+    },
+    {
+      "case": "周期形态 · 分档（汞按有毒作业分级）",
+      "note": "GBZ188-5.3；周期 kind=input_required；应检项齐备 → compliant",
+      "records": [
+        "SYN-TRUTH-023"
+      ]
+    },
+    {
+      "case": "周期形态 · 分档因素缺项仍判不符合",
+      "note": "必检项全缺 → non_compliant（周期分档不掩盖缺项判定）",
+      "records": [
+        "SYN-TRUTH-024"
+      ]
+    },
+    {
       "case": "误报对照 · 应检项齐备 + 周期合规（应零命中）",
       "note": "should_be_clean=true 显式声明（M1-5）；基准/引擎层**只读**该声明，不自选考卷",
       "records": [
@@ -113,7 +141,10 @@
         "SYN-TRUTH-016",
         "SYN-TRUTH-017",
         "SYN-TRUTH-019",
-        "SYN-TRUTH-020"
+        "SYN-TRUTH-020",
+        "SYN-TRUTH-021",
+        "SYN-TRUTH-022",
+        "SYN-TRUTH-023"
       ]
     },
     {
@@ -127,7 +158,7 @@
       "case": "批量队列 · 项目构成 / 周期可判定性",
       "note": "splitmix64 驱动 48 件，全量可复现",
       "records": [
-        "SYN-TRUTH-021 … SYN-TRUTH-068"
+        "SYN-TRUTH-025 … SYN-TRUTH-072"
       ]
     }
   ],
@@ -138,8 +169,51 @@
     "identity_numbers": "90000000…SYN（保留测试号段）",
     "note": "全部为虚构实体；不含任何真实劳动者信息（plan/05 §2.2）。"
   },
+  "period_shape_coverage": [
+    {
+      "note": "真值库按形态**抽样**覆盖（非逐因素穷举）；未采样因素与已采样同形态共用同一判定路径。",
+      "period_kind": "input_required",
+      "ruleset_factor_count": 22,
+      "sampled_factor_count": 4,
+      "sampled_factors": [
+        "GBZ188-5.1",
+        "GBZ188-5.3",
+        "GBZ188-6.1",
+        "GBZ188-7.1"
+      ]
+    },
+    {
+      "note": "真值库按形态**抽样**覆盖（非逐因素穷举）；未采样因素与已采样同形态共用同一判定路径。",
+      "period_kind": "months",
+      "ruleset_factor_count": 38,
+      "sampled_factor_count": 5,
+      "sampled_factors": [
+        "GBZ188-5.19",
+        "GBZ188-5.55",
+        "GBZ188-6.7",
+        "GBZ188-7.3",
+        "GBZ188-7.8"
+      ]
+    },
+    {
+      "note": "真值库按形态**抽样**覆盖（非逐因素穷举）；未采样因素与已采样同形态共用同一判定路径。",
+      "period_kind": "none",
+      "ruleset_factor_count": 22,
+      "sampled_factor_count": 1,
+      "sampled_factors": [
+        "GBZ188-5.2"
+      ]
+    },
+    {
+      "note": "真值库按形态**抽样**覆盖（非逐因素穷举）；未采样因素与已采样同形态共用同一判定路径。",
+      "period_kind": "pending",
+      "ruleset_factor_count": 15,
+      "sampled_factor_count": 0,
+      "sampled_factors": []
+    }
+  ],
   "private_dir_note": "data/truth/_private/ 为本地不入仓目录（.gitignore 已排除）：如需在本机保留带真实来源线索的中间样本，放该目录，且**不得**进入语料库产物。",
-  "record_count": 68,
+  "record_count": 72,
   "ruleset_id": "GBZ188-2025",
   "ruleset_sha256": "99be71c8c9da9e1d844dadb2ad7455dc93c30a943f077af8684aca5432afa4b1",
   "schema_version": "1.0",
@@ -149,7 +223,7 @@
   "unreachable_cases": [
     {
       "case": "不适用 · 危害因素不适用该人员（verdict=not_applicable）",
-      "covered_by": "机制层：data/benchmark/ 的合成夹具含 kind=threshold 因素，覆盖 not_applicable 与 input_required 两条分支（基准验机制、不验国标内容，决策 D-51）。",
+      "covered_by": "机制层：data/benchmark/ 的合成夹具含 kind=threshold 因素 （SYN_FACTOR_EPSILON，阈值 10 mg/m3），三条用例覆盖 applicable / not_applicable（低于阈值）/ input_required（未提供接触水平）三态（基准验机制、不验国标内容，决策 D-51）；守门测试：tests/test_m2.py::test_benchmark_fixture_covers_threshold_branches。",
       "reason": "标准通过『第 4.5 节 职业健康监护人群的界定原则』对**所列危害因素**定义监护人群——接触即纳入，逐因素不设接触水平阈值。故生产规则包第 5–7 章全部因素的适用性为 kind=always，not_applicable 在真实规则包上**不可达**。"
     },
     {

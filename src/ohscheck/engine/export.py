@@ -12,6 +12,7 @@ from ..report.evidence import build_evidence, sha256_bytes, sha256_file, write_e
 from ..report.markdown import render_markdown
 from ..report.sections import report_sections
 from ..report.xlsx import render_xlsx_bytes, render_xlsx_table
+from .trace import assert_report_trace
 
 __all__ = [
     "export_report",
@@ -25,6 +26,9 @@ __all__ = [
 def export_report(model, out_dir, ruleset_id="", ruleset_sha256="", input_paths=None):
     """导出报告三件套：report.md / report.xlsx / evidence.json。
 
+    **溯源硬断言在落盘前执行**（FR-A4 / plan/04 §2.3）：行数对账或 basis 空
+    任一不满足即抛 TraceAssertionError（退出码 2）——**不留半溯源报告**。
+
     Args:
         model: ReportModel。
         out_dir: 输出目录。
@@ -33,6 +37,12 @@ def export_report(model, out_dir, ruleset_id="", ruleset_sha256="", input_paths=
     Returns:
         dict: {markdown, xlsx, evidence, sha256: {...}}
     """
+    assert_report_trace(
+        plan_result=model.plan_result,
+        coverage_results=model.coverage_results,
+        scan_result=model.scan_result,
+    )
+
     if not os.path.isdir(out_dir):
         os.makedirs(out_dir)
 

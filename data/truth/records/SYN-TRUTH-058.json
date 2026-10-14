@@ -2,28 +2,30 @@
   "conclusion_code": "normal",
   "employee_id": "90000000058SYN",
   "employee_name": "示例人员 A-058",
-  "exam_date": "2026-12-20",
-  "exam_type": "periodic",
+  "exam_date": "2026-10-20",
+  "exam_type": "pre_placement",
   "expect": {
     "expected_items": [
-      "肺功能",
-      "胸部X射线摄片",
-      "血常规（含血嗜酸粒细胞计数）"
+      "尿常规",
+      "心电图",
+      "肝功能",
+      "肝脾B超",
+      "血常规"
     ],
-    "missing_items": [
-      "血常规（含血嗜酸粒细胞计数）"
-    ],
-    "period_verdict": "overdue",
-    "verdict": "partial"
+    "missing_items": [],
+    "period_verdict": "not_applicable",
+    "verdict": "compliant"
   },
-  "expect_case": "acid",
-  "factor_code": "GBZ188-5.55",
+  "expect_case": "benzene",
+  "factor_code": "GBZ188-5.19",
   "items": [
-    "肺功能",
-    "胸部X射线摄片"
+    "尿常规",
+    "心电图",
+    "肝功能",
+    "肝脾B超",
+    "血常规"
   ],
-  "last_exam_date": "2023-06-20",
   "notified_suspected": false,
-  "position_id": "SYN-POS-acid",
+  "position_id": "SYN-POS-benzene",
   "record_id": "SYN-TRUTH-058"
 }

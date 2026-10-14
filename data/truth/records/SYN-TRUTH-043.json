@@ -3,31 +3,17 @@
   "employee_id": "90000000043SYN",
   "employee_name": "示例人员 A-043",
   "exam_date": "2026-11-10",
-  "exam_type": "pre_placement",
+  "exam_type": "post_placement",
   "expect": {
-    "expected_items": [
-      "尿常规",
-      "心电图",
-      "空腹血糖",
-      "肝功能",
-      "血常规",
-      "血铅或尿铅"
-    ],
-    "missing_items": [
-      "尿常规",
-      "心电图",
-      "空腹血糖",
-      "肝功能",
-      "血常规",
-      "血铅或尿铅"
-    ],
+    "expected_items": [],
+    "missing_items": [],
     "period_verdict": "not_applicable",
-    "verdict": "non_compliant"
+    "verdict": "compliant"
   },
-  "expect_case": "lead",
-  "factor_code": "GBZ188-5.1",
+  "expect_case": "heat",
+  "factor_code": "GBZ188-7.3",
   "items": [],
   "notified_suspected": false,
-  "position_id": "SYN-POS-lead",
+  "position_id": "SYN-POS-heat",
   "record_id": "SYN-TRUTH-043"
 }

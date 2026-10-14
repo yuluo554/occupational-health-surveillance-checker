@@ -6,21 +6,27 @@
   "exam_type": "post_placement",
   "expect": {
     "expected_items": [
-      "肺功能",
-      "胸部X射线摄片"
+      "尿常规",
+      "心电图",
+      "肝功能",
+      "肝脾B超",
+      "血常规"
     ],
     "missing_items": [
-      "胸部X射线摄片"
+      "血常规"
     ],
     "period_verdict": "not_applicable",
     "verdict": "partial"
   },
-  "expect_case": "dust_metal",
-  "factor_code": "GBZ188-6.7",
+  "expect_case": "benzene",
+  "factor_code": "GBZ188-5.19",
   "items": [
-    "肺功能"
+    "尿常规",
+    "心电图",
+    "肝功能",
+    "肝脾B超"
   ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-dust_metal",
+  "position_id": "SYN-POS-benzene",
   "record_id": "SYN-TRUTH-066"
 }

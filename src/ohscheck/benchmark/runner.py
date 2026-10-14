@@ -85,6 +85,19 @@ def _resolve_bench_dir(data_dir=None):
 # ---------------- 套件 ----------------
 
 
+def _exposure_ref(record_obj, factor_code):
+    """构造因素引用，带上记录里的接触水平（阈值型适用性判定用）。
+
+    接触水平缺失 → FactorRef.exposure_value=None → 适用性 input_required
+    （决策 D-13：绝不静默取默认值）。
+    """
+    from ..model import FactorRef, parse_decimal
+
+    exposure = record_obj.get("exposure") or {}
+    value = parse_decimal(exposure.get("value"), "exposure.value") if exposure else None
+    return FactorRef(factor_code, exposure_value=value, exposure_unit=exposure.get("unit"))
+
+
 def suite_matrix(env):
     """监护矩阵：样本驱动（真值对账）+ 规则驱动（从规则表推导端点）。"""
     from ..engine.matrix import compute_plan, expected_items
@@ -179,7 +192,7 @@ def suite_coverage(env):
             profile = PositionProfile(
                 position_id=record_obj.get("position_id") or case["case_id"],
                 exam_date=record_obj["exam_date"],
-                factors=[FactorRef(factor_code)],
+                factors=[_exposure_ref(record_obj, factor_code)],
             )
             plan = compute_plan(profile, eff)
             record = HealthRecord.from_dict(record_obj)
@@ -284,7 +297,7 @@ def suite_false_positive(env):
             profile = PositionProfile(
                 position_id=record_obj.get("position_id") or case["case_id"],
                 exam_date=record_obj["exam_date"],
-                factors=[FactorRef(factor_code)],
+                factors=[_exposure_ref(record_obj, factor_code)],
             )
             plan = compute_plan(profile, eff)
             record = HealthRecord.from_dict(record_obj)

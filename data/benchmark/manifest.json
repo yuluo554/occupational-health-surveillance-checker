@@ -16,6 +16,13 @@
     "before": "SYN-2014",
     "date": "2026-08-01"
   },
+  "eligibility_coverage": {
+    "SYN_FACTOR_EPSILON": [
+      "not_applicable",
+      "input_required",
+      "applicable"
+    ]
+  },
   "generated_by": "tools/gen_cases.py",
   "note": "合成夹具：仅用于验证引擎机制，不含任何真实标准内容。",
   "rulesets": [
@@ -26,17 +33,17 @@
       "status_counts": {
         "input_required": 0,
         "pending": 0,
-        "verified": 6
+        "verified": 45
       }
     },
     {
-      "factor_count": 3,
+      "factor_count": 4,
       "file": "ruleset-2025.json",
       "ruleset_id": "SYN-2025",
       "status_counts": {
         "input_required": 0,
         "pending": 0,
-        "verified": 6
+        "verified": 61
       }
     }
   ],

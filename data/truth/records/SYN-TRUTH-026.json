@@ -2,31 +2,33 @@
   "conclusion_code": "normal",
   "employee_id": "90000000026SYN",
   "employee_name": "示例人员 A-026",
-  "exam_date": "2026-10-20",
-  "exam_type": "post_placement",
+  "exam_date": "2026-10-10",
+  "exam_type": "pre_placement",
   "expect": {
     "expected_items": [
       "尿常规",
       "心电图",
       "肝功能",
-      "肝脾B超",
+      "肺功能",
+      "胸部X射线摄片",
       "血常规"
     ],
     "missing_items": [
-      "心电图",
-      "肝功能",
-      "肝脾B超",
+      "胸部X射线摄片",
       "血常规"
     ],
     "period_verdict": "not_applicable",
     "verdict": "partial"
   },
-  "expect_case": "benzene",
-  "factor_code": "GBZ188-5.19",
+  "expect_case": "dust_metal",
+  "factor_code": "GBZ188-6.7",
   "items": [
-    "尿常规"
+    "尿常规",
+    "心电图",
+    "肝功能",
+    "肺功能"
   ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-benzene",
+  "position_id": "SYN-POS-dust_metal",
   "record_id": "SYN-TRUTH-026"
 }

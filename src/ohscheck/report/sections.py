@@ -68,11 +68,14 @@ class ReportModel:
         "scan_result",
         "reconcile_result",
         "gate_rows",
+        "verdict_reachability",
+        "unreachable_cases",
     )
 
     def __init__(self, ruleset_id="", generated_at=None, parameter_sources=None,
                  plan_result=None, coverage_results=None, scan_result=None,
-                 reconcile_result=None, gate_rows=None):
+                 reconcile_result=None, gate_rows=None, verdict_reachability=None,
+                 unreachable_cases=None):
         self.ruleset_id = ruleset_id
         self.generated_at = generated_at
         self.parameter_sources = list(parameter_sources or [])
@@ -81,6 +84,8 @@ class ReportModel:
         self.scan_result = scan_result
         self.reconcile_result = reconcile_result
         self.gate_rows = list(gate_rows or [])
+        self.verdict_reachability = list(verdict_reachability or [])
+        self.unreachable_cases = list(unreachable_cases or [])
 
 
 def build_model(*, plan_result=None, coverage_results=None, scan_result=None,
@@ -95,6 +100,11 @@ def build_model(*, plan_result=None, coverage_results=None, scan_result=None,
             ruleset_id = plan_result.ruleset_id
         elif scan_result is not None and scan_result.items:
             ruleset_id = ""
+    reachability = []
+    if context is not None and ruleset_id:
+        from ..engine.coverage import verdict_reachability
+
+        reachability = verdict_reachability(context.ruleset(ruleset_id))
     return ReportModel(
         ruleset_id=ruleset_id or "",
         generated_at=generated_at,
@@ -104,6 +114,7 @@ def build_model(*, plan_result=None, coverage_results=None, scan_result=None,
         scan_result=scan_result,
         reconcile_result=reconcile_result,
         gate_rows=gate_rows,
+        verdict_reachability=reachability,
     )
 
 
@@ -214,14 +225,19 @@ def _plan_section(model):
 
 
 def _coverage_section(model):
-    if not model.coverage_results:
+    # 批量通路（scan）的逐件判定同样纳入覆盖明细（scan 与 check 共用分派点，
+    # 报告层也不得让 scan 通路"看起来什么都没查"）。
+    target = list(model.coverage_results or [])
+    if model.scan_result is not None:
+        target.extend(model.scan_result.items)
+    if not target:
         return Section(
             "4",
             "覆盖核查明细",
             paragraphs=["本次导出未启用覆盖核查（用 check/scan 子命令生成）。"],
         )
     rows = []
-    for rec in model.coverage_results:
+    for rec in target:
         rows.append(
             [
                 rec.record_id,
@@ -234,7 +250,7 @@ def _coverage_section(model):
             ]
         )
     finding_rows = []
-    for rec in model.coverage_results:
+    for rec in target:
         for finding in rec.findings:
             finding_rows.append(
                 [
@@ -245,46 +261,88 @@ def _coverage_section(model):
                     finding.get("basis", ""),
                 ]
             )
+    reach_rows = []
+    unreachable_notes = []
+    for row in model.verdict_reachability:
+        reach_rows.append(
+            [VERDICT_LABELS.get(row["state"], row["state"]),
+             "可达" if row["reachable"] else "不可达",
+             row["reason"]]
+        )
+        if not row["reachable"]:
+            unreachable_notes.append(
+                "状态「%s」在本规则包上不可达：%s（决策 D-59：如实声明，不假装覆盖）"
+                % (VERDICT_LABELS.get(row["state"], row["state"]), row["reason"])
+            )
+    tables = [
+        Table(
+            "逐人四态判定",
+            ["档案", "人员", "因素", "时点", "结论", "缺项", "未归一实检项"],
+            rows,
+        ),
+        Table("发现明细（缺项 / 降级警告 / 周期）", ["档案", "类型", "项目", "说明", "条款依据"], finding_rows),
+    ]
+    if reach_rows:
+        tables.append(
+            Table("四态可达性（本规则包实算）", ["结论", "可达性", "判据"], reach_rows)
+        )
     return Section(
         "4",
         "覆盖核查明细",
-        tables=[
-            Table(
-                "逐人四态判定",
-                ["档案", "人员", "因素", "时点", "结论", "缺项", "未归一实检项"],
-                rows,
-            ),
-            Table("发现明细（缺项 / 降级警告 / 周期）", ["档案", "类型", "项目", "说明", "条款依据"], finding_rows),
-        ],
-        notes=["别名归一不成立的实检项降级为 warning，不判为缺失（决策 D-17）。"],
+        tables=tables,
+        notes=[
+            "别名归一不成立的实检项降级为 warning，不判为缺失（决策 D-17）。",
+            "缺项依据逐项下钻到规则包的项级 basis/source（决策 D-16，FR-A4）。",
+        ]
+        + unreachable_notes,
     )
 
 
 def _period_section(model):
-    target = model.coverage_results or []
-    if not target and model.scan_result is None:
+    # 批量通路（scan）的判定结果也须纳入周期呈现——否则 scan 驱动的报告
+    # 会把"待输入"整块吞掉（"没呈现"与"没问题"在报告上不可区分）。
+    target = list(model.coverage_results or [])
+    if model.scan_result is not None:
+        target.extend(model.scan_result.items)
+    if not target:
         return Section(
             "5",
             "周期合规",
             paragraphs=["本次导出未启用周期合规判定。"],
         )
     rows = []
+    pending_rows = []
     for rec in target:
-        rows.append(
-            [
-                rec.record_id,
-                EXAM_TYPE_LABELS.get(rec.exam_type, rec.exam_type),
-                rec.period_verdict or "—",
-            ]
+        label = EXAM_TYPE_LABELS.get(rec.exam_type, rec.exam_type)
+        if rec.period_verdict == "input_required":
+            # 待输入**单列**：不得与"合规"混同（决策 D-13/D-53、M2-7）
+            pending_rows.append([rec.record_id, label, "待输入（周期按分级/接触水平分档）"])
+        else:
+            rows.append([rec.record_id, label, rec.period_verdict or "—"])
+    tables = []
+    if rows:
+        tables.append(Table("周期判定", ["档案", "时点", "周期结论"], rows))
+    if pending_rows:
+        tables.append(
+            Table(
+                "周期待输入（不判合规，亦不判超期）",
+                ["档案", "时点", "说明"],
+                pending_rows,
+            )
         )
+    paragraphs = []
+    if not rows and not pending_rows:
+        paragraphs = ["本次导出未含在岗期间档案，无周期判定结果。"]
     return Section(
         "5",
         "周期合规",
-        tables=[Table("周期判定", ["档案", "时点", "周期结论"], rows)] if rows else None,
-        paragraphs=[] if rows else ["本次导出未含在岗期间档案，无周期判定结果。"],
+        tables=tables or None,
+        paragraphs=paragraphs,
         notes=[
             "周期判定基于本次体检日期与上次检查日期，不使用「今天」，保证可复现（决策 D-18）。",
             "到期当日检查计入合规；无基线的首次检查不报超期。",
+            "「待输入」表示标准按作业分级/接触水平分档、规则包不承载单值——"
+            "既不判合规也不判超期，须补充外部输入（决策 D-13/D-53）。",
         ],
     )
 
@@ -362,7 +420,10 @@ def _fmt_items(items):
 
 def _rectify_section(model):
     rows = []
-    for rec in model.coverage_results:
+    target = list(model.coverage_results or [])
+    if model.scan_result is not None:
+        target.extend(model.scan_result.items)
+    for rec in target:
         for finding in rec.findings:
             if finding.get("kind") == "missing_item":
                 rows.append(

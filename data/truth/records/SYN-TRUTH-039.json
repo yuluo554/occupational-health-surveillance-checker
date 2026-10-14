@@ -2,18 +2,31 @@
   "conclusion_code": "normal",
   "employee_id": "90000000039SYN",
   "employee_name": "示例人员 A-039",
-  "exam_date": "2026-11-10",
-  "exam_type": "post_placement",
+  "exam_date": "2026-10-20",
+  "exam_type": "periodic",
   "expect": {
-    "expected_items": [],
+    "expected_items": [
+      "尿常规",
+      "心电图",
+      "肝功能",
+      "肝脾B超",
+      "血常规"
+    ],
     "missing_items": [],
-    "period_verdict": "not_applicable",
+    "period_verdict": "due",
     "verdict": "compliant"
   },
-  "expect_case": "heat",
-  "factor_code": "GBZ188-7.3",
-  "items": [],
+  "expect_case": "benzene",
+  "factor_code": "GBZ188-5.19",
+  "items": [
+    "尿常规",
+    "心电图",
+    "肝功能",
+    "肝脾B超",
+    "血常规"
+  ],
+  "last_exam_date": "2025-10-20",
   "notified_suspected": false,
-  "position_id": "SYN-POS-heat",
+  "position_id": "SYN-POS-benzene",
   "record_id": "SYN-TRUTH-039"
 }

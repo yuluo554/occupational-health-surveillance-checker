@@ -292,16 +292,40 @@ class Applicability:
 
 
 class ExamPlan:
-    """单个检查时点的应检清单。"""
+    """单个检查时点的应检清单。
 
-    __slots__ = ("exam_type", "required_items", "supplementary_items", "optional_items", "basis")
+    `item_bases` / `item_sources` 为**逐项**依据（决策 D-16 的逐项可下钻）：
+    规则包 `required_items[].basis` 与 `.source` 原样透出，供覆盖度缺项挂依据
+    与溯源行（FR-A4）逐项可追。缺项下钻时取逐项值，取不到才回落到节级 basis。
+    """
 
-    def __init__(self, exam_type, required_items, supplementary_items, optional_items, basis=""):
+    __slots__ = (
+        "exam_type",
+        "required_items",
+        "supplementary_items",
+        "optional_items",
+        "basis",
+        "item_bases",
+        "item_sources",
+    )
+
+    def __init__(self, exam_type, required_items, supplementary_items, optional_items,
+                 basis="", item_bases=None, item_sources=None):
         self.exam_type = exam_type
         self.required_items = list(required_items)
         self.supplementary_items = list(supplementary_items)
         self.optional_items = list(optional_items)
         self.basis = basis
+        self.item_bases = dict(item_bases or {})
+        self.item_sources = dict(item_sources or {})
+
+    def item_basis(self, item_code):
+        """取某必检项的条款依据（逐项优先，节级回落）。"""
+        return self.item_bases.get(item_code) or self.basis
+
+    def item_source(self, item_code):
+        """取某必检项的出处块（doc/clause/url/fetched）；无则空对象。"""
+        return dict(self.item_sources.get(item_code) or {})
 
     def as_dict(self):
         return {
@@ -310,6 +334,8 @@ class ExamPlan:
             "supplementary_items": list(self.supplementary_items),
             "optional_items": list(self.optional_items),
             "basis": self.basis,
+            "item_bases": dict(self.item_bases),
+            "item_sources": {k: dict(v) for k, v in sorted(self.item_sources.items())},
         }
 
 

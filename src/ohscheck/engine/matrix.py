@@ -11,7 +11,7 @@
 
 from __future__ import annotations
 
-from ..model import EXAM_TYPES, Applicability, ExamPlan, FactorPlan, PlanResult
+from ..model import EXAM_TYPES, Applicability, ExamPlan, FactorPlan, PlanResult, parse_decimal
 
 STATE_APPLICABLE = "applicable"
 STATE_NOT_APPLICABLE = "not_applicable"
@@ -69,7 +69,12 @@ def _judge_applicability(factor, factor_ref):
                 % (elig.get("comparator"), elig.get("unit")),
                 basis,
             )
-        ok = comparator(factor_ref.exposure_value, threshold)
+        # 阈值一律按 Decimal 比较：规则包 JSON 里是字符串（如 "10"），
+        # 接触水平是 Decimal——不coerce 会 TypeError（M2 实测：合成夹具首次
+        # 纳入 threshold 因素即暴露；生产包全 kind=always，该路径此前从未被走）。
+        threshold_value = parse_decimal(threshold, "eligibility.threshold")
+        exposure_value = parse_decimal(factor_ref.exposure_value, "exposure_value")
+        ok = comparator(exposure_value, threshold_value)
         return Applicability(
             STATE_APPLICABLE if ok else STATE_NOT_APPLICABLE,
             "接触水平 %s %s %s 阈值 %s"
@@ -90,17 +95,39 @@ def _required_item_codes(block):
     return out
 
 
+def _item_maps(block):
+    """逐项依据与出处（决策 D-16 逐项可下钻；FR-A4 逐项可追）。
+
+    规则包 `required_items[]` 每条都挂 `basis` 与 `source`（M1 已逐项落库），
+    此处原样透出，使缺项依据能下钻到**项级**而非只到节级。
+    """
+    bases = {}
+    sources = {}
+    for item in block.get("required_items") or []:
+        code = item.get("item_code")
+        if not code:
+            continue
+        if item.get("basis"):
+            bases[code] = item["basis"]
+        if isinstance(item.get("source"), dict):
+            sources[code] = dict(item["source"])
+    return bases, sources
+
+
 def _build_exams(factor, basis_text):
     """构造四时点的应检清单。"""
     exams = {}
     for key in EXAM_TYPES:
         block = factor["examinations"][key]
+        item_bases, item_sources = _item_maps(block)
         exams[key] = ExamPlan(
             exam_type=key,
             required_items=_required_item_codes(block),
             supplementary_items=[i.get("item_code") for i in block.get("supplementary_items") or []],
             optional_items=[i.get("item_code") for i in block.get("optional_items") or []],
             basis=basis_text,
+            item_bases=item_bases,
+            item_sources=item_sources,
         )
     return exams
 
@@ -125,7 +152,11 @@ def plan_for_factor(factor, factor_ref, ruleset_id):
 
 
 def _trace_rows(position_id, plan_result_factors):
-    """溯源行：每条产出挂条款依据（FR-A4）。"""
+    """溯源行：每条产出挂条款依据与出处（FR-A4，逐项可追）。
+
+    明细行（必检项）带**逐项** source（规则包 `required_items[].source`），
+    使"这条应检项出自哪份材料的哪一节"可逐项下钻，而非只到因素级。
+    """
     rows = []
     for factor_plan in plan_result_factors:
         if factor_plan.applicability.state != STATE_APPLICABLE:
@@ -149,14 +180,16 @@ def _trace_rows(position_id, plan_result_factors):
             if exam is None:
                 continue
             for code in exam.required_items:
-                rows.append(
-                    {
-                        "target": "%s/%s/%s/%s"
-                        % (position_id, factor_plan.factor_code, exam_type, code),
-                        "value": "required",
-                        "basis": exam.basis,
-                    }
-                )
+                row = {
+                    "target": "%s/%s/%s/%s"
+                    % (position_id, factor_plan.factor_code, exam_type, code),
+                    "value": "required",
+                    "basis": exam.item_basis(code),
+                }
+                source = exam.item_source(code)
+                if source:
+                    row["source"] = source
+                rows.append(row)
     return rows
 
 

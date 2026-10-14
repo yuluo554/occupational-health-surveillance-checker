@@ -2,29 +2,25 @@
   "conclusion_code": "normal",
   "employee_id": "90000000040SYN",
   "employee_name": "示例人员 A-040",
-  "exam_date": "2026-10-10",
-  "exam_type": "post_placement",
+  "exam_date": "2026-09-10",
+  "exam_type": "periodic",
   "expect": {
     "expected_items": [
-      "尿常规",
-      "心电图",
-      "肝功能",
-      "血常规"
+      "肺功能",
+      "胸部X射线摄片"
     ],
     "missing_items": [
-      "血常规"
+      "肺功能",
+      "胸部X射线摄片"
     ],
-    "period_verdict": "not_applicable",
-    "verdict": "partial"
+    "period_verdict": "compliant",
+    "verdict": "non_compliant"
   },
-  "expect_case": "laser",
-  "factor_code": "GBZ188-7.8",
-  "items": [
-    "尿常规",
-    "心电图",
-    "肝功能"
-  ],
+  "expect_case": "dust_metal",
+  "factor_code": "GBZ188-6.7",
+  "items": [],
+  "last_exam_date": "2025-09-10",
   "notified_suspected": false,
-  "position_id": "SYN-POS-laser",
+  "position_id": "SYN-POS-dust_metal",
   "record_id": "SYN-TRUTH-040"
 }

@@ -2,25 +2,28 @@
   "conclusion_code": "normal",
   "employee_id": "90000000034SYN",
   "employee_name": "示例人员 A-034",
-  "exam_date": "2026-12-20",
-  "exam_type": "post_placement",
+  "exam_date": "2026-10-10",
+  "exam_type": "pre_placement",
   "expect": {
     "expected_items": [
-      "肺功能",
-      "胸部X射线摄片"
+      "尿常规",
+      "心电图",
+      "肝功能",
+      "血常规"
     ],
-    "missing_items": [
-      "胸部X射线摄片"
-    ],
+    "missing_items": [],
     "period_verdict": "not_applicable",
-    "verdict": "partial"
+    "verdict": "compliant"
   },
-  "expect_case": "dust_metal",
-  "factor_code": "GBZ188-6.7",
+  "expect_case": "tetraethyl_lead",
+  "factor_code": "GBZ188-5.2",
   "items": [
-    "肺功能"
+    "尿常规",
+    "心电图",
+    "肝功能",
+    "血常规"
   ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-dust_metal",
+  "position_id": "SYN-POS-tetraethyl_lead",
   "record_id": "SYN-TRUTH-034"
 }

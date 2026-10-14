@@ -2,31 +2,37 @@
   "conclusion_code": "normal",
   "employee_id": "90000000025SYN",
   "employee_name": "示例人员 A-025",
-  "exam_date": "2026-09-10",
-  "exam_type": "pre_placement",
+  "exam_date": "2026-11-20",
+  "exam_type": "post_placement",
   "expect": {
     "expected_items": [
+      "尿β2-微球蛋白或α1-微球蛋白或尿视黄醇结合蛋白",
       "尿常规",
+      "尿汞",
       "心电图",
-      "纯音听阈测试",
-      "肝功能",
+      "空腹血糖",
+      "肝肾B超",
+      "肾功能",
       "血常规"
     ],
     "missing_items": [
-      "纯音听阈测试",
-      "肝功能",
+      "心电图",
+      "空腹血糖",
+      "肝肾B超",
+      "肾功能",
       "血常规"
     ],
     "period_verdict": "not_applicable",
     "verdict": "partial"
   },
-  "expect_case": "noise",
-  "factor_code": "GBZ188-7.1",
+  "expect_case": "mercury",
+  "factor_code": "GBZ188-5.3",
   "items": [
+    "尿β2-微球蛋白或α1-微球蛋白或尿视黄醇结合蛋白",
     "尿常规",
-    "心电图"
+    "尿汞"
   ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-noise",
+  "position_id": "SYN-POS-mercury",
   "record_id": "SYN-TRUTH-025"
 }

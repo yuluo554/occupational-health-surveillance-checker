@@ -2,31 +2,32 @@
   "conclusion_code": "normal",
   "employee_id": "90000000032SYN",
   "employee_name": "示例人员 A-032",
-  "exam_date": "2026-11-10",
+  "exam_date": "2026-09-20",
   "exam_type": "pre_placement",
   "expect": {
     "expected_items": [
+      "后前位X射线高千伏胸片或数字化摄影胸片（DR胸片）",
       "尿常规",
       "心电图",
       "肝功能",
-      "肝脾B超",
+      "肺功能",
       "血常规"
     ],
-    "missing_items": [
-      "肝功能",
-      "肝脾B超",
-      "血常规"
-    ],
+    "missing_items": [],
     "period_verdict": "not_applicable",
-    "verdict": "partial"
+    "verdict": "compliant"
   },
-  "expect_case": "benzene",
-  "factor_code": "GBZ188-5.19",
+  "expect_case": "dust_silica",
+  "factor_code": "GBZ188-6.1",
   "items": [
+    "后前位X射线高千伏胸片或数字化摄影胸片（DR胸片）",
     "尿常规",
-    "心电图"
+    "心电图",
+    "肝功能",
+    "肺功能",
+    "血常规"
   ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-benzene",
+  "position_id": "SYN-POS-dust_silica",
   "record_id": "SYN-TRUTH-032"
 }

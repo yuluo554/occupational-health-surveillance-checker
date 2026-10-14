@@ -3,30 +3,25 @@
   "employee_id": "90000000053SYN",
   "employee_name": "示例人员 A-053",
   "exam_date": "2026-11-10",
-  "exam_type": "pre_placement",
+  "exam_type": "periodic",
   "expect": {
     "expected_items": [
-      "尿常规",
-      "心电图",
-      "肝功能",
-      "肝脾B超",
-      "血常规"
+      "肺功能",
+      "胸部X射线摄片"
     ],
     "missing_items": [
-      "心电图",
-      "肝功能",
-      "肝脾B超",
-      "血常规"
+      "胸部X射线摄片"
     ],
-    "period_verdict": "not_applicable",
+    "period_verdict": "compliant",
     "verdict": "partial"
   },
-  "expect_case": "benzene",
-  "factor_code": "GBZ188-5.19",
+  "expect_case": "dust_metal",
+  "factor_code": "GBZ188-6.7",
   "items": [
-    "尿常规"
+    "肺功能"
   ],
+  "last_exam_date": "2025-11-10",
   "notified_suspected": false,
-  "position_id": "SYN-POS-benzene",
+  "position_id": "SYN-POS-dust_metal",
   "record_id": "SYN-TRUTH-053"
 }

@@ -23,7 +23,12 @@ from ..model import (
     CoverageResult,
 )
 from .matrix import STATE_INPUT_REQUIRED, STATE_NOT_APPLICABLE
-from .period import is_period_noncompliant, judge_period
+from .period import (
+    PERIOD_NOT_APPLICABLE,
+    PERIOD_PENDING_INPUT,
+    is_period_noncompliant,
+    judge_period,
+)
 
 
 def normalize_items(items, known_codes=None, alias_map=None):
@@ -114,6 +119,9 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
             factor_code=record.factor_code,
             exam_type=record.exam_type,
             verdict=VERDICT_NOT_APPLICABLE,
+            # 因素不适用 → 无周期义务；周期判定亦为"不适用"（而非留空，
+            # 否则报告/统计会把"未判定"与"无义务"混同）。
+            period_verdict=PERIOD_NOT_APPLICABLE,
             findings=[
                 {
                     "kind": "not_applicable",
@@ -138,6 +146,8 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
             factor_code=record.factor_code,
             exam_type=record.exam_type,
             verdict=VERDICT_UNKNOWN,
+            # 适用性未定 → 周期亦无法判定（不是"无义务"），如实记待输入。
+            period_verdict=PERIOD_PENDING_INPUT,
             findings=[
                 {
                     "kind": "input_required",
@@ -189,21 +199,24 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
     ]
     for code in missing:
         item_basis = _item_basis(exam, code) or exam.basis
-        findings.append(
-            {
-                "kind": "missing_item",
-                "message": "缺必检项目 %s" % code,
-                "item_code": code,
-                "basis": item_basis,
-            }
-        )
-        trace.append(
-            {
-                "target": "%s/%s/%s/%s" % (record.record_id, record.factor_code, record.exam_type, code),
-                "value": "missing",
-                "basis": item_basis,
-            }
-        )
+        finding = {
+            "kind": "missing_item",
+            "message": "缺必检项目 %s" % code,
+            "item_code": code,
+            "basis": item_basis,
+        }
+        source = _item_source(exam, code)
+        if source:
+            finding["source"] = source
+        findings.append(finding)
+        row = {
+            "target": "%s/%s/%s/%s" % (record.record_id, record.factor_code, record.exam_type, code),
+            "value": "missing",
+            "basis": item_basis,
+        }
+        if source:
+            row["source"] = source
+        trace.append(row)
     for text in unmapped:
         # 别名归一不成立 → 降级 warning，不硬判缺失（决策 D-17）
         findings.append(
@@ -239,12 +252,78 @@ def check_record(record, plan_result, alias_map=None, last_exam_date=None):
 
 
 def _item_basis(exam, item_code):
-    """取某必检项的条款依据。"""
-    # ExamPlan 只保留代码；basis 统一挂节号（逐项级依据由规则包 item.source 承载，
-    # M1 数据入库后可按需下钻）。此处返回节级依据。
-    return exam.basis
+    """取某必检项的条款依据（逐项优先，节级回落）。
+
+    M1 数据入库后规则包 `required_items[].basis` 逐项可下钻（决策 D-16）；
+    取不到逐项值时回落到节级 basis（合成夹具的逐项 basis 与节级同源，故等价）。
+    """
+    return exam.item_basis(item_code)
+
+
+def _item_source(exam, item_code):
+    """取某必检项的出处块（doc/clause/url/fetched）；无则空对象。"""
+    return exam.item_source(item_code)
 
 
 def is_noncompliant(coverage_result):
     """是否计入"检出不符合"（退出码 1 的判据）。"""
     return coverage_result.verdict in NONCOMPLIANT_VERDICTS
+
+
+def verdict_reachability(ruleset):
+    """四态在本规则包上的**可达性**（D-59：不可达必须显式声明，不假装覆盖）。
+
+    判据由**规则包数据结构**实算（非猜测）：
+      * `not_applicable`：仅当存在 `eligibility.kind == "threshold"` 的因素时可达
+        （标准对所列危害因素"接触即纳入"→ 全 `always` 时不可达）；
+      * `unknown`（适用性待输入）：存在 `kind == "input_required"` 的适用性时可达；
+      * `compliant` / `partial` / `non_compliant`：由必检项与实检项比对决定，恒可达。
+
+    Args:
+        ruleset: Ruleset（或 EffectiveRuleset.ruleset）。
+
+    Returns:
+        list[dict]: [{state, reachable, reason}]，按状态名排序。
+    """
+    kinds = set()
+    for factor in ruleset.factors:
+        kinds.add((factor.get("eligibility") or {}).get("kind"))
+    threshold = "threshold" in kinds
+    input_req = "input_required" in kinds
+    rows = [
+        {
+            "state": "not_applicable",
+            "reachable": threshold,
+            "reason": (
+                "规则包含接触水平阈值型适用性（kind=threshold）"
+                if threshold
+                else "标准对所列危害因素「接触即纳入」，全为 kind=always；"
+                "逐因素不设接触水平阈值 → 本规则包不可达"
+            ),
+        },
+        {
+            "state": "unknown",
+            "reachable": input_req,
+            "reason": (
+                "存在适用性待输入（kind=input_required）"
+                if input_req
+                else "无适用性待输入条目"
+            ),
+        },
+        {
+            "state": "compliant",
+            "reachable": True,
+            "reason": "必检项齐备且周期合规时可达",
+        },
+        {
+            "state": "partial",
+            "reachable": True,
+            "reason": "存在缺项或周期超期时可达",
+        },
+        {
+            "state": "non_compliant",
+            "reachable": True,
+            "reason": "必检项一项未做时可达",
+        },
+    ]
+    return sorted(rows, key=lambda r: r["state"])

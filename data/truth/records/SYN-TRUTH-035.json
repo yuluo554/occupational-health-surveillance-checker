@@ -2,27 +2,27 @@
   "conclusion_code": "normal",
   "employee_id": "90000000035SYN",
   "employee_name": "示例人员 A-035",
-  "exam_date": "2026-10-20",
+  "exam_date": "2026-09-10",
   "exam_type": "periodic",
   "expect": {
     "expected_items": [
-      "肺功能",
-      "胸部X射线摄片",
-      "血常规（含血嗜酸粒细胞计数）"
+      "后前位X射线高千伏胸片或数字化摄影胸片（DR胸片）",
+      "心电图",
+      "肺功能"
     ],
-    "missing_items": [],
-    "period_verdict": "compliant",
-    "verdict": "compliant"
+    "missing_items": [
+      "后前位X射线高千伏胸片或数字化摄影胸片（DR胸片）",
+      "心电图",
+      "肺功能"
+    ],
+    "period_verdict": "input_required",
+    "verdict": "non_compliant"
   },
-  "expect_case": "acid",
-  "factor_code": "GBZ188-5.55",
-  "items": [
-    "肺功能",
-    "胸部X射线摄片",
-    "血常规（含血嗜酸粒细胞计数）"
-  ],
-  "last_exam_date": "2025-10-20",
+  "expect_case": "dust_silica",
+  "factor_code": "GBZ188-6.1",
+  "items": [],
+  "last_exam_date": "2025-09-10",
   "notified_suspected": false,
-  "position_id": "SYN-POS-acid",
+  "position_id": "SYN-POS-dust_silica",
   "record_id": "SYN-TRUTH-035"
 }

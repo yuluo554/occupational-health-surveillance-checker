@@ -2,24 +2,25 @@
   "conclusion_code": "normal",
   "employee_id": "90000000068SYN",
   "employee_name": "示例人员 A-068",
-  "exam_date": "2026-10-10",
+  "exam_date": "2026-12-10",
   "exam_type": "post_placement",
   "expect": {
     "expected_items": [
-      "肺功能",
-      "胸部X射线摄片"
+      "心电图",
+      "纯音听阈测试"
     ],
     "missing_items": [
-      "肺功能",
-      "胸部X射线摄片"
+      "纯音听阈测试"
     ],
     "period_verdict": "not_applicable",
-    "verdict": "non_compliant"
+    "verdict": "partial"
   },
-  "expect_case": "dust_metal",
-  "factor_code": "GBZ188-6.7",
-  "items": [],
+  "expect_case": "noise",
+  "factor_code": "GBZ188-7.1",
+  "items": [
+    "心电图"
+  ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-dust_metal",
+  "position_id": "SYN-POS-noise",
   "record_id": "SYN-TRUTH-068"
 }

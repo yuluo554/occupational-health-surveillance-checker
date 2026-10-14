@@ -5,15 +5,21 @@
   "exam_date": "2026-10-10",
   "exam_type": "post_placement",
   "expect": {
-    "expected_items": [],
+    "expected_items": [
+      "心电图",
+      "纯音听阈测试"
+    ],
     "missing_items": [],
     "period_verdict": "not_applicable",
     "verdict": "compliant"
   },
-  "expect_case": "heat",
-  "factor_code": "GBZ188-7.3",
-  "items": [],
+  "expect_case": "noise",
+  "factor_code": "GBZ188-7.1",
+  "items": [
+    "心电图",
+    "纯音听阈测试"
+  ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-heat",
+  "position_id": "SYN-POS-noise",
   "record_id": "SYN-TRUTH-033"
 }

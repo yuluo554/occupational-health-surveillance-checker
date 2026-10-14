@@ -252,6 +252,74 @@
       "notified_suspected": false,
       "position_id": "SYN-POS-001",
       "record_id": "SYN-REC-008"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-E-001",
+      "employee_name": "示例人员 SYN-E-001",
+      "exam_date": "2026-09-20",
+      "exam_type": "pre_placement",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "verdict": "not_applicable"
+      },
+      "exposure": {
+        "unit": "mg/m3",
+        "value": "3"
+      },
+      "factor_code": "SYN_FACTOR_EPSILON",
+      "items": [],
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-009"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-E-002",
+      "employee_name": "示例人员 SYN-E-002",
+      "exam_date": "2026-09-20",
+      "exam_type": "pre_placement",
+      "expect": {
+        "missing_items": [],
+        "period_verdict": "not_applicable",
+        "should_be_clean": true,
+        "verdict": "compliant"
+      },
+      "exposure": {
+        "unit": "mg/m3",
+        "value": "12"
+      },
+      "factor_code": "SYN_FACTOR_EPSILON",
+      "items": [
+        "SYN_ITEM_E1"
+      ],
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-010"
+    },
+    {
+      "conclusion_code": "normal",
+      "employee_id": "SYN-E-003",
+      "employee_name": "示例人员 SYN-E-003",
+      "exam_date": "2026-09-20",
+      "exam_type": "pre_placement",
+      "expect": {
+        "also_expect": [
+          {
+            "kind": "unknown",
+            "reason": "missing_input"
+          }
+        ],
+        "missing_items": [],
+        "period_verdict": "input_required",
+        "verdict": "unknown"
+      },
+      "factor_code": "SYN_FACTOR_EPSILON",
+      "items": [],
+      "notified_suspected": false,
+      "position_id": "SYN-POS-001",
+      "record_id": "SYN-REC-011"
     }
   ],
   "ruleset_id": "SYN-2025"

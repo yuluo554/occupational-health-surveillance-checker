@@ -644,6 +644,180 @@
           "status": "verified"
         }
       ]
+    },
+    {
+      "category": "chemical",
+      "chapter": "5",
+      "eligibility": {
+        "basis": "合成夹具：接触水平阈值型适用性",
+        "comparator": ">=",
+        "kind": "threshold",
+        "source": {
+          "clause": "5.4.0",
+          "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+          "fetched": "2026-10-14",
+          "url": ""
+        },
+        "status": "verified",
+        "threshold": "10",
+        "unit": "mg/m3"
+      },
+      "examinations": {
+        "emergency": {
+          "basis": "合成夹具",
+          "optional_items": [],
+          "required_items": [
+            {
+              "basis": "合成夹具",
+              "item_code": "SYN_EMG_1",
+              "item_name": "合成项目 SYN_EMG_1",
+              "source": {
+                "clause": "5.4.0",
+                "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+                "fetched": "2026-10-14",
+                "url": ""
+              },
+              "status": "verified"
+            }
+          ],
+          "source": {
+            "clause": "5.4.0",
+            "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+            "fetched": "2026-10-14",
+            "url": ""
+          },
+          "status": "verified",
+          "supplementary_items": []
+        },
+        "periodic": {
+          "basis": "合成夹具",
+          "optional_items": [],
+          "required_items": [
+            {
+              "basis": "合成夹具",
+              "item_code": "SYN_ITEM_E1",
+              "item_name": "合成项目 SYN_ITEM_E1",
+              "source": {
+                "clause": "5.4.0",
+                "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+                "fetched": "2026-10-14",
+                "url": ""
+              },
+              "status": "verified"
+            }
+          ],
+          "source": {
+            "clause": "5.4.0",
+            "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+            "fetched": "2026-10-14",
+            "url": ""
+          },
+          "status": "verified",
+          "supplementary_items": [
+            {
+              "basis": "合成夹具",
+              "item_code": "SYN_SUP_1",
+              "item_name": "合成补充项目 SYN_SUP_1",
+              "source": {
+                "clause": "5.4.0",
+                "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+                "fetched": "2026-10-14",
+                "url": ""
+              },
+              "status": "verified"
+            }
+          ]
+        },
+        "post_placement": {
+          "basis": "合成夹具",
+          "optional_items": [],
+          "required_items": [
+            {
+              "basis": "合成夹具",
+              "item_code": "SYN_ITEM_E1",
+              "item_name": "合成项目 SYN_ITEM_E1",
+              "source": {
+                "clause": "5.4.0",
+                "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+                "fetched": "2026-10-14",
+                "url": ""
+              },
+              "status": "verified"
+            }
+          ],
+          "source": {
+            "clause": "5.4.0",
+            "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+            "fetched": "2026-10-14",
+            "url": ""
+          },
+          "status": "verified",
+          "supplementary_items": []
+        },
+        "pre_placement": {
+          "basis": "合成夹具",
+          "optional_items": [],
+          "required_items": [
+            {
+              "basis": "合成夹具",
+              "item_code": "SYN_ITEM_E1",
+              "item_name": "合成项目 SYN_ITEM_E1",
+              "source": {
+                "clause": "5.4.0",
+                "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+                "fetched": "2026-10-14",
+                "url": ""
+              },
+              "status": "verified"
+            }
+          ],
+          "source": {
+            "clause": "5.4.0",
+            "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+            "fetched": "2026-10-14",
+            "url": ""
+          },
+          "status": "verified",
+          "supplementary_items": []
+        }
+      },
+      "exposed_population": "合成接触人群",
+      "factor_code": "SYN_FACTOR_EPSILON",
+      "factor_id": "5.4.0",
+      "factor_name": "合成因素戊（阈值型）",
+      "period": {
+        "basis": "合成夹具：12 个月",
+        "kind": "months",
+        "note": "",
+        "source": {
+          "clause": "5.4.0",
+          "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+          "fetched": "2026-10-14",
+          "url": ""
+        },
+        "status": "verified",
+        "value": 12
+      },
+      "source": {
+        "clause": "5.4.0",
+        "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+        "fetched": "2026-10-14",
+        "url": ""
+      },
+      "status": "verified",
+      "target_diseases": [
+        {
+          "basis": "合成夹具",
+          "name": "合成目标疾病",
+          "source": {
+            "clause": "5.4.0",
+            "doc": "SYNTHETIC-GBZ188-2025（合成夹具，非真实标准）",
+            "fetched": "2026-10-14",
+            "url": ""
+          },
+          "status": "verified"
+        }
+      ]
     }
   ],
   "optional_items_policy": "emergency_only",

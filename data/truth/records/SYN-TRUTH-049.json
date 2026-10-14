@@ -2,27 +2,19 @@
   "conclusion_code": "normal",
   "employee_id": "90000000049SYN",
   "employee_name": "示例人员 A-049",
-  "exam_date": "2026-11-10",
+  "exam_date": "2026-10-20",
   "exam_type": "periodic",
   "expect": {
-    "expected_items": [
-      "肺功能",
-      "胸部X射线摄片",
-      "血常规（含血嗜酸粒细胞计数）"
-    ],
-    "missing_items": [
-      "肺功能",
-      "胸部X射线摄片",
-      "血常规（含血嗜酸粒细胞计数）"
-    ],
-    "period_verdict": "compliant",
-    "verdict": "non_compliant"
+    "expected_items": [],
+    "missing_items": [],
+    "period_verdict": "not_applicable",
+    "verdict": "compliant"
   },
-  "expect_case": "acid",
-  "factor_code": "GBZ188-5.55",
+  "expect_case": "tetraethyl_lead",
+  "factor_code": "GBZ188-5.2",
   "items": [],
-  "last_exam_date": "2025-11-10",
+  "last_exam_date": "2024-04-20",
   "notified_suspected": false,
-  "position_id": "SYN-POS-acid",
+  "position_id": "SYN-POS-tetraethyl_lead",
   "record_id": "SYN-TRUTH-049"
 }

@@ -37,7 +37,7 @@ from ohscheck.rules.loader import file_sha256  # noqa: E402
 
 # ---- 生成参数（固定，进产物；禁系统时钟）----
 SEED = 20261014
-CORPUS_ID = "SYN-TRUTH-M1"
+CORPUS_ID = "SYN-TRUTH-M2"
 RULESET_ID = "GBZ188-2025"
 
 # ---- 白名单命名（plan/05 §2.2：虚构姓名代号 + 测试号段）----
@@ -60,14 +60,22 @@ def position_id(name_slug):
 
 
 # ---- 算例 → 真实危害因素（只用生产规则包里已核对的第 5–7 章因素）----
+# 覆盖三种周期形态（M2-4：38 单值 / 22 分档 / 22 无周期），各有真值件：
+#   months         → benzene(12) / dust_metal(24) / laser(36)
+#   input_required → lead(5.1) / noise(7.1) / dust_silica(6.1) / mercury(5.3)
+#   none           → tetraethyl_lead(5.2)（标准未设在岗期间检查）
 CASE_FACTORS = {
     "benzene": {"factor_code": "GBZ188-5.19", "position": "苯罐区操作岗"},
     "lead": {"factor_code": "GBZ188-5.1", "position": "铅蓄电池装配岗"},
     "noise": {"factor_code": "GBZ188-7.1", "position": "冲压车间操作岗"},
     "heat": {"factor_code": "GBZ188-7.3", "position": "熔炼炉前作业岗"},
     "dust_metal": {"factor_code": "GBZ188-6.7", "position": "金属打磨作业岗"},
+    "dust_silica": {"factor_code": "GBZ188-6.1", "position": "矽尘作业岗"},
+    "mercury": {"factor_code": "GBZ188-5.3", "position": "汞温度计装配岗"},
     "laser": {"factor_code": "GBZ188-7.8", "position": "激光切割作业岗"},
     "acid": {"factor_code": "GBZ188-5.55", "position": "酸洗作业岗"},
+    # 无在岗期间检查（period.kind=none）——M2-4 单列这一形态
+    "tetraethyl_lead": {"factor_code": "GBZ188-5.2", "position": "含铅汽油加注岗"},
 }
 
 
@@ -119,9 +127,26 @@ def _ref_add_months(iso, months):
     return "%04d-%02d-%02d" % (ny, nm, min(day, last))
 
 
-def ref_period(months, last, current):
-    """独立参考的周期判定（due 计入合规；无基线不报超期）。"""
+def ref_period(kind, months, last, current):
+    """独立参考的周期判定（due 计入合规；无基线不报超期）。
+
+    **口径**（plan/04 §四，与 engine/period.py 分头实现）：
+      * kind=none          → not_applicable（该因素标准未设在岗期间检查，无周期要求）
+      * kind=input_required→ input_required（标准按分级/接触水平分档，规则包不承载单值）
+      * kind=months        → 按日历月加法判 compliant/due/overdue
+      * 无基线（首次检查） → no_baseline，**不报超期**
+
+    M2 修正（本函数）：此前把 `months is None` 一律当 input_required，**混淆了
+    kind=none 与 kind=input_required 两种截然不同的口径**（前者"确无周期要求"、
+    后者"周期存在但需外部输入"）。这是**参考实现谓词不自洽**（plan/05 §2.4
+    情形一：只改校验方式，不改引擎），故此处按 kind 显式分派——引擎口径正确。
+    """
+    if kind == "none":
+        return "not_applicable"
+    if kind == "input_required":
+        return "input_required"
     if months is None:
+        # months 型必须有值；schema 保证 verified 才有值，此处兜底不猜
         return "input_required"
     if last is None:
         return "no_baseline"
@@ -166,13 +191,17 @@ def _required_items(ruleset_obj, factor_code, exam_type):
     raise KeyError(factor_code)
 
 
-def _period_months(ruleset_obj, factor_code):
+def _period_rule(ruleset_obj, factor_code):
+    """取因素的周期规则块 → (kind, months)。
+
+    months 仅对 kind=months 有值；其余 kind 返回 None（值不承载）。
+    """
     for factor in ruleset_obj["factors"]:
         if factor["factor_code"] == factor_code:
             period = factor["period"]
             if period.get("kind") == "months":
-                return period["value"]
-            return None
+                return "months", period["value"]
+            return period.get("kind"), None
     raise KeyError(factor_code)
 
 
@@ -208,7 +237,7 @@ def _materialize(spec, ruleset_obj):
     case = CASE_FACTORS[spec.case_key]
     factor_code = case["factor_code"]
     required = _required_items(ruleset_obj, factor_code, spec.exam_type)
-    months = _period_months(ruleset_obj, factor_code)
+    period_kind, months = _period_rule(ruleset_obj, factor_code)
 
     if spec.provided == "all":
         provided = list(required)
@@ -240,7 +269,7 @@ def _materialize(spec, ruleset_obj):
         record["last_exam_date"] = spec.last_exam_date
 
     period_verdict = (
-        ref_period(months, spec.last_exam_date, spec.exam_date)
+        ref_period(period_kind, months, spec.last_exam_date, spec.exam_date)
         if spec.exam_type == "periodic"
         else "not_applicable"
     )
@@ -376,6 +405,25 @@ def build_specs():
         note="齐备 + 一个非规范写法项目 → compliant，该写法记 unmapped（降级 warning 不判缺失）",
         should_be_clean=True)
 
+    # --- M2-4：周期三形态的真实数据覆盖 ---
+    # ① kind=none（标准未设在岗期间检查 → not_applicable，不报超期）
+    add("tetraethyl_lead", "tetraethyl_lead", "pre_placement", "2026-09-20",
+        coverage="周期形态 · 无在岗期间检查（period.kind=none）",
+        note="上岗前应检项齐备；无周期要求 → not_applicable（应零命中）", should_be_clean=True)
+    # ② 分档因素（input_required）：粉尘按生产性粉尘作业分级分档
+    add("dust_silica", "dust_silica", "pre_placement", "2026-09-20",
+        coverage="周期形态 · 分档（粉尘按作业分级）",
+        note="矽尘上岗前应检项齐备；周期分档 → input_required（不判超期）", should_be_clean=True)
+    # ③ 分档因素（input_required）：汞按作业场所有毒作业分级分档
+    add("mercury", "mercury", "periodic", "2026-09-20", last_exam_date="2025-09-20",
+        coverage="周期形态 · 分档（汞按有毒作业分级）",
+        note="应检项齐备；周期分档 → input_required，不参与超期判定", should_be_clean=True)
+    # ④ 分档因素缺项（验证分档不掩盖缺项判定）
+    add("mercury", "mercury", "periodic", "2026-09-20",
+        provided="none", last_exam_date="2025-09-20",
+        coverage="周期形态 · 分档因素缺项仍判不符合",
+        note="必检项全缺 → non_compliant（周期分档不掩盖缺项）")
+
     return specs
 
 
@@ -452,14 +500,23 @@ COVERAGE_MATRIX = [
     ("周期边界 · 首次检查无基线", ["SYN-TRUTH-019"], "no_baseline，不报超期"),
     ("别名降级 · 项目名用别名写法", ["SYN-TRUTH-020"],
      "归一不成立 → unmapped + warning，不判缺失（决策 D-17）；should_be_clean=true"),
+    ("周期形态 · 无在岗期间检查（period.kind=none）", ["SYN-TRUTH-021"],
+     "标准未设在岗期间检查 → not_applicable，不报超期（M2-4 三形态覆盖之一）"),
+    ("周期形态 · 分档（粉尘按生产性粉尘作业分级）", ["SYN-TRUTH-022"],
+     "GBZ188-6.1；周期 kind=input_required → 不参与超期判定（M2-4 三形态覆盖之二）"),
+    ("周期形态 · 分档（汞按有毒作业分级）", ["SYN-TRUTH-023"],
+     "GBZ188-5.3；周期 kind=input_required；应检项齐备 → compliant"),
+    ("周期形态 · 分档因素缺项仍判不符合", ["SYN-TRUTH-024"],
+     "必检项全缺 → non_compliant（周期分档不掩盖缺项判定）"),
     ("误报对照 · 应检项齐备 + 周期合规（应零命中）",
      ["SYN-TRUTH-001", "SYN-TRUTH-002", "SYN-TRUTH-003", "SYN-TRUTH-004", "SYN-TRUTH-005",
       "SYN-TRUTH-006", "SYN-TRUTH-007", "SYN-TRUTH-012", "SYN-TRUTH-013", "SYN-TRUTH-015",
-      "SYN-TRUTH-016", "SYN-TRUTH-017", "SYN-TRUTH-019", "SYN-TRUTH-020"],
+      "SYN-TRUTH-016", "SYN-TRUTH-017", "SYN-TRUTH-019", "SYN-TRUTH-020", "SYN-TRUTH-021",
+      "SYN-TRUTH-022", "SYN-TRUTH-023"],
      "should_be_clean=true 显式声明（M1-5）；基准/引擎层**只读**该声明，不自选考卷"),
     ("干净但降级 · 别名可映射的齐备档案", ["SYN-TRUTH-020"],
      "应零 fail，允许 warning（与上一条共用同一件，语义为「降级但不判缺」）"),
-    ("批量队列 · 项目构成 / 周期可判定性", ["SYN-TRUTH-021 … SYN-TRUTH-068"],
+    ("批量队列 · 项目构成 / 周期可判定性", ["SYN-TRUTH-025 … SYN-TRUTH-072"],
      "splitmix64 驱动 48 件，全量可复现"),
 ]
 
@@ -473,8 +530,11 @@ UNREACHABLE_CASES = [
             "kind=always，not_applicable 在真实规则包上**不可达**。"
         ),
         "covered_by": (
-            "机制层：data/benchmark/ 的合成夹具含 kind=threshold 因素，覆盖 not_applicable 与 "
-            "input_required 两条分支（基准验机制、不验国标内容，决策 D-51）。"
+            "机制层：data/benchmark/ 的合成夹具含 kind=threshold 因素 "
+            "（SYN_FACTOR_EPSILON，阈值 10 mg/m3），三条用例覆盖 applicable / "
+            "not_applicable（低于阈值）/ input_required（未提供接触水平）三态"
+            "（基准验机制、不验国标内容，决策 D-51）；"
+            "守门测试：tests/test_m2.py::test_benchmark_fixture_covers_threshold_branches。"
         ),
     },
     {
@@ -493,6 +553,42 @@ UNREACHABLE_CASES = [
 ]
 
 
+def _period_shape_coverage(ruleset_obj, truths):
+    """周期三形态的覆盖如实登记（M2-4 #3 / D-61）。
+
+    对每种 period.kind 记：规则包内该形态的因素总数、真值库实际采样到的因素数，
+    以及**未采样**的因素清单——"规则包里有 22 个 none 因素、真值库只采了 1 个"
+    必须写明，不得让"三形态各有件"被误读成"每个因素都被覆盖"（D-59 同族）。
+    """
+    kind_of = {}
+    for factor in ruleset_obj["factors"]:
+        kind_of[factor["factor_code"]] = factor["period"].get("kind")
+    sampled = {}
+    for truth in truths:
+        code = truth["factor_code"]
+        kind = kind_of.get(code)
+        if kind:
+            sampled.setdefault(kind, set()).add(code)
+
+    out = []
+    for kind in sorted(set(kind_of.values())):
+        all_codes = sorted(c for c, k in kind_of.items() if k == kind)
+        sampled_codes = sorted(sampled.get(kind, set()))
+        out.append(
+            {
+                "period_kind": kind,
+                "ruleset_factor_count": len(all_codes),
+                "sampled_factor_count": len(sampled_codes),
+                "sampled_factors": sampled_codes,
+                "note": (
+                    "真值库按形态**抽样**覆盖（非逐因素穷举）；"
+                    "未采样因素与已采样同形态共用同一判定路径。"
+                ),
+            }
+        )
+    return out
+
+
 def build_manifest(ruleset_obj, ruleset_path, records, truths):
     return {
         "schema_version": "1.0",
@@ -508,6 +604,7 @@ def build_manifest(ruleset_obj, ruleset_path, records, truths):
             {"case": case, "records": recs, "note": note}
             for case, recs, note in COVERAGE_MATRIX
         ],
+        "period_shape_coverage": _period_shape_coverage(ruleset_obj, truths),
         "unreachable_cases": UNREACHABLE_CASES,
         "naming_policy": {
             "employees": "示例人员 A-<序号>",

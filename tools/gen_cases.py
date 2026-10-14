@@ -43,6 +43,10 @@ FACTOR_A = "SYN_FACTOR_ALPHA"
 FACTOR_B = "SYN_FACTOR_BETA"
 FACTOR_C = "SYN_FACTOR_GAMMA"  # 仅 2025 版新增
 FACTOR_D = "SYN_FACTOR_DELTA"  # 仅 2014 版存在（2025 版删除）
+# 接触水平阈值型（kind=threshold）：机制层覆盖 not_applicable 与 input_required
+# 两条适用性分支——生产规则包全为 kind=always（接触即纳入），这两分支在真实
+# 规则包上不可达（决策 D-59），故由合成夹具承担（基准验机制、不验国标内容 D-51）。
+FACTOR_E = "SYN_FACTOR_EPSILON"
 
 # 合成检查项目
 ITEMS_A = ["SYN_ITEM_A1", "SYN_ITEM_A2", "SYN_ITEM_A3"]
@@ -125,6 +129,26 @@ def _factor(code, name, fid, chapter, category, required, months, doc, optional=
     }
 
 
+def _factor_threshold(code, name, fid, chapter, category, required, months, doc,
+                      threshold, comparator, unit):
+    """接触水平阈值型因素（kind=threshold）——机制层覆盖 not_applicable / input_required。
+
+    适用性判据：`exposure_value {comparator} threshold` → 适用；否则不适用；
+    未提供接触水平 → input_required（绝不静默取默认值，决策 D-13）。
+    """
+    factor = _factor(code, name, fid, chapter, category, required, months, doc)
+    factor["eligibility"] = {
+        "kind": "threshold",
+        "threshold": threshold,
+        "unit": unit,
+        "comparator": comparator,
+        "status": "verified",
+        "basis": "合成夹具：接触水平阈值型适用性",
+        "source": _src(doc, fid),
+    }
+    return factor
+
+
 def ruleset_2025():
     return {
         "schema_version": "1.0",
@@ -148,6 +172,12 @@ def ruleset_2025():
             _factor(FACTOR_B, "合成因素乙", "6.1.0", "6", "physical", ITEMS_B, 24, DOC_2025),
             # 2025 版新增因素
             _factor(FACTOR_C, "合成因素丙（新增）", "5.2.0", "5", "chemical", ["SYN_ITEM_C1"], 6, DOC_2025),
+            # 阈值型适用性（机制层覆盖 not_applicable / input_required；决策 D-59/D-51）
+            _factor_threshold(
+                FACTOR_E, "合成因素戊（阈值型）", "5.4.0", "5", "chemical",
+                ["SYN_ITEM_E1"], 12, DOC_2025,
+                threshold="10", comparator=">=", unit="mg/m3",
+            ),
         ],
     }
 
@@ -181,7 +211,32 @@ def ruleset_2014():
     }
 
 
+def _status_counts(ruleset_obj):
+    """从规则集实算 status 计数（避免 manifest 里的手写数字与规则包漂移）。"""
+    counts = {"verified": 0, "pending": 0, "input_required": 0}
+    for factor in ruleset_obj["factors"]:
+        for status in _iter_statuses(factor):
+            counts[status] = counts.get(status, 0) + 1
+    return counts
+
+
+def _iter_statuses(factor):
+    yield factor["status"]
+    yield factor["eligibility"]["status"]
+    yield factor["period"]["status"]
+    for disease in factor.get("target_diseases") or []:
+        yield disease["status"]
+    for key in ("pre_placement", "periodic", "post_placement", "emergency"):
+        block = factor["examinations"][key]
+        yield block["status"]
+        for group in ("required_items", "supplementary_items", "optional_items"):
+            for item in block.get(group) or []:
+                yield item["status"]
+
+
 def manifest():
+    rs_2025 = ruleset_2025()
+    rs_2014 = ruleset_2014()
     return {
         "schema_version": "1.0",
         "synthetic": True,
@@ -189,10 +244,12 @@ def manifest():
         "note": "合成夹具：仅用于验证引擎机制，不含任何真实标准内容。",
         "cutover": {"date": "2026-08-01", "before": "SYN-2014", "after": "SYN-2025"},
         "rulesets": [
-            {"ruleset_id": "SYN-2014", "file": "ruleset-2014.json", "factor_count": 3,
-             "status_counts": {"verified": 6, "pending": 0, "input_required": 0}},
-            {"ruleset_id": "SYN-2025", "file": "ruleset-2025.json", "factor_count": 3,
-             "status_counts": {"verified": 6, "pending": 0, "input_required": 0}},
+            {"ruleset_id": "SYN-2014", "file": "ruleset-2014.json",
+             "factor_count": len(rs_2014["factors"]),
+             "status_counts": _status_counts(rs_2014)},
+            {"ruleset_id": "SYN-2025", "file": "ruleset-2025.json",
+             "factor_count": len(rs_2025["factors"]),
+             "status_counts": _status_counts(rs_2025)},
         ],
         "benchmark_thresholds": {
             "matrix_accuracy_min": 1.0,
@@ -207,11 +264,15 @@ def manifest():
             FACTOR_C: "factor_added",
             FACTOR_D: "factor_removed",
         },
+        # 适用性分支覆盖声明（机制层）：threshold 型因素覆盖 not_applicable / input_required
+        "eligibility_coverage": {
+            FACTOR_E: ["not_applicable", "input_required", "applicable"],
+        },
     }
 
 
 def _record(record_id, employee_id, factor_code, exam_date, exam_type, items,
-            expect, last_exam_date=None, position_id="SYN-POS-001"):
+            expect, last_exam_date=None, position_id="SYN-POS-001", exposure=None):
     obj = {
         "record_id": record_id,
         "employee_id": employee_id,
@@ -227,6 +288,9 @@ def _record(record_id, employee_id, factor_code, exam_date, exam_type, items,
     }
     if last_exam_date:
         obj["last_exam_date"] = last_exam_date
+    if exposure is not None:
+        # 接触水平（阈值型适用性判定用；机制层覆盖 not_applicable / input_required）
+        obj["exposure"] = exposure
     return obj
 
 
@@ -291,6 +355,28 @@ def cases_2025():
             {"verdict": "non_compliant", "missing_items": ["SYN_ITEM_C1"],
              "period_verdict": "not_applicable",
              "also_expect": [{"kind": "verdict", "verdict": "non_compliant"}]},
+        ),
+        # 9) 阈值型：接触水平低于阈值 → not_applicable（不适用 ≠ 违规，决策 D-22）
+        #    注意：not_applicable **排除在非 pass 比较之外**（cases.observed_nonpass），
+        #    故此处不加 also_expect —— verdict 字段本身已由 compare_expected 断言。
+        _record(
+            "SYN-REC-009", "SYN-E-001", FACTOR_E, "2026-09-20", "pre_placement", [],
+            {"verdict": "not_applicable", "missing_items": [], "period_verdict": "not_applicable"},
+            exposure={"value": "3", "unit": "mg/m3"},
+        ),
+        # 10) 阈值型：接触水平达阈值 → applicable，应检项齐备 → compliant
+        _record(
+            "SYN-REC-010", "SYN-E-002", FACTOR_E, "2026-09-20", "pre_placement", ["SYN_ITEM_E1"],
+            {"verdict": "compliant", "missing_items": [], "period_verdict": "not_applicable",
+             "should_be_clean": True},
+            exposure={"value": "12", "unit": "mg/m3"},
+        ),
+        # 11) 阈值型：未提供接触水平 → input_required → unknown（绝不静默取默认值，D-13）
+        #     适用性未定 → 周期亦无法判定，period_verdict=input_required（非 not_applicable）
+        _record(
+            "SYN-REC-011", "SYN-E-003", FACTOR_E, "2026-09-20", "pre_placement", [],
+            {"verdict": "unknown", "missing_items": [], "period_verdict": "input_required",
+             "also_expect": [{"kind": "unknown", "reason": "missing_input"}]},
         ),
     ]
     return {

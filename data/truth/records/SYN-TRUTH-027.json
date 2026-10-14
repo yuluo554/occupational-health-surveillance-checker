@@ -2,30 +2,29 @@
   "conclusion_code": "normal",
   "employee_id": "90000000027SYN",
   "employee_name": "示例人员 A-027",
-  "exam_date": "2026-11-10",
+  "exam_date": "2026-10-20",
   "exam_type": "pre_placement",
   "expect": {
     "expected_items": [
       "尿常规",
       "心电图",
-      "纯音听阈测试",
       "肝功能",
       "血常规"
     ],
     "missing_items": [
-      "尿常规",
-      "心电图",
-      "纯音听阈测试",
-      "肝功能",
       "血常规"
     ],
     "period_verdict": "not_applicable",
-    "verdict": "non_compliant"
+    "verdict": "partial"
   },
-  "expect_case": "noise",
-  "factor_code": "GBZ188-7.1",
-  "items": [],
+  "expect_case": "laser",
+  "factor_code": "GBZ188-7.8",
+  "items": [
+    "尿常规",
+    "心电图",
+    "肝功能"
+  ],
   "notified_suspected": false,
-  "position_id": "SYN-POS-noise",
+  "position_id": "SYN-POS-laser",
   "record_id": "SYN-TRUTH-027"
 }

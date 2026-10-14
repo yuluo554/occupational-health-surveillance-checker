@@ -45,6 +45,9 @@ def expected_nonpass(expect):
             out.add(("verdict", extra.get("verdict")))
         elif extra.get("kind") == "period":
             out.add(("period", extra.get("verdict")))
+        elif extra.get("kind") == "unknown":
+            # 待输入（适用性 input_required）→ 记 unknown + 原因码（与 observed 同口径）
+            out.add(("unknown", extra.get("reason") or "unknown"))
     return out
 
 

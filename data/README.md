@@ -11,8 +11,8 @@
 | `data/knowledge/raw/GBZ188-2025.layout.txt` | PDF 解析文本快照 | `pdftotext -enc UTF-8 -layout` 自上述 PDF 解析 | 同上 | ✅ **M1 入库**（75,555 汉字零丢失，与 PDF 同源同批） |
 | `data/knowledge/clauses.json` | 依据索引（节次 → 出处 + 快照指纹） | `tools/gen_rulesets.py` 生成 | 自制（标准号 + 节号 + URL + sha256，规避全文转载） | ✅ **M1 已建**（97 节 + 前言差异 17 条 + 待核对项 4 条） |
 | `data/rules/`（监护规则包：双版本 + manifest.json） | 规则包（生成器冻结产物） | `tools/gen_rulesets.py` 生成；2025 版逐条转写自官方快照，2014 版为前言差异骨架 | 自制（标准号 + 节号 + 要点引用，规避全文转载） | ✅ **M1 已填充**：2025 版 97 因素（明细 verified 2520 条）；2014 版 81 因素差异骨架 |
-| `data/benchmark/`（合成规则集 + 植入真值用例） | 合成数据 + 算例 | `tools/gen_cases.py` 生成（**手工构造，非随机**） | 自制（虚构因素/项目代码，`SYNTHETIC-` 前缀，非真实数据） | ✅ M0 已建（5 文件，`--check` 逐字节一致） |
-| `data/truth/`（合成监护档案 + 真值库） | 合成数据 + 算例 | `tools/gen_synthetic.py` 生成（自研 splitmix64，固定 seed） | 自制（虚构人员/企业，非真实数据） | ✅ **M1 已建**（70 文件：68 档案 + 真值库 + 语料 manifest） |
+| `data/benchmark/`（合成规则集 + 植入真值用例） | 合成数据 + 算例 | `tools/gen_cases.py` 生成（**手工构造，非随机**） | 自制（虚构因素/项目代码，`SYNTHETIC-` 前缀，非真实数据） | ✅ **M2 扩充**（5 文件，`--check` 逐字节一致；新增阈值型因素覆盖 not_applicable/input_required） |
+| `data/truth/`（合成监护档案 + 真值库） | 合成数据 + 算例 | `tools/gen_synthetic.py` 生成（自研 splitmix64，固定 seed） | 自制（虚构人员/企业，非真实数据） | ✅ **M2 扩充**（74 文件：72 档案 + 真值库 + 语料 manifest；新增周期三形态覆盖） |
 
 > **基准与生产刻意分离**（`plan/06` D-51）：`data/benchmark/` 用**合成规则集**验证引擎机制，`data/rules/` 承载真实国标内容。二者不得合并。
 > 生成器为**唯一写入者**：产物禁手改；改体例走 `tools/gen_*.py` 整目录重生成，配"再生成逐字节一致"守门测试。
@@ -36,22 +36,22 @@
 | `data/rules/ruleset-2014.json` | 191,153 | `d484508ebd743c5320ca4240adaf104a5db9761de070d6c3cdf3909174e0dd48` |
 | `data/knowledge/clauses.json` | 68,606 | `ff39e98574249a7d9e0faba7d702faacfbca91187ba23450b7848ccd3da84c90` |
 
-**合成真值库**（`tools/gen_synthetic.py`；`--check` → `FROZEN_TRUTH_OK`）：
+**合成真值库**（`tools/gen_synthetic.py`；`--check` → `FROZEN_TRUTH_OK`；**M2 扩充**至 74 文件 / 72 档案）：
 
 | 文件 | 字节 | sha256 |
 |---|---|---|
-| `data/truth/manifest.json` | 6,128 | `466defa21574a11a863733fe1a7e1d4f161c4d4a697f59858378b539a0109b7e` |
-| `data/truth/truth.json` | 38,822 | `24560c9833bbe67fc479365346fb56884f3a5cbb1e2eab1b5120f0bd189586fd` |
-| `data/truth/records/*.json`（68 件，按名排序后拼接） | — | `0bf4410832b55fc7112b772f86988f1e4c9bfa4847406103a55b0019b1fcab72` |
+| `data/truth/manifest.json` | 8,754 | `db44790626c125265346ff1c32ff3a17c3df1886ca1d4456383eba8c27452257` |
+| `data/truth/truth.json` | 42,149 | `8ae767ada54fe9dd5a636c49b141bbd2bf1bebf02ae56923a81520f4aae9f73d` |
+| `data/truth/records/*.json`（72 件，按名排序后拼接） | — | `67e69245ea12997ba443eafef1e183b432f98e6a85ec8e35bd2923a50e0178d2` |
 
-**合成基准夹具**（`tools/gen_cases.py`；`--check` → `FROZEN_CASES_OK`）：
+**合成基准夹具**（`tools/gen_cases.py`；`--check` → `FROZEN_CASES_OK`；**M2 扩充**：新增阈值型因素，覆盖 not_applicable / input_required 分支）：
 
 | 文件 | 字节 | sha256 |
 |---|---|---|
-| `data/benchmark/manifest.json` | 1,071 | `236c924083090977f22d105c69089928633a0e01649de42a9875b05aef7576a5` |
-| `data/benchmark/ruleset-2025.json` | 20,743 | `9d0d0ff278ab719a55112478cb0346b97cf148ff0f6583333e1dac8a0b394dcf` |
+| `data/benchmark/manifest.json` | 1,207 | `d71e4bc4248a027f4f97edd583b6e0487fa5482cc7bf846e41a1ccfa50c518e5` |
+| `data/benchmark/ruleset-2025.json` | 26,206 | `f082525c727f89822a5a9e1b8127ad60064a707ccf66efbb041e37bad184359d` |
 | `data/benchmark/ruleset-2014.json` | 19,371 | `3bc03eaa334366103cd59e6de20cdbc6aaa20e0793a69152a561367e7406dce1` |
-| `data/benchmark/cases/case-2025.json` | 6,424 | `5157e054513a507f25f097790d33082bd4a1bb79152a5575c6567623944fd06d` |
+| `data/benchmark/cases/case-2025.json` | 8,260 | `d0fb44db7c9ac1e364b2e0d22bf2ed7a90a4f9d495c71094e76534861bf3c3de` |
 | `data/benchmark/cases/case-2014.json` | 1,752 | `ce7387fb9d81cee256b9e2f44eb556efcdfab228b8a08fe3c165d773f191ce90` |
 
 > 说明：`data/rules/manifest.json` 里的 `rulesets[].sha256` 是**将写入字节**的 sha256（生成时算、非磁盘现值），保证首生成与再生成都自洽。
@@ -66,7 +66,7 @@
 | 2014 版因素数 | **81**（2025 版坐标镜像 97 − 前言点名"新增"19 条 + 前言点名"删除"3 条） |
 | 2014 版明细 | **全部 `pending`**（差异导向骨架，决策 D-28；未引述条目不作完整重述） |
 | 周期类型分布（2025 版） | `months` 38（12/24/36 个月）、`input_required` 22（按作业分级/接触水平分档）、`none` 22（无在岗期间检查）、`pending` 15（第 8–9 章） |
-| 合成真值件数 | **68**（20 条算例 + 48 条 splitmix64 批量件），干净声明 **14** 件 |
+| 合成真值件数 | **72**（24 条算例 + 48 条 splitmix64 批量件），干净声明 **17** 件；M2 新增周期三形态覆盖（`none` / `input_required` / 分档缺项） |
 
 **关于 2014 版为何条目数/明细都少**（评审若问，答案在此）：GBZ 188—2014 已因 2025 版自 2026-08-01 施行而同时废止，官方全文公开系统不再提供在线预览，无法取得全文逐条核对。故 2014 版规则集是**差异导向的骨架**（决策 D-28）——只承载 2025 版前言"主要技术变化"逐条引述的差异，凡前言未引述的条目一律 `pending`。它**不是完整重述**，也不能用作档案级跨版本核查的规则源（引用到即被门控拦截）。
 
@@ -101,8 +101,9 @@
 - **植入真值**：`tools/gen_synthetic.py` 生成档案时同时产出**期望核查结论**（应检项目集合、缺项集合、周期判定）；真值由**独立参考实现**算出（不调引擎），引擎以独立实现路径对账（`tests/test_truth.py`）。
 - **确定性纪律**：自研 **splitmix64**（禁 stdlib `random`）；一律排序后迭代（禁 set 迭代序）；产物无时间戳（禁系统时钟）；固定 seed `20261014`；`--check` 再生成逐字节一致。
 - **算例覆盖矩阵**：见 `data/truth/manifest.json` 的 `coverage_matrix`（逐行列出算例 → 档案号 → 说明），与 `plan/05` §2.3 逐行对应。
+- **周期形态覆盖如实登记**：见 `data/truth/manifest.json` 的 `period_shape_coverage`——逐形态记"规则包内因素总数 / 真值库采样数 / 采样清单"（M2 实测：`months` 38→采 5、`input_required` 22→采 4、`none` 22→采 1）。真值库按形态**抽样**覆盖（非逐因素穷举）；未采样因素与已采样同形态共用同一判定路径——**不得**把"三形态各有件"误读成"每个因素都被覆盖"（D-61/D-59 同族）。
 - **不可达算例如实声明**：见 `data/truth/manifest.json` 的 `unreachable_cases`（两条：① `not_applicable` 在真实规则包不可达——标准对所列危害因素"接触即纳入"，无逐因素阈值；② 档案级跨版本应检差异不可达——2014 版全文不可得）。机制层由 `data/benchmark/` 的合成夹具覆盖。
-- **误报对照集**：真值库显式声明 `should_be_clean: true` 的干净档案 **14 件**（应检项目齐备、周期合规）；另有 1 件"别名写法"档案声明应零 fail、允许 warning。基准层与测试**只读**该声明，不自行挑选对照档案。
+- **误报对照集**：真值库显式声明 `should_be_clean: true` 的干净档案 **17 件**（应检项目齐备、周期合规）；另有 1 件"别名写法"档案声明应零 fail、允许 warning。基准层与测试**只读**该声明，不自行挑选对照档案。
 - **`data/truth/_private/`** 为本地不入仓目录（`.gitignore` 已排除 `data/**/_private/`）：如需在本机保留带来源线索的中间样本，放该目录，且**不得**进入语料库产物。
 
 ## 五、待核对项（P-1–P-4，未核对不得写入规则包）

@@ -2,32 +2,18 @@
   "conclusion_code": "normal",
   "employee_id": "90000000028SYN",
   "employee_name": "示例人员 A-028",
-  "exam_date": "2026-09-20",
-  "exam_type": "pre_placement",
+  "exam_date": "2026-11-10",
+  "exam_type": "post_placement",
   "expect": {
-    "expected_items": [
-      "尿常规",
-      "心电图",
-      "肝功能",
-      "肺功能",
-      "胸部X射线摄片",
-      "血常规"
-    ],
+    "expected_items": [],
     "missing_items": [],
     "period_verdict": "not_applicable",
     "verdict": "compliant"
   },
-  "expect_case": "dust_metal",
-  "factor_code": "GBZ188-6.7",
-  "items": [
-    "尿常规",
-    "心电图",
-    "肝功能",
-    "肺功能",
-    "胸部X射线摄片",
-    "血常规"
-  ],
+  "expect_case": "heat",
+  "factor_code": "GBZ188-7.3",
+  "items": [],
   "notified_suspected": false,
-  "position_id": "SYN-POS-dust_metal",
+  "position_id": "SYN-POS-heat",
   "record_id": "SYN-TRUTH-028"
 }
