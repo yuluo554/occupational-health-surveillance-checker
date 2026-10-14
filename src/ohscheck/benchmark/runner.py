@@ -6,6 +6,12 @@
     compare         双版本对照（结构一致）
     false_positive  误报对照集（**只读**真值库的"应零命中"声明，不自选考卷）
 
+指标随结果下发的实测值：各套件正确率/误报数 + 全程运行时长（elapsed_seconds）。
+
+未启用如实声明（决策 D-59 同族）：某套件分母为 0 时**不假装覆盖**——
+矩阵/覆盖度准确率按 0 计（必未达标）；compare/false_positive 标 `not_enabled`
+并在输出写明"该类用例未生成"（不假装通过）。
+
 退出码三语义（决策 D-25，锁进测试）：
     0 达标 / 1 未达标 / 2 输入、坐标或用例名错误
 """
@@ -14,6 +20,7 @@ from __future__ import annotations
 
 import os
 import sys
+import time
 
 from ..errors import EXIT_NONCOMPLIANT, EXIT_OK, EXIT_USAGE, MissingThresholdError, OhsCheckError
 from .cases import compare_expected, is_clean_expect, observed_is_clean
@@ -64,10 +71,16 @@ class BenchEnv:
                     self.cases.append(load_path(os.path.join(cases_dir, name)))
 
     def threshold(self, key):
-        """取门槛；缺失即报配置错误（决策 D-24，**不回落代码默认值**）。"""
+        """取门槛；缺失即报配置错误（决策 D-24，**不回落代码默认值**）。
+
+        数值一律 `parse_decimal` 归一（引擎 H-8 同口径）：门槛也可能是字符串形态
+        （测试篡改 manifest 走 `dumps_stable`，Decimal 会序列化成 JSON 字符串）。
+        """
+        from ..model import parse_decimal
+
         if key not in self.thresholds:
             raise MissingThresholdError(key)
-        return self.thresholds[key]
+        return parse_decimal(self.thresholds[key], "benchmark_thresholds." + key)
 
 
 def _resolve_bench_dir(data_dir=None):
@@ -236,9 +249,10 @@ def suite_compare(env):
             "accuracy": 1.0,
             "threshold_key": "compare_accuracy_min",
             "threshold": env.threshold("compare_accuracy_min"),
+            "not_enabled": True,
             "skipped": True,
             "notes": ["夹具只登记了 %d 套规则集，双版本对照套件未生成用例。" % len(ids)],
-            "passed": True,
+            "passed": False,
         }
 
     eff_a = effective_ruleset(env.rulesets[ids[0]], "compare")
@@ -261,6 +275,7 @@ def suite_compare(env):
             details.append({"key": code, "expected_kind": want_kind, "got": sorted(got_kinds)})
 
     accuracy = (correct / total) if total else 1.0
+    enabled = total > 0
     return {
         "suite": "compare",
         "samples": total,
@@ -268,9 +283,11 @@ def suite_compare(env):
         "accuracy": accuracy,
         "threshold_key": "compare_accuracy_min",
         "threshold": env.threshold("compare_accuracy_min"),
+        "not_enabled": not enabled,
         "details": details,
-        "notes": report.notes,
-        "passed": accuracy >= env.threshold("compare_accuracy_min"),
+        "notes": report.notes if enabled
+        else ["双版本对照期望（manifest.compare_expect）为空：该类用例未生成。"] + list(report.notes),
+        "passed": enabled and accuracy >= env.threshold("compare_accuracy_min"),
     }
 
 
@@ -313,6 +330,7 @@ def suite_false_positive(env):
                 )
 
     max_allowed = env.threshold("false_positive_max")
+    enabled = total > 0
     return {
         "suite": "false_positive",
         "samples": total,
@@ -320,7 +338,9 @@ def suite_false_positive(env):
         "threshold_key": "false_positive_max",
         "threshold": max_allowed,
         "details": details,
-        "passed": hits <= max_allowed,
+        "not_enabled": not enabled,
+        "notes": [] if enabled else ["误报对照集为空：夹具未生成任何\"应零命中\"声明档案。"],
+        "passed": enabled and hits <= max_allowed,
     }
 
 
@@ -350,18 +370,48 @@ def _select(only):
     return names
 
 
+def _check_enabled(result):
+    """判定一个套件结果是否"真达标"：未启用（分母为 0）不冒充通过（D-59 同族）。
+
+    - matrix/coverage：samples==0 → 准确率按 0 计 → passed 已为 False，无需再判。
+    - compare：期望差异条目为 0 → not_enabled（夹具缺 compare_expect）。
+    - false_positive：干净声明档案为 0 → not_enabled（误报对照集未生成）。
+    """
+    if not result.get("passed"):
+        return False
+    if result.get("not_enabled"):
+        return False
+    return True
+
+
 def run_benchmarks(only=None, data_dir=None, as_json=False, quiet=False):
-    """运行基准；返回退出码（0 达标 / 1 未达标 / 2 用法或配置错误）。"""
+    """运行基准；返回退出码（0 达标 / 1 未达标或未启用 / 2 用法或配置错误）。"""
     try:
         names = _select(only)
         env = BenchEnv(_resolve_bench_dir(data_dir))
+        started = time.perf_counter()
         results = [SUITE_FUNCS[name](env) for name in names]
+        elapsed = time.perf_counter() - started
     except OhsCheckError as exc:
         sys.stderr.write("错误：%s\n原因码：%s\n" % (exc.message, exc.reason))
         return EXIT_USAGE
 
-    passed = all(r["passed"] for r in results)
-    payload = {"suites": results, "passed": passed}
+    passed = all(_check_enabled(r) for r in results)
+    runtime_max = None
+    if "max_runtime_seconds" in env.thresholds:
+        runtime_max = env.threshold("max_runtime_seconds")
+    runtime_ok = True
+    if runtime_max is not None and elapsed > float(runtime_max):
+        runtime_ok = False
+
+    payload = {
+        "suites": results,
+        "passed": passed and runtime_ok,
+        "elapsed_seconds": elapsed,
+    }
+    if runtime_max is not None:
+        payload["runtime_threshold_seconds"] = float(runtime_max)
+        payload["runtime_ok"] = runtime_ok
 
     if as_json:
         from ..loaders import dumps_stable
@@ -372,14 +422,23 @@ def run_benchmarks(only=None, data_dir=None, as_json=False, quiet=False):
             if result["suite"] == "false_positive":
                 line = "%-16s 用例 %d，误报 %d（上限 %s）→ %s" % (
                     result["suite"], result["samples"], result["hits"],
-                    result["threshold"], "达标" if result["passed"] else "未达标",
+                    result["threshold"], "达标" if _check_enabled(result) else "未达标",
                 )
+                if result.get("not_enabled"):
+                    line += "（该类用例未生成：误报对照集为空）"
             else:
                 line = "%-16s 用例 %d，正确 %d，准确率 %.4f（门槛 %s）→ %s" % (
                     result["suite"], result["samples"], result["correct"],
                     result["accuracy"], result["threshold"],
-                    "达标" if result["passed"] else "未达标",
+                    "达标" if _check_enabled(result) else "未达标",
                 )
+                if result.get("not_enabled"):
+                    line += "（该类用例未生成：%s）" % "；".join(result.get("notes") or [])
             sys.stdout.write(line + "\n")
+        sys.stdout.write("运行时长 %.3f 秒" % elapsed)
+        if runtime_max is not None:
+            sys.stdout.write("（上限 %s 秒）→ %s" % (
+                runtime_max, "达标" if runtime_ok else "未达标"))
+        sys.stdout.write("\n")
 
-    return EXIT_OK if passed else EXIT_NONCOMPLIANT
+    return EXIT_OK if passed and runtime_ok else EXIT_NONCOMPLIANT
