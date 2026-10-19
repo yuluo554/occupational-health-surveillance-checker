@@ -15,6 +15,11 @@ import re
 from ..errors import InputError
 
 STATUSES = ("verified", "pending", "input_required")
+# 规则包**顶层** `status`：整包完成度标签，**不参与门控**（判定只看条目级三态）。
+#   现行版 = "partial"（第 5–7 章明细已核对，第 8–9 章明细 pending）
+#   旧版   = "scaffold"（差异导向骨架）
+# 取值收在本元组里由 schema 校验；字段本身**可选**（合成夹具不带该字段）。
+PACKAGE_STATUSES = ("partial", "scaffold")
 # 危害因素类别：与 GBZ 一八八最新版的章节划分对齐（第 5–9 章）。
 #   5 接触有害化学因素 → chemical
 #   6 粉尘             → dust
@@ -223,6 +228,14 @@ def validate_ruleset(obj):
     ruleset_id = obj.get("ruleset_id")
     if not str(ruleset_id or "").strip():
         _fail("缺少 ruleset_id")
+
+    # 顶层 status = 整包完成度标签（**不参与门控**）：可选，但出现时必须在合法集内。
+    # 门控只消费条目级 `verified`/`pending`/`input_required`（STATUSES）。
+    if "status" in obj and obj["status"] not in PACKAGE_STATUSES:
+        _fail(
+            "顶层 status %r 非法（整包完成度标签，合法值：%s；注意它不参与门控）"
+            % (obj.get("status"), ", ".join(PACKAGE_STATUSES))
+        )
 
     basis = obj.get("basis")
     if not isinstance(basis, dict):

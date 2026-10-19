@@ -4,15 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ohscheck"
-version = "0.1.0"
+version = "0.1.1"
 description = "职业健康监护合规核查工作台（GBZ 188 双版本规则集·监护矩阵·批量对账）"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 license = { text = "MIT" }
 authors = [{ name = "yuluo554" }]
 keywords = ["occupational-health", "GBZ188", "compliance", "surveillance", "offline"]
 classifiers = [
-  "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.12",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
@@ -22,10 +21,11 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
-# 桌面界面（M5）。3.8 上 PySide6 有硬上限，见 plan/06 D-13。
-gui = ["PySide6>=6.6,<6.7"]
-# 打包（M5）。打 GUI 必须 PyInstaller >= 6（决策 D-14）。
-build = ["PyInstaller>=6.0"]
+# 桌面界面（M5）。迭代 D-3：Python 3.8 已 EOL，floor 抬到 3.12，
+# 原先"3.8 上 PySide6 有硬上限"的 <6.7 约束不再需要；实测 6.12.0 全绿。
+gui = ["PySide6>=6.12,<7"]
+# 打包（M5）。打 GUI 必须 PyInstaller >= 6（决策 D-14）；上界 <7 防未知大版本漂移（D-3）。
+build = ["PyInstaller>=6.0,<7"]
 # dev 须与 CI 同 extras 集合：test_scaffold 的 CI 守门测试解析 ci.yml 需要 PyYAML
 # （M6-2 干净环境验证实测发现 L-1：主环境恰好装了 PyYAML 掩盖了缺失，干净 venv 直接红）
 dev = ["pytest>=7.0", "PyYAML>=5.4"]

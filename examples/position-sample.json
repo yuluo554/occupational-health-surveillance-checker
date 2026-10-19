@@ -1,0 +1,8 @@
+{
+  "position_id": "SYN-POS-benzene",
+  "position_name": "示例岗位（合成）",
+  "exam_date": "2026-09-15",
+  "factors": [
+    {"factor_code": "GBZ188-5.19"}
+  ]
+}

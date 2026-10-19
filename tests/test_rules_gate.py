@@ -127,6 +127,42 @@ def test_manifest_requires_benchmark_thresholds():
     assert "benchmark_thresholds" in str(e.value)
 
 
+# ---------------- 顶层 status = 整包完成度标签（迭代 D-4）----------------
+
+
+def test_top_level_status_optional_and_validated():
+    """顶层 status 可选；出现时必须在 {partial, scaffold} 内（标签，不参与门控）。"""
+    rs = make_ruleset()
+    assert "status" not in rs
+    validate_ruleset(rs)  # 缺省合法（合成夹具与基准规则集不带该字段）
+
+    for value in ("partial", "scaffold"):
+        obj = make_ruleset()
+        obj["status"] = value
+        validate_ruleset(obj)
+
+    bad = make_ruleset()
+    bad["status"] = "verified"  # 条目级三态值不是整包标签
+    with pytest.raises(InputError) as e:
+        validate_ruleset(bad)
+    assert "顶层 status" in str(e.value)
+    assert "不参与门控" in str(e.value)
+
+
+def test_production_rulesets_carry_expected_package_status():
+    """生产两版规则包的顶层标签与留档一致（2025=partial / 2014=scaffold）。"""
+    import json
+    import os
+
+    from helpers import data_dir
+
+    for name, want in (("ruleset-2025.json", "partial"), ("ruleset-2014.json", "scaffold")):
+        path = os.path.join(data_dir(), "rules", name)
+        obj = json.loads(open(path, encoding="utf-8").read())
+        assert obj.get("status") == want, name
+        validate_ruleset(obj)
+
+
 # ---------------- 门控分作用域（M0-6）----------------
 
 

@@ -14,17 +14,18 @@
 
 | 步 | 扫描面 | 通过判据 | 命令 |
 |---|---|---|---|
-| step1 tree | 工作树全部**已跟踪文件**（`git ls-files`；`plan/` 目录按 HANDOFF-M6 §五口径豁免） | 0 命中 | `py -3.8 -X utf8 tools/audit_sensitive.py` |
-| step2 history | git **全量历史**逐提交 grep（`fetch-depth: 0` 保证不空转，D-40；提交数 0 = 空转失败） | 0 命中 | 同上（单步：`--only history`） |
+| step1 tree | 工作树全部**已跟踪文件**（`git ls-files -z`；**无目录级豁免**，`plan/` 逐文件扫描，迭代 D-1） | 0 命中 | `py -3.12 -X utf8 tools/audit_sensitive.py` |
+| step2 history | git **全量历史**逐提交 grep（`fetch-depth: 0` 保证不空转，D-40；提交数 0 = 空转失败；**无目录级豁免**） | 0 命中 | 同上（单步：`--only history`） |
 | step3 dist | **产物本体**二进制扫描（构建目录逐文件字节级） | 本项目自有产物 0 命中；第三方官方路径豁免逐条显式列出 | 同上（单步：`--only dist --dist-dir <目录>`） |
 | step4 meta | git 作者/提交者身份清单 | informational（恒通过）——发布身份取舍属对外动作，由发布者显式决策 | 同上（单步：`--only meta`） |
 
 阳性对照（任何"0 命中"结论必须先跑，D-27 同族）：
 
 ```bash
-py -3.8 -X utf8 tools/audit_sensitive.py --selftest
-# → AUDIT_SELFTEST_OK: 文本 token 全报出（identity_number,machine_path,username,users_home），
-#   干净对照 0 命中，二进制官方路径豁免 0 误报、盘符根泄漏报出 1 处
+py -3.12 -X utf8 tools/audit_sensitive.py --selftest
+# → AUDIT_SELFTEST_OK: 文本 token 全报出（machine_path,username,users_home），
+#   干净对照 0 命中，二进制官方路径豁免 0 误报、盘符根泄漏报出 1 处，
+#   plan/ 路径阳性对照报出 3 处，中性占位豁免 0 命中且真实路径仍报出
 ```
 
 双通道验证：3.8 与 3.12 均跑过 selftest + 全量四步，结论一致。
@@ -51,6 +52,8 @@ step4 meta     : git 身份清单（informational）：
     yuluo554 <yuluo554@users.noreply.github.com> | committer: yuluo554 <yuluo554@users.noreply.github.com>
 → exit 0
 ```
+
+> 上表是 M6 期（整目录豁免口径）的历史快照，保留原值；**新口径复测见 §六.1**。
 
 ### 3.1 实测发现与处置（M6 期 L 系列）
 
@@ -97,6 +100,20 @@ git 历史存在两种作者身份：`yuluo554 <yuluo554@users.noreply.github.co
 HANDOFF 快照（`plan/HANDOFF-M1…M6.md`）含本机路径**示例**（"临时目录用仓库树外的 Windows 路径"句式）。这些是写给续接者的环境坑记录，属计划文档；HANDOFF-M6 §五 的发布判据是"发布 zip 内不得出现 **`plan/` 之外**的本地路径泄漏"。
 
 - **修正（2026-10-14）**：原口径对 `plan/` **整目录豁免**，导致 `plan/HANDOFF-M4/M5.md` 里的**本机工作根路径**（工作盘符 + 工作目录名 + 仓库树）漏检——`plan/` 本身是**入仓公开**内容，豁免它等于把泄漏面放在扫描盲区。现口径改为：`plan/` 内**个人标识**（本机路径/个人邮箱/用户名）**一律扫描**，仅对"环境坑示例中的中性占位"放行；`plan/` 内已改为 `<workdir>` 占位符。
+- **代码收口（2026-10-19，迭代 D-1）**：上述"现口径"此前只写在本节，代码仍留 `PLAN_EXCLUDE = "plan/"` 整目录跳过——留档与实现相反。本次删除该常量与 `step1_tree`/`step2_history` 两处前缀跳过，改为**逐文件 / 逐提交 blob** 扫描；中性占位豁免收窄为**仅命中点落在占位式路径内**（角括号 `<workdir>`、带 `...` 省略段的示例路径），不做任何目录级/行级豁免。`--selftest` 增加 plan/ 阳性对照（合成 `plan/x.md` 含本机标识必须报出）+ "占位放行 / 真实路径报出"对照。CI 常驻该门禁（`--selftest` + 全跑）。
+- **顺带修掉一处静默漏读（2026-10-19，迭代 D-1 实测）**：`git ls-files` 默认对非 ASCII 路径做引号转义（`"plan/00-README\346..."`），旧代码按该引号串打开**必然失败**却被计入"已扫描"——实测 8 份（`plan/00–06` 七份 + `docs/技术报告.md`）从未被读入。改用 `git ls-files -z`，并把"无法读取"单列为阻塞项（非 0 不得视为通过）。
+
+### §六.1 新口径实测（2026-10-19，py3.12）
+
+```
+step1 tree     : 扫描 184 份已跟踪文件（无目录级豁免，plan/ 逐文件），命中 0
+step2 history  : 全量历史 18 个提交逐提交扫描，命中 0
+step3 dist     : 扫描 244 个产物文件，第三方官方路径豁免 64 处，本项目产物命中 0
+→ exit 0
+```
+
+- `plan/` 14 份入仓文件**全部进入扫描范围**（旧口径只扫 177 份且其中 8 份读不出）；逐文件扫描 `plan/` 命中 **0**，故无需先修 `plan/` 内容。
+- selftest：`AUDIT_SELFTEST_OK: … plan/ 路径阳性对照报出 3 处，中性占位豁免 0 命中且真实路径仍报出`。
 
 发布源码 zip（M6-5）含 `plan/` 时按本节口径接受；dist 产物 zip 不含 `plan/`，不受影响。
 
@@ -132,5 +149,22 @@ HANDOFF 快照（`plan/HANDOFF-M1…M6.md`）含本机路径**示例**（"临时
 
 - CI 徽章自首推起反映真实运行状态（首跑全绿）。
 - git 历史含 QQ 邮箱提交身份（§五 决策：不改写）；后续提交建议 `yuluo554@users.noreply.github.com`。
-- plan/ 豁免口径继续有效（发布源码 zip 含 plan/，按 §六 接受；dist zip 不含 plan/）。
+- plan/ 内个人标识按 §六 新口径**逐文件扫描**（2026-10-19 起代码已收口，命中 0）；发布源码 zip 含 plan/ 按 §六 接受；dist zip 不含 plan/。
+
+## 十、v0.1.1 本地构建记录（2026-10-19；**未发布**）
+
+> 迭代 v0.1.1（脱敏口径收口 / 示例入仓 / floor 抬 3.12 / 顶层 status 纳入校验）只做**本地构建与验收**；
+> tag `v0.1.1` 与 `gh release create` 属对外动作，由用户本人执行（2FA）。本节数字为本地实测，**发布后须以下载件复算为准**。
+
+| 项 | 实测 |
+|---|---|
+| 构建 | `py -3.12 -m PyInstaller tools/packaging.spec`（PyInstaller 6.22.3 / PySide6 6.12.0 / Python 3.12.10），`gen_spec --check` 先行 OK |
+| 产物 | `dist/ohscheck/` **256 文件**；`_internal/data/` 82 项（rules 3 + benchmark 5 + truth 74）；**无 `knowledge/`、无 `plan/`** |
+| 冻结自检 | `ohscheck-cli.exe selftest` rc 0：`frozen=True`、`data_dir_inside_exe=True`、`engine_ok=True`、`bench_ok=True`、`bench_exit_code=0`；`selfcheck` / `bench` rc 0 |
+| zip（ASCII 名） | `ohscheck-0.1.1-win64.zip` **256 条目 / 128,791,986 B**，`date_time=(2026,10,19,0,0,0)` + `create_system=0` + 固定 `external_attr`；**同参数再生成两次 sha256 逐字节一致** |
+| zip sha256 | `70e11b4164ee7006848844325155c23bc6ebd4439e07d00b3f1672e449f9957f` |
+| 解压复验 | 解压后 `ohscheck-cli.exe selftest` rc 0（四项 True）+ `bench` rc 0 + `selfcheck` rc 0 |
+| 产物脱敏 | `audit_sensitive --dist-dir dist/ohscheck`：扫描 256 个产物文件，第三方官方路径豁免 64 处，本项目产物命中 0 |
+
+> 体积从 v0.1.0 的 49,009,569 B 增至 128,791,986 B，原因是 `gui` 依赖由 PySide6 6.6.3.1 升到 **6.12.0**（迭代 D-3 移除 3.8 专用上界）。
 

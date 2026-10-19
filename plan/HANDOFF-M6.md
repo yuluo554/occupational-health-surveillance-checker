@@ -14,7 +14,7 @@
 |---|---|
 | 版本 | `ohscheck 0.1.0`（`src/ohscheck/__init__.py`） |
 | 测试 | **227 项**（M4 基线 212 + 新增 `tests/test_m5.py` 15 项），Python **3.8.8** 与 **3.12** 双通道全绿（0 failed/0 skipped） |
-| 基准 | `ohscheck bench` 四套件全达标退出 0：matrix 1.0000（5+规则驱动 7）、coverage 1.0000（13）、compare 1.0000（3）、false_positive 误报 0（7 件）、运行时长 0.005 秒（上限 5.0） |
+| 基准 | `ohscheck bench` 四套件全达标退出 0：matrix 1.0000（5+规则驱动 7）、coverage 1.0000（13）、compare 1.0000（3）、false_positive 误报 0（7 件）、运行时长 0.005 秒（上限 5.0）；本行耗时是 M6 期快照，**后续复测见 README** |
 | GUI 依赖 | PySide6 **6.6.3.1**（3.12 通道实装；`pip index` 实测 3.8 上限正是 6.6.3.1）——pyproject `gui = ["PySide6>=6.6,<6.7"]` 一致 |
 | 打包 | PyInstaller **6.22.3**（3.12 通道）；`tools/packaging.spec`（生成文件，`gen_spec.py --check` 守门）；datas 白名单 = `packaging.DATA_WHITELIST`（**rules/benchmark/truth** 三项；不整仓塞 `data/`） |
 | 冻结产物 | `build-m5/dist/ohscheck/`：`ohscheck-gui.exe`（console=False）+ `ohscheck-cli.exe`（console=True）+ `_internal/data`；约 117 MB（**构建目录不入仓**，gitignore 已有 `build*/`） |

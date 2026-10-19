@@ -4,9 +4,9 @@
 
 四步扫描，任何一步命中即 exit 1：
 
-  step1 tree     工作树已跟踪文件扫描（git ls-files）。plan/ 目录按既定口径豁免
-                 （HANDOFF 快照含本机路径示例属计划文档，HANDOFF-M6 §五）。
-  step2 history  git 全量历史扫描（git rev-list --all 逐提交 grep）。
+  step1 tree     工作树全部已跟踪文件扫描（git ls-files -z；**无目录级豁免**）。
+                 plan/ 是入仓公开内容，逐文件扫描（迭代 D-1；RELEASE-M6 §六）。
+  step2 history  git 全量历史扫描（git rev-list --all 逐提交 grep；**无目录级豁免**）。
                  浅克隆会让本步静默空转 → CI checkout 一律 fetch-depth: 0（决策 D-40）。
   step3 dist     产物本体扫描（构建目录逐文件二进制扫）。本项目自有产物零命中为通过；
                  第三方官方构建路径（Qt/python.org/MSVC/GfW 的 PDB 调试串、USB 厂商串）
@@ -24,11 +24,11 @@
   * 用户主目录模式（<盘>:/Users/ 或 <盘>:\\Users\\）。
 
 用法：
-    py -3.8 -X utf8 tools/audit_sensitive.py               # 四步全跑
-    py -3.8 -X utf8 tools/audit_sensitive.py --only tree   # 单步
-    py -3.8 -X utf8 tools/audit_sensitive.py --dist-dir <目录>   # step3 指定产物目录
-    py -3.8 -X utf8 tools/audit_sensitive.py --json
-    py -3.8 -X utf8 tools/audit_sensitive.py --selftest    # 阳性对照（必须能报出）
+    py -3.12 -X utf8 tools/audit_sensitive.py               # 四步全跑
+    py -3.12 -X utf8 tools/audit_sensitive.py --only tree   # 单步
+    py -3.12 -X utf8 tools/audit_sensitive.py --dist-dir <目录>   # step3 指定产物目录
+    py -3.12 -X utf8 tools/audit_sensitive.py --json
+    py -3.12 -X utf8 tools/audit_sensitive.py --selftest    # 阳性对照（必须能报出）
 """
 
 from __future__ import annotations
@@ -42,9 +42,16 @@ import subprocess
 import sys
 import tempfile
 
-PLAN_EXCLUDE = "plan/"
+# 中性占位豁免：只放行留档里约定的"环境坑示例"写法，且**只对命中点落在占位式路径内**生效。
+# 不做任何目录前缀豁免（plan/ 整目录豁免已撤销，迭代 D-1）。
+#   <workdir>/_m5_scratch.py        → 角括号占位符
+#   D:/.../\_m1_scratch、D:/Users/.../project → 带 "..." 省略段的示例路径
+_PLACEHOLDER_RES = (
+    re.compile(r"<[A-Za-z][A-Za-z0-9_-]*>"),
+    re.compile(r"[A-Za-z]:[\\/][^\s`'\"()（）]*\.\.\.[^\s`'\"()（）]*"),
+)
 # 机器工程路径段名，运行时拼接（不写词面：扫描器自身不得含本机标识，L-3 教训）
-_PD_SEGMENT = "".join(["program", "data"])  # 既定豁免口径（HANDOFF-M6 §五：release zip 不得出现 plan/ 之外的本地路径泄漏）
+_PD_SEGMENT = "".join(["program", "data"])  # 既定 token 口径（HANDOFF-M6 §五）
 
 # 第三方官方构建路径豁免（供应商嵌入，非本机泄漏；实测确认见 plan/RELEASE-M6.md §3.2）
 #   C:\Users\qt\work\...        → Qt 官方构建机 PDB 路径（Qt6*.dll、shiboken、plugins）
@@ -160,8 +167,25 @@ def collect_tokens(root):
 
 # ---------------- 扫描执行 ----------------
 
+def _placeholder_spans(line):
+    """返回中性占位式写法在行内的字符区间（用于窄豁免，不做行级/目录级豁免）。"""
+    spans = []
+    for regex in _PLACEHOLDER_RES:
+        for m in regex.finditer(line):
+            spans.append((m.start(), m.end()))
+    return spans
+
+
+def _placeholder_at(line, pos, spans=None):
+    """命中点是否落在中性占位式路径内部（只有这种情况才豁免）。"""
+    for start, end in (spans if spans is not None else _placeholder_spans(line)):
+        if start <= pos < end:
+            return True
+    return False
+
+
 def scan_text_file(path, patterns):
-    """文本文件逐行扫描，返回命中列表。"""
+    """文本文件逐行扫描，返回命中列表（中性占位式路径内的命中不计）。"""
     hits = []
     try:
         with open(path, "r", encoding="utf-8", errors="replace") as fh:
@@ -169,9 +193,11 @@ def scan_text_file(path, patterns):
     except OSError:
         return hits
     for lineno, line in enumerate(lines, start=1):
+        spans = _placeholder_spans(line)
         for label, regex in patterns:
-            m = regex.search(line)
-            if m:
+            for m in regex.finditer(line):
+                if _placeholder_at(line, m.start(), spans):
+                    continue
                 hits.append(
                     {"file": path, "line": lineno, "token": label,
                      "text": line.strip()[:120], "col": m.start()}
@@ -184,23 +210,45 @@ def _git_grep_escape(regex):
     return regex.pattern.replace("\\b", r"\b")
 
 
+def _select_tree_files(files):
+    """工作树扫描范围：**不设任何目录级豁免**（plan/ 整目录豁免已撤销，迭代 D-1）。
+
+    保留为独立函数，--selftest 用它断言 plan/ 路径确实进入扫描范围。
+    """
+    return [f for f in files if f.strip()]
+
+
+def _tracked_files(root):
+    """已跟踪文件清单（`-z` 关闭 core.quotepath 引号转义）。
+
+    默认 `git ls-files` 会给非 ASCII 路径加引号转义（如 `"plan/00-README\\346..."`），
+    按引号串打开只会静默失败 → 文件被计入"已扫描"却从未读入（迭代实测：8 份）。
+    """
+    out = _run_git(["ls-files", "-z"], root)
+    return [f for f in out.split("\0") if f.strip()]
+
+
 def step1_tree(root, patterns):
-    """工作树已跟踪文件扫描（plan/ 豁免）。"""
-    files = [f for f in _run_git(["ls-files"], root).split("\n") if f.strip()]
+    """工作树已跟踪文件扫描（无目录级豁免：plan/ 逐文件扫描）。"""
+    files = _select_tree_files(_tracked_files(root))
     hits = []
+    unreadable = []
     scanned = 0
     for rel in files:
-        if rel.replace("\\", "/").startswith(PLAN_EXCLUDE):
+        path = os.path.join(root, rel.replace("/", os.sep))
+        if not os.path.isfile(path):
+            unreadable.append(rel)
             continue
         scanned += 1
-        hits.extend(scan_text_file(os.path.join(root, rel), patterns))
-    return {"scanned": scanned, "hits": hits}
+        hits.extend(scan_text_file(path, patterns))
+    return {"scanned": scanned, "unreadable": unreadable, "hits": hits}
 
 
 def step2_history(root, patterns):
-    """git 全量历史逐提交扫描（plan/ 豁免；提交数 0 = 空转失败，D-40）。
+    """git 全量历史逐提交扫描（无目录级豁免；提交数 0 = 空转失败，D-40）。
 
     git grep -E 不支持 \\b，词边界场景改用 git grep -w 的全词匹配或在 Python 端复核。
+    命中行再按 Python 正则+中性占位区间复核，保证与 step1 同一豁免口径。
     """
     commits = [c for c in _run_git(["rev-list", "--all"], root).split("\n") if c.strip()]
     hits = []
@@ -211,17 +259,17 @@ def step2_history(root, patterns):
             if r"\b" in regex.pattern:
                 args.append("-w")
             args.append(commit)
-            # rc 1 = 无命中（git grep 语义），正常；plan/ 豁免在 Python 端按前缀过滤
+            # rc 1 = 无命中（git grep 语义），正常
             out = _run_git(args, root, ok_codes=(0, 1))
             for line in out.strip().split("\n"):
                 if not line.strip():
                     continue
-                # 行格式 <commit>:<path>:<lineno>:<text>
+                # 行格式 <commit>:<path>:<lineno>:<text>；path 可能被引号转义（不影响文本复核）
                 body = line.split(":", 1)[1] if ":" in line else line
-                rel = body.split(":", 1)[0] if ":" in body else body
-                if rel.replace("\\", "/").startswith(PLAN_EXCLUDE):
+                text = body.split(":", 2)[2] if body.count(":") >= 2 else body
+                if not list(regex.finditer(text)) or not any(
+                        not _placeholder_at(text, m.start()) for m in regex.finditer(text)):
                     continue
-                text = body.split(":", 1)[1] if ":" in body else body
                 hits.append({"commit": commit[:12], "token": label, "text": text.strip()[:160]})
     return {"commits": len(commits), "hits": hits}
 
@@ -349,19 +397,51 @@ def _selftest(patterns, needles):
     official_hits = _scan_bytes_blob(official_qt + official_py, needles)
     local_hits = _scan_bytes_blob(local_leak, needles)
 
+    # 目录级豁免阳性对照（迭代 D-1）：plan/ 路径必须进入扫描范围，且其中的本机标识必须报出。
+    # 若代码里再出现"按目录前缀跳过"，本对照会立刻变红。
+    plan_dir = os.path.join(tmp, "plan")
+    os.makedirs(plan_dir, exist_ok=True)
+    plan_probe = os.path.join(plan_dir, "x.md")
+    with open(plan_probe, "w", encoding="utf-8", newline="\n") as fh:
+        for label, value in probe_values:
+            fh.write("token_probe_%s=%s\n" % (label, value))
+    plan_hits = scan_text_file(plan_probe, patterns)
+    plan_selected = "plan/x.md" in _select_tree_files(["plan/x.md", "src/x.py"])
+
+    # 中性占位豁免必须是"窄"的：占位式路径内的命中放行，真实路径仍报出。
+    # 路径按运行时实算的盘符拼接（扫描器自身不得含本机路径字面量，L-3 教训）。
+    placeholder_line = "临时目录示例：" + drive + "/" + "Users" + "/.../project（占位）\n"
+    real_line = "真实路径：" + drive + "/" + "Users" + "/realname/project\n"
+    place_clean = os.path.join(tmp, "placeholder.txt")
+    place_real = os.path.join(tmp, "real.txt")
+    with open(place_clean, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(placeholder_line)
+    with open(place_real, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(real_line)
+    placeholder_hits = scan_text_file(place_clean, patterns)
+    real_hits = scan_text_file(place_real, patterns)
+
     ok = (
         labels_hit == want
         and not clean_hits
         and not official_hits
         and len(local_hits) >= 1
+        and plan_selected
+        and set(h["token"] for h in plan_hits) == want
+        and not placeholder_hits
+        and any(h["token"] == "users_home" for h in real_hits)
     )
     print(
         "AUDIT_SELFTEST_OK: 文本 token 全报出（%s），干净对照 0 命中，"
-        "二进制官方路径豁免 0 误报、盘符根泄漏报出 %d 处"
-        % (",".join(sorted(labels_hit)), len(local_hits))
+        "二进制官方路径豁免 0 误报、盘符根泄漏报出 %d 处，"
+        "plan/ 路径阳性对照报出 %d 处，中性占位豁免 0 命中且真实路径仍报出"
+        % (",".join(sorted(labels_hit)), len(local_hits), len(plan_hits))
         if ok
-        else "AUDIT_SELFTEST_FAIL: 文本命中=%s（应 %s）干净=%d 官方=%d 本机=%d"
-        % (sorted(labels_hit), sorted(want), len(clean_hits), len(official_hits), len(local_hits))
+        else "AUDIT_SELFTEST_FAIL: 文本命中=%s（应 %s）干净=%d 官方=%d 本机=%d "
+        "plan_selected=%s plan_hits=%s 占位=%d 真实=%d"
+        % (sorted(labels_hit), sorted(want), len(clean_hits), len(official_hits),
+           len(local_hits), plan_selected, sorted(set(h["token"] for h in plan_hits)),
+           len(placeholder_hits), len(real_hits))
     )
     return 0 if ok else 1
 
@@ -416,6 +496,13 @@ def main(argv=None):
     hist = report.get("history", {})
     if hist and not hist.get("gitless") and hist.get("commits", 0) == 0:
         blocking.append({"step": "history", "reason": "提交数为 0 → 历史扫描空转（浅克隆？），不得视为通过"})
+    tree = report.get("tree", {})
+    if tree and tree.get("unreadable"):
+        blocking.append({
+            "step": "tree",
+            "reason": "有 %d 份已跟踪文件无法读取 → 扫描不完整，不得视为通过：%s"
+                      % (len(tree["unreadable"]), ", ".join(tree["unreadable"][:5])),
+        })
     for step in ("tree", "history", "dist"):
         data = report.get(step)
         if data and data.get("hits"):
@@ -429,7 +516,11 @@ def main(argv=None):
         if tree.get("gitless"):
             print("step1 tree     : 跳过（%s）" % tree["note"])
         else:
-            print("step1 tree     : 扫描 %s 份已跟踪文件（plan/ 豁免），命中 %d" % (tree.get("scanned", 0), len(tree.get("hits", []))))
+            extra = ""
+            if tree.get("unreadable"):
+                extra = "，无法读取 %d 份（须为 0）" % len(tree["unreadable"])
+            print("step1 tree     : 扫描 %s 份已跟踪文件（无目录级豁免，plan/ 逐文件）%s，命中 %d"
+                  % (tree.get("scanned", 0), extra, len(tree.get("hits", []))))
         hist = report.get("history", {})
         if hist.get("gitless"):
             print("step2 history  : 跳过（%s）" % hist["note"])

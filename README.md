@@ -43,9 +43,9 @@
 
 > **基准日核验**：**2026 年内即发生替代/作废**——GBZ 188—2025 于 2026-08-01 施行、GBZ 188—2014 同时废止（该替换为 2025 年发布、2026 年生效的跨年施行）。
 
-## 快速开始（M0 已可用；真实核查待 M1 数据入库）
+## 快速开始
 
-要求 Python 3.8+（核心功能**零第三方依赖**）。
+要求 Python 3.12+（核心功能**零第三方依赖**）。
 
 ```bash
 python -m venv .venv
@@ -56,16 +56,19 @@ python -m pip install -e ".[dev]"
 
 ```bash
 ohscheck selfcheck             # 数据目录定位 + 规则库加载 + status 门控计数
-ohscheck plan <岗位画像.json>   # 应检项目与周期推导（人类可读 / --json）
-ohscheck check <档案.json>      # 监护档案覆盖度核查
-ohscheck scan <档案目录> --out <报告目录>   # 批量扫描 + 报告导出
-ohscheck scan <档案目录> --baseline <上一轮目录> --out <报告目录>   # 批量 + 跨轮对账
+ohscheck plan examples/position-sample.json   # 应检项目与周期推导（人类可读 / --json）
+ohscheck check data/truth/records/SYN-TRUTH-001.json   # 监护档案覆盖度核查
+ohscheck scan data/truth/records --out "$TEMP/ohs-report"   # 批量扫描 + 报告导出
+ohscheck scan data/truth/records --baseline <上一轮目录> --out <报告目录>   # 批量 + 跨轮对账
 ohscheck compare               # 双版本差异对照
-ohscheck report <输出目录> --position <岗位.json> --directory <档案目录> \
-         --generated-at 2026-10-14T00:00:00    # Markdown + XLSX + 证据链
+ohscheck report "$TEMP/ohs-report" --position examples/position-sample.json \
+         --directory data/truth/records --generated-at 2026-10-14T00:00:00    # Markdown + XLSX + 证据链
 ohscheck bench                 # 内置评测基准（四套件，门槛随 manifest 下发）
 ohscheck version
 ```
+
+- 示例输入在 `examples/`（**合成**，见 [examples/README.md](examples/README.md)）；监护档案用仓内合成真值库 `data/truth/records/`。
+- 真值库**含缺项件**（`clean_count: 17` / 共 72 份），故 `scan data/truth/records` **退出码 1 = 检出不符合，属预期**，不是运行错误。
 
 **退出码**：`0` 无不符合 / 基准达标 · `1` 检出不符合 / 基准未达标 · `2` 用法·输入·门控拦截·待输入·年度歧义·门槛缺失 · `3` 缺可选依赖（GUI）。
 
@@ -99,7 +102,7 @@ python tools/check_literals.py --selftest   # 零字面量门禁阳性对照（�
 python tools/check_literals.py
 ```
 
-### M4 期基准指标实测（`ohscheck bench`，Python 3.8.8 / Windows 10.0.26200，2026-10-14）
+### M4 期基准指标实测（`ohscheck bench`；首发 2026-10-14 于 Python 3.8.8，2026-10-19 于 Python 3.12.10 复测）
 
 以下为**实测值**（门槛随 `data/benchmark/manifest.json` 的 `benchmark_thresholds` 下发，运行时长门槛 5.0 秒）：
 
@@ -109,7 +112,9 @@ python tools/check_literals.py
 | coverage（覆盖度四态判定） | 13 | 正确率 | **1.0000** | ≥ 1.0 | 达标 |
 | compare（双版本对照） | 3 | 一致率 | **1.0000** | ≥ 1.0 | 达标 |
 | false_positive（误报对照） | 7 | 误报数 | **0** | = 0 | 达标 |
-| 运行时长（四套件合计） | — | 墙钟时间 | **0.005 秒** | ≤ 5.0 秒 | 达标 |
+| 运行时长（四套件合计） | — | 墙钟时间 | **≈0.006 秒**（参考值，随机器变化） | ≤ 5.0 秒 | 达标 |
+
+> 正确率/误报数三项是**机制正确率**，跨机器稳定（判据见下）；运行时长是墙钟时间，2026-10-19 在 py3.12 上复测为 `elapsed_seconds ≈ 0.0066 s`（三次 CLI 0.006 / 0.007 / 0.007 s），故本表写 `≈0.006 秒` 参考值。历史里程碑文档（`plan/HANDOFF-M5/M6.md`、`plan/05`）保留当时的快照值，**后续复测以本表为准**。
 
 **可证伪探活（基准会绿也会红）**：每套件都有注入缺陷的探活测试（篡改期望应检清单 / 打桩周期判定 / 破坏对照差异 / 弄脏"应零命中"档案 / 时长上限压到 0 秒），断言基准**必须**报未达标（exit 1）——只会绿的基准是假基准（`tests/test_m4.py` 15 项）。某类用例未生成时基准输出如实声明"该类用例未生成"并**不假装通过**（`not_enabled` → exit 1）。
 
@@ -118,6 +123,8 @@ python tools/check_literals.py
 ## 已知限制（**请先读这一节**）
 
 - **规则库核对进度**：GBZ 188—2025 第 5–7 章（化学 65 / 粉尘 9 / 物理 8，共 82 因素）明细已逐条挂原文核对；第 8–9 章（生物 5 / 特殊作业 10）仅因素身份核对、明细 `pending` → 引用这些因素的核查会被**门控拦截**（退出码 2）并提示。这是**有意的**：未挂官方原文核对的条目绝不参与判定。
+- **`selfcheck` 的 `pending_total` 与 README 正文的 90 是两个口径**：`pending_total = 576` 是**两版规则包合计**（2025 版明细 90 + 2014 版骨架 486）；README 正文讲的 90 只指 2025 版第 8–9 章明细。2014 版是**骨架（scaffold）**、仅作版本对照，其 `pending` 不进任何核查路径。（规则包顶层 `status`（`partial`/`scaffold`）是**整包完成度标签，不参与门控**；判定只看条目级 `verified`/`pending`/`input_required`。）
+- **报告外链口径**：`report.md` **正文无外链**（`http://`/`https://`）；URL 仅以**纯文本**形式出现在 §9 参数来源块（如 GBZ 188—2025 官方附件地址）——这是与约定一致的唯一例外，不是"全文无 URL"。
 - **工具不做"补充检查合规"判定**：应检项集**只取必检项**；标准表述含"必要时"的补充项目与选检项目**不进判定**（缺失不报）。理由是补充项目的条件属临床判断，纳入会制造假阳性——这是**有意划定的边界**，不是遗漏。
 - **不做医学判读**：结论代码只做"项目是否齐备"的结构核对，不做医学诊断、职业病诊断与鉴定。
 - **周期判定不使用"今天"**：判据是"本次体检日期 vs 上次检查日期 + 规则周期"，保证结果可复现；无基线（首次检查）不报超期。
@@ -136,9 +143,10 @@ src/ohscheck/       核心层（零第三方依赖）：规则加载/门控/版�
 data/rules/         规则包（生成器冻结产物；第 5–7 章已核对，第 8–9 章明细 pending）
 data/benchmark/     合成规则集 + 植入真值用例（基准专用，与生产包分离）
 data/truth/         合成监护档案真值库（72 档案 + truth.json + manifest.json）
+examples/           示例输入（合成岗位画像；README 命令直接可用，不得据此作合规结论）
 tools/              生成器与门禁（gen_rulesets / gen_cases / gen_synthetic / gen_spec / gen_demo_assets / check_literals / audit_sensitive）
 docs/               技术报告 + 演示素材（assets/，sha256 可复现）
-tests/              227 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / GUI 守门与三方对账 / 真值对账 / 骨架守门 / 脱敏门禁）
+tests/              238 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / GUI 守门与三方对账 / 真值对账 / 骨架守门 / 脱敏门禁）
 plan/               计划文档 00–06 + HANDOFF-M1…M6.md
 ```
 
@@ -157,10 +165,10 @@ plan/               计划文档 00–06 + HANDOFF-M1…M6.md
 ## 开发与测试
 
 ```bash
-python -m pytest -q          # 227 项（3.8 与 3.12 双通道均绿；未装 gui extra 时 4 项 PySide6 测试自动跳过）
+python -m pytest -q          # 238 项（Python 3.12 单通道全绿；未装 gui extra 时 4 项 PySide6 测试自动跳过）
 ```
 
-CI（`.github/workflows/ci.yml`）按 4 矩阵运行：`{ubuntu, windows} × {3.8, 3.12}`，每步都先跑冻结产物守门与零字面量门禁。
+CI（`.github/workflows/ci.yml`）按 2 矩阵运行：`{ubuntu, windows} × {3.12}`，每步都先跑冻结产物守门、零字面量门禁与脱敏门禁（`plan/` 逐文件扫描）。
 
 ## 许可
 

@@ -12,24 +12,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # 4 矩阵：{ubuntu, windows} × {3.8, 3.12}（NFR-6 / plan/03 §十一）
+        # 2 矩阵：{ubuntu, windows} × {3.12}（迭代 D-3：Python 3.8 已 EOL，floor 抬到 3.12）
         os: [ubuntu-latest, windows-latest]
-        python-version: ["3.8", "3.12"]
+        python-version: ["3.12"]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # 历史扫描类守门测试依赖全量历史；浅克隆会让扫描静默空转（决策 D-40）
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install
-        # 3.8 自带老 pip（20.2.3）无法可编辑安装 pyproject-only 项目 → 先升级 pip
         run: |
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
@@ -44,6 +43,12 @@ jobs:
         run: |
           python tools/check_literals.py --selftest
           python tools/check_literals.py
+
+      - name: Sensitive-data audit gate (plan/ included)
+        # 迭代 D-1：plan/ 不再整目录豁免；历史扫描依赖 fetch-depth: 0（决策 D-40）
+        run: |
+          python tools/audit_sensitive.py --selftest
+          python tools/audit_sensitive.py
 
       - name: Tests
         run: python -m pytest -q

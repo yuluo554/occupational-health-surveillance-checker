@@ -48,7 +48,7 @@ def data_env(tmp_path):
 def test_version_exit_0():
     code, out, _err = _run(["version"])
     assert code == 0
-    assert "0.1.0" in out
+    assert "0.1.1" in out
 
 
 def test_selfcheck_exit_0_on_production_data():

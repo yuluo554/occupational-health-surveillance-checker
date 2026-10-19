@@ -170,13 +170,32 @@ def test_every_checkout_uses_fetch_depth_0():
         assert depth == "0", "checkout 必须配 fetch-depth: 0，实际 %r" % depth
 
 
-def test_ci_matrix_covers_four_combinations():
-    """4 矩阵：{ubuntu, windows} × {3.8, 3.12}（NFR-6）。"""
+def test_ci_matrix_covers_supported_python_and_os():
+    """2 矩阵：{ubuntu, windows} × {3.12}（迭代 D-3：3.8 已 EOL，不再进矩阵）。"""
     text = _ci_config()
     assert "ubuntu-latest" in text
     assert "windows-latest" in text
-    assert "'3.8'" in text or '"3.8"' in text
     assert "'3.12'" in text or '"3.12"' in text
+    assert "'3.8'" not in text and '"3.8"' not in text
+
+
+def test_runtime_floor_is_consistent_across_config_and_docs():
+    """pyproject / CI / README / 技术报告 的运行时口径必须一致（迭代 D-3）。"""
+    root = repo_root()
+    pyproject = open(os.path.join(root, "pyproject.toml"), encoding="utf-8").read()
+    assert 'requires-python = ">=3.12"' in pyproject
+    assert 'gui = ["PySide6>=6.12,<7"]' in pyproject
+    assert 'build = ["PyInstaller>=6.0,<7"]' in pyproject
+    assert '"Programming Language :: Python :: 3.8"' not in pyproject
+    readme = open(os.path.join(root, "README.md"), encoding="utf-8").read()
+    assert "要求 Python 3.12+" in readme
+    # 旧的 3.8 口径（下限声明 / 双通道 / 4 矩阵）不得残留；历史事实性提及（如"3.8 已 EOL"）允许
+    for stale in ("Python 3.8+", "要求 Python 3.8", "3.8 与 3.12 双通道", "4 矩阵", "{3.8, 3.12}"):
+        assert stale not in readme, "README 仍残留旧口径：%s" % stale
+    assert "2 矩阵" in readme
+    report = open(os.path.join(root, "docs", "技术报告.md"), encoding="utf-8").read()
+    for stale in ("Python 3.8+", "3.8.8 与 3.12 双通道"):
+        assert stale not in report, "技术报告仍残留旧口径：%s" % stale
 
 
 def test_ci_runs_tests_bench_and_guards():
@@ -187,6 +206,121 @@ def test_ci_runs_tests_bench_and_guards():
     assert "gen_rulesets" in text
 
 
+# ---------------- 脱敏门禁：plan/ 不豁免 + CI 常驻（迭代 D-1）----------------
+
+
+def _audit_module():
+    import importlib.util
+
+    root = repo_root()
+    path = os.path.join(root, "tools", "audit_sensitive.py")
+    spec = importlib.util.spec_from_file_location("audit_sensitive_under_test", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_audit_has_no_whole_dir_exemption():
+    """plan/ 整目录豁免必须不存在（RELEASE-M6 §六 口径与代码一致）。"""
+    root = repo_root()
+    with open(os.path.join(root, "tools", "audit_sensitive.py"), encoding="utf-8") as fh:
+        text = fh.read()
+    assert "PLAN_EXCLUDE" not in text
+    assert "startswith(PLAN_EXCLUDE" not in text
+
+
+def test_audit_selftest_covers_plan_path(capsys):
+    """selftest 必须有 plan/ 阳性对照（否则"plan/ 已扫描"无法证伪）。"""
+    module = _audit_module()
+    patterns, needles, _provenance = module.collect_tokens(repo_root())
+    code = module._selftest(patterns, needles)
+    captured = capsys.readouterr()
+    assert code == 0
+    assert "AUDIT_SELFTEST_OK" in captured.out
+    assert "plan/ 路径阳性对照报出" in captured.out
+
+
+def test_audit_selftest_reports_plan_and_real_paths(capsys):
+    """中性占位豁免必须是窄的：占位式路径放行、真实路径仍报出。"""
+    module = _audit_module()
+    patterns, needles, _provenance = module.collect_tokens(repo_root())
+    module._selftest(patterns, needles)
+    out = capsys.readouterr().out
+    assert "中性占位豁免 0 命中且真实路径仍报出" in out
+
+
+def test_audit_tree_scan_includes_plan_and_reads_every_file():
+    """工作树扫描必须真的读到每个文件（非 ASCII 路径不得因引号转义静默漏读）。"""
+    module = _audit_module()
+    root = repo_root()
+    files = module._tracked_files(root)
+    assert files, "已跟踪文件清单为空"
+    assert not [f for f in files if f.startswith('"')], "git ls-files 路径仍被引号转义"
+    assert any(f.replace("\\", "/").startswith("plan/") for f in files)
+    patterns, _needles, _provenance = module.collect_tokens(root)
+    result = module.step1_tree(root, patterns)
+    assert result["unreadable"] == []
+    assert result["scanned"] == len(files)
+
+
+def test_ci_runs_sensitive_audit_gate():
+    """脱敏门禁必须常驻 CI（selftest + 全跑），否则只在人工跑。"""
+    text = _ci_config()
+    assert "audit_sensitive.py --selftest" in text
+    assert text.count("audit_sensitive.py") >= 2
+
+
+# ---------------- README 可运行示例接线（迭代 D-2）----------------
+
+
+def _run_cli(argv):
+    import io as _io
+
+    from ohscheck.cli import main as cli_main
+
+    out, err = _io.StringIO(), _io.StringIO()
+    old_out, old_err = sys.stdout, sys.stderr
+    sys.stdout, sys.stderr = out, err
+    try:
+        code = cli_main(argv)
+    finally:
+        sys.stdout, sys.stderr = old_out, old_err
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_examples_position_sample_runs_plan_exit_0():
+    """仓内示例岗位画像必须能被 `plan` 直接跑通（README 第 2 条命令）。"""
+    root = repo_root()
+    sample = os.path.join(root, "examples", "position-sample.json")
+    assert os.path.isfile(sample), "examples/position-sample.json 缺失"
+    payload = json.loads(open(sample, encoding="utf-8").read())
+    for key in ("position_id", "exam_date", "factors"):
+        assert key in payload, "示例岗位画像缺字段 %r" % key
+    code, out, err = _run_cli(["plan", sample])
+    assert code == 0, "plan 退出码 %d；stderr=%s" % (code, err[:400])
+    assert "SYN-POS-benzene" in out
+    assert "GBZ188-5.19" in out
+
+
+def test_readme_example_paths_exist():
+    """README 里出现的每个 examples/... 路径都必须存在（防文档漂移）。"""
+    root = repo_root()
+    text = open(os.path.join(root, "README.md"), encoding="utf-8").read()
+    paths = sorted(set(re.findall(r"examples/[A-Za-z0-9._/-]+", text)))
+    assert paths, "README 未引用任何 examples/ 路径"
+    for rel in paths:
+        assert os.path.isfile(os.path.join(root, rel.replace("/", os.sep))), rel
+
+
+def test_readme_command_paths_exist():
+    """README 命令块里引用的仓内数据路径必须存在（真值库 / 示例目录）。"""
+    root = repo_root()
+    text = open(os.path.join(root, "README.md"), encoding="utf-8").read()
+    for rel in ("data/truth/records", "examples/position-sample.json"):
+        assert rel in text, "README 命令块未引用 %s" % rel
+        assert os.path.exists(os.path.join(root, rel.replace("/", os.sep))), rel
+
+
 # ---------------- 结构纪律 ----------------
 
 
@@ -194,23 +328,14 @@ def test_core_has_no_third_party_imports():
     """核心层零第三方依赖（NFR-3 / 决策 D-07）：只许 stdlib。
 
     用 AST 静态扫描，比运行时 import 更可靠。
-    3.8 没有 sys.stdlib_module_names（3.10+）→ 回落到显式 stdlib 白名单，
-    **不允许"环境缺能力就静默跳过"**（否则守门在某条通道上假绿）。
+    floor 已是 3.12（迭代 D-3）⇒ `sys.stdlib_module_names` 必然存在；
+    **不允许"环境缺能力就静默跳过"**（否则守门会在某条通道上假绿）。
     """
     import ast
 
-    if hasattr(sys, "stdlib_module_names"):
-        allowed = set(sys.stdlib_module_names)
-    else:
-        # 3.8 显式白名单：本项目实际用到的 stdlib 模块 + 常见同族
-        allowed = {
-            "argparse", "ast", "calendar", "collections", "contextlib", "copy",
-            "csv", "dataclasses", "datetime", "decimal", "enum", "errno", "functools",
-            "hashlib", "io", "itertools", "json", "logging", "math", "multiprocessing",
-            "os", "pathlib", "re", "shutil", "stat", "string", "struct", "subprocess",
-            "sys", "tempfile", "textwrap", "time", "types", "typing", "unicodedata",
-            "unittest", "warnings", "xml", "zipfile", "__future__",
-        }
+    if not hasattr(sys, "stdlib_module_names"):
+        pytest.fail("解释器缺 sys.stdlib_module_names——floor 应为 >=3.12（迭代 D-3）")
+    allowed = set(sys.stdlib_module_names)
 
     offenders = []
     src_root = os.path.join(repo_root(), "src", "ohscheck")

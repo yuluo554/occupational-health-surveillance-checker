@@ -15,6 +15,7 @@
 | `data/truth/`（合成监护档案 + 真值库） | 合成数据 + 算例 | `tools/gen_synthetic.py` 生成（自研 splitmix64，固定 seed） | 自制（虚构人员/企业，非真实数据） | ✅ **M2 扩充**（74 文件：72 档案 + 真值库 + 语料 manifest；新增周期三形态覆盖） |
 
 > **基准与生产刻意分离**（`plan/06` D-51）：`data/benchmark/` 用**合成规则集**验证引擎机制，`data/rules/` 承载真实国标内容。二者不得合并。
+> **顶层 `status` 是整包完成度标签，不参与门控**：`ruleset-2025.json` = `partial`（第 5–7 章明细已核对、第 8–9 章明细待核对）、`ruleset-2014.json` = `scaffold`（差异导向骨架）。该字段**可选**、由 schema 校验取值（`{partial, scaffold}`），但**不被任何判定/门控代码读取**——门控只看条目级 `verified`/`pending`/`input_required`（`src/ohscheck/rules/gate.py`）。不得据顶层 `status` 推断"整包已核对"。
 > 生成器为**唯一写入者**：产物禁手改；改体例走 `tools/gen_*.py` 整目录重生成，配"再生成逐字节一致"守门测试。
 > **依据索引与规则包同源**：`clauses.json` 也由 `gen_rulesets.py` 产出，与规则包同一次 `--check` 守门（避免出现第二份真相）。
 

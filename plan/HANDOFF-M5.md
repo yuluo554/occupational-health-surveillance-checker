@@ -14,7 +14,7 @@
 |---|---|
 | 版本 | `ohscheck 0.1.0`（`src/ohscheck/__init__.py`） |
 | 测试 | **212 项**（M3 基线 197 + 新增 `tests/test_m4.py` 15 项），Python **3.8.8** 与 **3.12** 双通道全绿（0 failed/0 skipped） |
-| 基准 | `ohscheck bench` 四套件全达标退出 0：matrix 1.0000（5+规则驱动 7）、coverage 1.0000（13）、compare 1.0000（3）、false_positive 误报 0（7 件）、运行时长 0.005 秒（上限 5.0）；实测值已入 README"M4 期基准指标实测"表 |
+| 基准 | `ohscheck bench` 四套件全达标退出 0：matrix 1.0000（5+规则驱动 7）、coverage 1.0000（13）、compare 1.0000（3）、false_positive 误报 0（7 件）、运行时长 0.005 秒（上限 5.0）；实测值已入 README"M4 期基准指标实测"表（本行耗时是 M5 期快照，**后续复测见 README**） |
 | 官方快照 | `data/knowledge/raw/GBZ188-2025.pdf`（1,553,783 字节，sha256 `5823eea7…`）+ `.layout.txt`（**75,555 汉字**零丢失） |
 | 规则包 | `data/rules/`（3 文件）：**2025 版 97 因素**（第 5–7 章 82 因素明细 verified，2520 条 verified）/ **2014 版 81 因素**差异骨架（明细全 pending）；`--check` 再生成逐字节一致 |
 | 依据索引 | `data/knowledge/clauses.json`（97 节 + 前言差异 17 条 + 待核对项 4 条）；与规则包同一次 `--check` 守门 |
