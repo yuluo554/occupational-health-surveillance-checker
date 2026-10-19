@@ -195,3 +195,18 @@ step3 dist     : 扫描 244 个产物文件，第三方官方路径豁免 64 处
 
 **处置**：不引入自定义后处理（spec 仍是 `gen_spec.py` 的唯一产物，构建命令不变）；发布留档的 sha256 一律以**实际上传件**为准，不使用"重建可复现"的说法。若将来需要"构建级可复现"，路径是 `SOURCE_DATE_EPOCH` + 规范化 `base_library.zip` 条目顺序——**本轮不做**，在此留档。
 
+### §十.2 发布记录（2026-10-19，实测）
+
+| 项 | 事实 |
+|---|---|
+| 提交 | `8f6ef5a`（迭代本体）+ `ac5c5cb`（CI 暴露的三处跨平台缺陷修复）；tag `v0.1.1` → **`ac5c5cb`** |
+| CI | push 触发 run **39271881017**：`py3.12 / ubuntu-latest` 与 `py3.12 / windows-latest` **全绿**（含新增 `Sensitive-data audit gate (plan/ included)` 步骤）；首次 run 39269803163 曾红，原因与修复见 §六.2 |
+| Release | https://github.com/yuluo554/occupational-health-surveillance-checker/releases/tag/v0.1.1 （非 draft / 非 prerelease） |
+| 附件 | `ohscheck-0.1.1-win64.zip` **128,791,986 B**，Release digest `sha256:46c0324f…acdf` |
+| 下载回验 | `gh release download` 真下载 → **sha256 逐位一致** → 解压 → `ohscheck-cli.exe selftest` rc 0（`frozen`/`data_dir_inside_exe`/`engine_ok`/`bench_ok` 四项 True）→ `bench` rc 0 → `selfcheck` rc 0 → `version` 0.1.1 |
+| 同基线 | `git diff 8f6ef5a..ac5c5cb -- src data tools/packaging.spec` **为空**（打包内容含 `src/` 与 `data/`，二者在两次提交间未变） |
+
+> **操作失误与修正（如实留档）**：为修 CI 缺陷重跑构建时产生了 `build2/`~`build4/`、`dist2/`~`dist4/`，而 `.gitignore` 当时只覆盖 `build/`、`build-*/`、`dist/`。一次 `git add -A` 把 **771 个构建产物**误提交并推送（commit `4435599`）。发现后立即：`git reset --mixed 8f6ef5a` → 只按显式路径重新提交（`ac5c5cb`，6 个文件）→ `git push --force-with-lease`（被替换的是**本小时新增的子提交**，`0dcbc2d`/`8f6ef5a` 等公共历史**未被改写**）→ 删除并重指 tag `v0.1.1`。远程 `main` 树复核：**210 条目、`^build|dist[0-9]*/` 命中 0**。同时把 `.gitignore` 收口为 `build*/`、`dist*/`，防止复发。
+
+> **GUI 实机目检与双击冒烟**：属用户侧验收，本轮**未做**（只跑了 offscreen 测试与 exe 的 CLI/自检链路）。
+
