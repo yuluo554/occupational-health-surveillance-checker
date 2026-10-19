@@ -115,6 +115,20 @@ step3 dist     : 扫描 244 个产物文件，第三方官方路径豁免 64 处
 - `plan/` 14 份入仓文件**全部进入扫描范围**（旧口径只扫 177 份且其中 8 份读不出）；逐文件扫描 `plan/` 命中 **0**，故无需先修 `plan/` 内容。
 - selftest：`AUDIT_SELFTEST_OK: … plan/ 路径阳性对照报出 3 处，中性占位豁免 0 命中且真实路径仍报出`。
 
+### §六.2 CI 首跑暴露的三处跨平台缺陷（2026-10-19，已修）
+
+门禁接进 CI 后，**ubuntu-latest 首跑即红**（run 39269803163）；三处都是工具自身的跨平台缺陷，此前从未在 Linux 上跑过：
+
+| # | 现象 | 修法 |
+|---|---|---|
+| 1 | `_selftest` 里 `re.search(r"[A-Za-z]:", _repo_root()).group(0)` 在无盘符路径上 `AttributeError: 'NoneType' object has no attribute 'group'` | 新增 `_repo_drive()`：有盘符取盘符，非 Windows（Linux/macOS runner）回落 `"C:"`（沿用 `users_home` 模式默认盘符，Windows 形态泄漏在 Linux 上照扫） |
+| 2 | CI 的 `getpass.getuser()` 返回**构建账号名**（`runner`）。把它当 token → `\brunner\b` 命中 `plan/` 文档里的英文单词（`基准 runner` 等），实测 **24 处假命中** | 通用服务/构建账号名写死名单（`runner`/`root`/`admin`/`ubuntu`/`jenkins`/…）**显式跳过**，并在 `provenance.username_skipped` **记名留痕**（不静默） |
+| 3 | Linux 上 needle 集可能为空（无盘符 + 通用用户名已跳过）→ 二进制阳性对照 `local_leak` 无对象可测，断言 `len(local_hits) >= 1` 必失败 | selftest 用**被测盘符 needle 兜底**（`probe_needles = needles or [drive + b"\\"]`），保证"阳性对照必须能报出"仍然可证伪 |
+
+修后：本机 selftest / 全跑仍 `EXIT=0`（`step1` 186 份 / `step2` 19 提交 / `step3` 244，命中 0），CI 复跑绿。
+
+> **诚实限制（不得误读 CI 结论）**：CI 跑在 Linux runner 上，运行时实算的 token 集**比开发机窄**——没有盘符段（`machine_path` 缺）、没有个人用户名（通用账号已跳过），只剩 `users_home` 文本形态 + 占位豁免不误伤 + 产物扫描。**开发机上的全量 token 扫描仍是主口径**；CI 是"每次推送都跑一遍、防止 plan/ 类盲区回归"的常驻兜底，不等于"全部 token 已在 CI 扫过"。
+
 发布源码 zip（M6-5）含 `plan/` 时按本节口径接受；dist 产物 zip 不含 `plan/`，不受影响。
 
 ## 七、M6-2 干净环境验证（2026-10-14）
@@ -161,10 +175,23 @@ step3 dist     : 扫描 244 个产物文件，第三方官方路径豁免 64 处
 | 构建 | `py -3.12 -m PyInstaller tools/packaging.spec`（PyInstaller 6.22.3 / PySide6 6.12.0 / Python 3.12.10），`gen_spec --check` 先行 OK |
 | 产物 | `dist/ohscheck/` **256 文件**；`_internal/data/` 82 项（rules 3 + benchmark 5 + truth 74）；**无 `knowledge/`、无 `plan/`** |
 | 冻结自检 | `ohscheck-cli.exe selftest` rc 0：`frozen=True`、`data_dir_inside_exe=True`、`engine_ok=True`、`bench_ok=True`、`bench_exit_code=0`；`selfcheck` / `bench` rc 0 |
-| zip（ASCII 名） | `ohscheck-0.1.1-win64.zip` **256 条目 / 128,791,986 B**，`date_time=(2026,10,19,0,0,0)` + `create_system=0` + 固定 `external_attr`；**同参数再生成两次 sha256 逐字节一致** |
-| zip sha256 | `70e11b4164ee7006848844325155c23bc6ebd4439e07d00b3f1672e449f9957f` |
+| zip（ASCII 名） | `ohscheck-0.1.1-win64.zip` **256 条目 / 128,791,986 B**，`date_time=(2026,10,19,0,0,0)` + `create_system=0` + 固定 `external_attr`；**同一 `dist` 树再生成两次 sha256 逐字节一致** |
+| zip sha256 | `46c0324ffcd71c50a3427bca5867eda3e78572a9acb65da80e124a23223facdf` |
 | 解压复验 | 解压后 `ohscheck-cli.exe selftest` rc 0（四项 True）+ `bench` rc 0 + `selfcheck` rc 0 |
 | 产物脱敏 | `audit_sensitive --dist-dir dist/ohscheck`：扫描 256 个产物文件，第三方官方路径豁免 64 处，本项目产物命中 0 |
 
 > 体积从 v0.1.0 的 49,009,569 B 增至 128,791,986 B，原因是 `gui` 依赖由 PySide6 6.6.3.1 升到 **6.12.0**（迭代 D-3 移除 3.8 专用上界）。
+
+### §十.1 实测修正：可复现的是「打包」不是「构建」（2026-10-19）
+
+本轮独立重跑了一次 PyInstaller 构建做对撞，结论与 M6 期的表述需要**分两句话说清**（数字均为实测）：
+
+| 命题 | 实测 |
+|---|---|
+| 同一 `dist` 树打成 zip 两次 | **sha256 逐字节一致**（`reproducible True`）——M6-5 的口径指的就是这一步 |
+| **重新构建**一次再打包 | **sha256 不同**：256 条目中仅 **3 个** 不同（`ohscheck-cli.exe` / `ohscheck-gui.exe` / `_internal/base_library.zip`），三者**大小完全相同**、内容不同 |
+| 差异性质 | 两个 exe 的首个差异字节在 **PE 头 `TimeDateStamp`**（偏移 272，如 `0x6ad62b81` vs `0x6ad62be2`）——PyInstaller 把**构建时刻**写进 PE 头 |
+| 设 `SOURCE_DATE_EPOCH=<固定值>` 后两次构建 | **两个 exe 变为逐字节一致**；仅剩 `_internal/base_library.zip` 不同——其内部 **155 个条目内容逐个相同**，差异只在条目顺序（PyInstaller 内部写盘顺序） |
+
+**处置**：不引入自定义后处理（spec 仍是 `gen_spec.py` 的唯一产物，构建命令不变）；发布留档的 sha256 一律以**实际上传件**为准，不使用"重建可复现"的说法。若将来需要"构建级可复现"，路径是 `SOURCE_DATE_EPOCH` + 规范化 `base_library.zip` 条目顺序——**本轮不做**，在此留档。
 

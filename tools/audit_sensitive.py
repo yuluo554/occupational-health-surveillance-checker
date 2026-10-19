@@ -66,6 +66,14 @@ _OFFICIAL_PDB_DIRS = (
     b"D:" + b"\\" + b"git-sdk-64-full" + b"\\",   # Git for Windows 构建
 )
 
+# 通用服务/构建账号名：CI runner 上的 getpass 返回这些名字，**不是个人标识**，
+# 当 token 只会误伤英文单词（实测 "runner" → 24 处假命中）。名单写死、命中即跳过并留痕。
+_GENERIC_USERNAMES = frozenset({
+    "runner", "root", "admin", "administrator", "user", "ubuntu", "docker",
+    "jenkins", "travis", "circleci", "vsts", "azure", "build", "ci", "ec2-user",
+    "system", "default", "github", "actions",
+})
+
 
 def _ensure_utf8_stdio():
     """编码守卫（决策 D-39）：cp1252 等管道不因非 ASCII 输出崩。"""
@@ -109,6 +117,19 @@ def _run_git(args, root, ok_codes=(0,)):
 
 # ---------------- token 实算 ----------------
 
+def _repo_drive(root=None):
+    """仓库所在盘符（Windows 形如 `D:`）；非 Windows（Linux/macOS runner）回落 `"C:"`。
+
+    跨平台要求（迭代 D-1 的 CI 接入实测）：CI 在 ubuntu-latest 上跑本门禁，
+    路径无盘符 → 旧写法 `re.search(r"[A-Za-z]:", root).group(0)` 抛 AttributeError。
+    回落值沿用 `users_home` 模式的默认盘符，Windows 形态泄漏在 Linux 上照扫。
+    """
+    parts = [p for p in os.path.abspath(root or _repo_root()).replace("/", os.sep).split(os.sep) if p]
+    if parts and re.fullmatch(r"[A-Za-z]:", parts[0]):
+        return parts[0]
+    return "C:"
+
+
 def collect_tokens(root):
     """运行时实算禁用 token（同 check_literals 从规则包实算的思路，决策 D-27 同族）。
 
@@ -134,9 +155,15 @@ def collect_tokens(root):
         text_patterns.append(("identity_number", re.compile(re.escape(value))))
         binary_needles.append(value.encode("utf-8"))
 
-    # 2) 本机用户名（getpass）；词边界，避免误伤包含它的厂商串
+    # 2) 本机用户名（getpass）；词边界，避免误伤包含它的厂商串。
+    #    CI（GitHub Actions ubuntu/windows runner）上 getpass 返回的是**构建账号名**而非个人标识
+    #    （如 "runner"），拿它当 token 只会把文档里的英文单词判成命中（迭代 D-1 实测：24 处误报）。
+    #    故对**通用服务/构建账号名**显式跳过，并在 provenance 里**记名留痕**（不静默）。
     user = getpass.getuser()
-    if user and len(user) >= 2:
+    if user and user.lower() in _GENERIC_USERNAMES:
+        provenance["username"] = user
+        provenance["username_skipped"] = "通用服务/构建账号名（非个人标识，不做 token）"
+    elif user and len(user) >= 2:
         text_patterns.append(("username", re.compile(r"\b%s\b" % re.escape(user))))
         binary_needles.append(user.encode("utf-8"))
         provenance["username"] = user
@@ -151,7 +178,7 @@ def collect_tokens(root):
         if re.fullmatch(r"[A-Za-z]:", seg) or seg.lower() == _PD_SEGMENT:
             seg_tokens.add(seg)
     # 盘符 + Users 目录模式（用户主目录泄漏形态）
-    drive = parts[0] if parts and re.fullmatch(r"[A-Za-z]:", parts[0]) else "C:"
+    drive = _repo_drive(root)
     text_patterns.append(("users_home", re.compile(r"%s[/\\]Users[/\\]" % re.escape(drive), re.IGNORECASE)))
     for seg in sorted(seg_tokens):
         if seg.lower() == _PD_SEGMENT:
@@ -388,14 +415,16 @@ def _selftest(patterns, needles):
         fh.write("ASUSTek vendor string is fine; plain text with no identifiers.\n")
     clean_hits = scan_text_file(clean, patterns)
 
-    # 二进制阳性/豁免对照
+    # 二进制阳性/豁免对照（needle 集可能为空：Linux runner 无盘符 + 通用用户名已跳过 →
+    # 此时用被测盘符 needle 兜底，保证"阳性对照必能报出"这条断言仍然可证伪）
     bs = b"\\"
     official_qt = b"x" * 10 + b"C:" + bs + b"Users" + bs + b"qt" + bs + b"work" + bs + b"Qt6Gui.pdb" + b"y" * 10
     official_py = b"D:" + bs + b"a" + bs + b"1" + bs + b"s" + bs + b"Modules" + bs + b"gcmodule.c"
-    drive = re.search(r"[A-Za-z]:", _repo_root()).group(0)
+    drive = _repo_drive()
+    probe_needles = list(needles) or [drive.encode("utf-8") + bs]
     local_leak = drive.encode() + bs + b"secret" + bs + b"leak.bin\x00"
-    official_hits = _scan_bytes_blob(official_qt + official_py, needles)
-    local_hits = _scan_bytes_blob(local_leak, needles)
+    official_hits = _scan_bytes_blob(official_qt + official_py, probe_needles)
+    local_hits = _scan_bytes_blob(local_leak, probe_needles)
 
     # 目录级豁免阳性对照（迭代 D-1）：plan/ 路径必须进入扫描范围，且其中的本机标识必须报出。
     # 若代码里再出现"按目录前缀跳过"，本对照会立刻变红。

@@ -270,6 +270,42 @@ def test_ci_runs_sensitive_audit_gate():
     assert text.count("audit_sensitive.py") >= 2
 
 
+def test_audit_skips_generic_ci_username(monkeypatch):
+    """CI 上 getpass 返回的是构建账号名（runner），不得当个人标识做 token。
+
+    实测：拿 "runner" 当 token 会把 plan/ 文档里的英文单词判成 24 处假命中 → CI 必红。
+    """
+    module = _audit_module()
+    monkeypatch.setattr(module.getpass, "getuser", lambda: "runner")
+    patterns, _needles, provenance = module.collect_tokens(repo_root())
+    labels = [label for label, _ in patterns]
+    assert "username" not in labels
+    assert provenance["username"] == "runner"
+    assert "通用服务/构建账号名" in provenance["username_skipped"]
+    result = module.step1_tree(repo_root(), patterns)
+    assert result["hits"] == [], "通用构建账号名不应产生命中：%s" % result["hits"][:3]
+
+
+def test_audit_selftest_works_without_binary_needles(capsys):
+    """Linux runner：无盘符 needle 时 selftest 仍必须可证伪（不得因 needle 空集而崩/假绿）。"""
+    module = _audit_module()
+    patterns, _needles, _provenance = module.collect_tokens(repo_root())
+    code = module._selftest(patterns, [])
+    captured = capsys.readouterr()
+    assert code == 0
+    assert "盘符根泄漏报出" in captured.out
+
+
+def test_audit_repo_drive_is_platform_safe():
+    """`_repo_drive` 在无盘符路径上必须回落默认值而非抛异常（CI ubuntu 实测曾 AttributeError）。"""
+    module = _audit_module()
+    drive = module._repo_drive()
+    assert len(drive) == 2 and drive.endswith(":"), drive
+    if os.name != "nt":
+        # 非 Windows：绝对路径无盘符 → 回落 "C:"（不再 AttributeError）
+        assert module._repo_drive("/home/runner/work/repo/repo") == "C:"
+
+
 # ---------------- README 可运行示例接线（迭代 D-2）----------------
 
 

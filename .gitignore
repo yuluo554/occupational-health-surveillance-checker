@@ -17,7 +17,8 @@ dist/
 output/
 reports/
 *.log
-build-*/
+build*/
+dist*/
 scan-out*/
 round*.json
 

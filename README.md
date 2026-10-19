@@ -146,7 +146,7 @@ data/truth/         合成监护档案真值库（72 档案 + truth.json + manif
 examples/           示例输入（合成岗位画像；README 命令直接可用，不得据此作合规结论）
 tools/              生成器与门禁（gen_rulesets / gen_cases / gen_synthetic / gen_spec / gen_demo_assets / check_literals / audit_sensitive）
 docs/               技术报告 + 演示素材（assets/，sha256 可复现）
-tests/              238 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / GUI 守门与三方对账 / 真值对账 / 骨架守门 / 脱敏门禁）
+tests/              241 项测试（规则门控 / 引擎 / CLI 退出码 / 报告 / 基准探活 / GUI 守门与三方对账 / 真值对账 / 骨架守门 / 脱敏门禁）
 plan/               计划文档 00–06 + HANDOFF-M1…M6.md
 ```
 
@@ -165,7 +165,7 @@ plan/               计划文档 00–06 + HANDOFF-M1…M6.md
 ## 开发与测试
 
 ```bash
-python -m pytest -q          # 238 项（Python 3.12 单通道全绿；未装 gui extra 时 4 项 PySide6 测试自动跳过）
+python -m pytest -q          # 241 项（Python 3.12 单通道全绿；未装 gui extra 时 4 项 PySide6 测试自动跳过）
 ```
 
 CI（`.github/workflows/ci.yml`）按 2 矩阵运行：`{ubuntu, windows} × {3.12}`，每步都先跑冻结产物守门、零字面量门禁与脱敏门禁（`plan/` 逐文件扫描）。
