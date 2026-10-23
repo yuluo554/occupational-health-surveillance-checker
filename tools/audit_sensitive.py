@@ -423,6 +423,13 @@ def _selftest(patterns, needles):
     drive = _repo_drive()
     probe_needles = list(needles) or [drive.encode("utf-8") + bs]
     local_leak = drive.encode() + bs + b"secret" + bs + b"leak.bin\x00"
+    # 兜底二（Linux runner 实测）：needle 集**非空**但里面没有盘符串时
+    # （ubuntu 上 repo 路径无盘符 → 盘符 needle 不产生；用户名 "runner" 被通用名单跳过；
+    #  剩下只有 git 邮箱里的身份数字），上面那个 `or` 分支不会触发，
+    # 而 local_leak 是按盘符拼的 → 两者无交集 → 阳性对照恒 0 命中，门禁**假红**。
+    # 修法：合成件必须嵌入至少一个真实 needle，保证"本机泄漏必被报出"这条断言可证伪。
+    if not any(n in local_leak for n in probe_needles):
+        local_leak = b"\x00".join(probe_needles) + b"\x00" + local_leak
     official_hits = _scan_bytes_blob(official_qt + official_py, probe_needles)
     local_hits = _scan_bytes_blob(local_leak, probe_needles)
 
